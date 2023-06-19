@@ -1,4 +1,4 @@
-![Notre bannière]()
+![Notre bannière](https://i.imgur.com/kaWOexo.png)
 <br><br>
 <h1 align="center"><strong>COOKIN</strong></h1>
 <br>
