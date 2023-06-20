@@ -39,7 +39,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-    - run: pnpm install --no-frozen-lockfile
+    - run: pnpm install 
     - run: pnpm run build
     - run: pnpm test
     - run: pnpm eslint . --ext .jsx,.js
