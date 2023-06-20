@@ -42,4 +42,4 @@ jobs:
     - run: pnpm install --no-frozen-lockfile
     - run: pnpm run build
     - run: pnpm test
-    - run: eslint . --ext .jsx,.js
+    - run: pnpm eslint . --ext .jsx,.js
