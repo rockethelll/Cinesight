@@ -1,3 +1,5 @@
+import blank from './'
+
 
 const Home = () => {
   return (
