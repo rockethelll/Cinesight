@@ -1,10 +1,7 @@
-
-const Home = () => {
+function Home() {
   return (
-    <>
-      <h1>Hello depuis la Home page</h1>
-    </>
-  );
-};
+    <h1>Hello depuis la Home page</h1>
+  )
+}
 
-export default Home;
+export default Home
