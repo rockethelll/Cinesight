@@ -44,5 +44,6 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
+        uses: actions/setup-node@v3
       - run: pnpm test
       - run: pnpm eslint . --ext .jsx,.js
