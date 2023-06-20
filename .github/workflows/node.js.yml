@@ -45,6 +45,7 @@ jobs:
 
       - name: Install dependencies
         uses: actions/setup-node@v3
+      - run: pnpm install
       - run: pnpm run build
       - run: pnpm test
       - run: pnpm eslint . --ext .jsx,.js
