@@ -26,6 +26,7 @@ function Navbar() {
 
   return (
     <nav>
+      <Link to="/">Accueil</Link>
       {userID >= 0 ? (
         <div>
           <button
@@ -36,10 +37,7 @@ function Navbar() {
           </button>
         </div>
       ) : (
-        <>
-          <Link to="/">Accueil</Link>
-          <Link to="/login">Se connecter</Link>
-        </>
+        <Link to="/login">Se connecter</Link>
       )}
     </nav>
   );
