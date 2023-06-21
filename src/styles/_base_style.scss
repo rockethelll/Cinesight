@@ -37,7 +37,7 @@ a {
 }
 
 .auto-grid {
-  --min-column-size: 25rem;
+  --min-column-size: 10rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit,

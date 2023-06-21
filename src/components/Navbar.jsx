@@ -1,24 +1,50 @@
-import { Link } from "react-router-dom";
-import { useWindowSize } from "@uidotdev/usehooks";
-import Searchbar from "./Searchbar/Searchbar";
-import { useState, useRef } from "react";
-import { useEffect } from "react";
-const Navbar = () => {
+import { useContext, useState, useRef, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
+import { useWindowSize } from '@uidotdev/usehooks';
+import axiosClient from '../axiosClient';
+import { UserContext } from '../Context/UserContext';
+import Searchbar from './Searchbar/Searchbar';
+
+export default function Navbar() {
+  const { setUserID, userID } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
+
+  const getAuthToken = () => {
+    const bearer = Cookies.get('token');
+    return bearer ? `Bearer ${bearer}` : null;
+  };
+
+  const disconnect = async () => {
+    if (!getAuthToken()) return;
+
+    await axiosClient.delete('/logout', {
+      headers: {
+        Authorization: getAuthToken(),
+      },
+    });
+    Cookies.remove('token');
+    setUserID(-1);
+  };
+
   function handleMenu() {
     setClick(!click);
   }
+
+  console.log(userID);
+  console.log(disconnect);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setClick(false);
       }
     };
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true);
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside, true);
     };
   }, [click]);
   return (
@@ -43,8 +69,8 @@ const Navbar = () => {
           <Link to="/">
             <img className="logo" src="../images/logo.svg" alt="" />
           </Link>
-          
-          <button onClick={handleMenu}>
+
+          <button type="button" onClick={handleMenu}>
             <img
               className="burger_menu"
               src="../images/burger_menu.svg"
@@ -53,7 +79,7 @@ const Navbar = () => {
           </button>
           {click ? (
             <>
-              <span className="background"></span>
+              <span className="background" />
               <div
                 ref={ref}
                 className="menu__wrapper"
@@ -62,7 +88,7 @@ const Navbar = () => {
                 <div className="menu">
                   <div className="user_section">
                     <div className="user_logo">
-                      <div></div>
+                      <div />
                     </div>
                     <p>Nom_utilisateur_01</p>
                   </div>
@@ -73,14 +99,9 @@ const Navbar = () => {
                 </div>
               </div>
             </>
-            
-          ) : (
-            <></>
-          )}
+          ) : null}
         </div>
       )}
     </nav>
   );
-};
-
-export default Navbar;
+}

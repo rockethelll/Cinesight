@@ -1,8 +1,8 @@
+
 .search_card__wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  aspect-ratio: 18/10;
   color: var(--white);
   line-height: 1;
   border-radius: 5px;
@@ -21,6 +21,7 @@
     border-radius: inherit;
 
     img {
+      aspect-ratio: 2/3;
       height: 100%;
       width: 100%;
       object-fit: cover;

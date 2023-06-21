@@ -1,9 +1,10 @@
-import './SearchCard.scss'
-export default function SearchCard() {
+import './SearchCard.scss';
+
+export default function SearchCard({ data }) {
   return (
     <div className="search_card__wrapper">
       <div className="search_card--img">
-        <img src="../images/joker.webp" alt="" />
+        <img src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}`} alt="" />
       </div>
       <div className="search_card__header">
         <h3>Joker</h3>

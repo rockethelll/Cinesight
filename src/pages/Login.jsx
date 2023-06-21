@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axiosClient from '../axiosClient';
 import useSessionCookie from '../createCookie';
 import { UserContext } from '../Context/UserContext';
 
-function Signup() {
+function Login() {
   const { setUserID } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ function Signup() {
     e.preventDefault();
 
     const createUser = async (data) => {
-      const response = await axiosClient.post('/signup', data);
+      const response = await axiosClient.post('/login', data);
       useSessionCookie(response);
       setUserID(response.data.data.id);
       navigate('/');
@@ -25,7 +25,19 @@ function Signup() {
 
   return (
     <main>
-      <h1>Créer un compte</h1>
+      <h1>Se connecter</h1>
+      <h6>
+        Connectez-vous avec votre email
+      </h6>
+      <p>
+        Pas encore de compte ?
+        <Link
+          to="/signup"
+          style={{ color: 'blue', fontWeight: '500' }}
+        >
+          Créer un compte
+        </Link>
+      </p>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">E-mail</label>
         <input
@@ -37,6 +49,7 @@ function Signup() {
         <input
           id="password"
           type="password"
+          name="password"
         />
 
         <input
@@ -48,4 +61,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

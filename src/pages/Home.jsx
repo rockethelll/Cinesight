@@ -1,15 +1,23 @@
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import HomeCard from "../components/Cards/HomeCard/HomeCard";
-import SearchCard from "../components/Cards/SearchCard/SearchCard";
-import { useWindowSize } from "@uidotdev/usehooks";
+import { useEffect, useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { useWindowSize } from '@uidotdev/usehooks';
+import HomeCard from '../components/Cards/HomeCard/HomeCard';
+import SearchCard from '../components/Cards/SearchCard/SearchCard';
+import axiosClient from '../axiosClient';
 
-const Home = () => {
+function Home() {
+  const [data, setData] = useState();
   const screenSize = useWindowSize();
   let handleCenterSlide;
   let handleArrow;
 
-  const images = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  useEffect(() => {
+    const response = axiosClient.get('/');
+    response.then((responseData) => setData(responseData));
+  }, []);
+
+
 
   if (screenSize.width > 810) {
     handleCenterSlide = 25;
@@ -26,30 +34,41 @@ const Home = () => {
       <h2>Dernières sorties</h2>
       <Carousel
         className="main-slide"
-        centerMode={true}
+        centerMode
         centerSlidePercentage={handleCenterSlide}
-        useKeyboardArrows={true}
+        useKeyboardArrows
         showStatus={false}
         showIndicators={false}
         showArrows={handleArrow}
         swipeScrollTolerance={5}
-        swipeable={true}
+        swipeable
         showThumbs={false}
-        width={"100%"}
+        width="100%"
       >
-        {images.map((index) => (
-          <HomeCard key={index} index={index} />
-        ))}
+        {
+        data !== undefined ? (
+          data.data.results.map((movie) => (
+            <HomeCard key={movie.id} data={movie} />
+          ))
+        ) : (
+          console.log('prout')
+        )
+        }
+        ;
       </Carousel>
-
-      <h2>Résultat de la recherche</h2>
-      <div className="auto-grid">
-        {images.map((index) => (
-          <SearchCard key={index} />
-        ))}
-      </div>
+      {
+        data !== undefined ? (
+          data.data.results.map((movie) => (
+            <div className="auto-grid">
+              <SearchCard key={movie.id} data={movie} />
+            </div>
+          ))
+        ) : (
+          console.log('prout')
+        )
+      }
     </main>
   );
-};
+}
 
 export default Home;
