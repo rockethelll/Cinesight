@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useWindowSize } from '@uidotdev/usehooks';
@@ -6,16 +6,26 @@ import HomeCard from '../components/Cards/HomeCard/HomeCard';
 import SearchCard from '../components/Cards/SearchCard/SearchCard';
 import axiosClient from '../axiosClient';
 
+function useMovies() {
+  return useQuery({
+    queryKey: ['movies'],
+    queryFn: async () => {
+      const { data } = await axiosClient.get('/');
+      return data;
+    },
+  });
+}
+
 function Home() {
-  const [data, setData] = useState();
+  // eslint-disable-next-line no-unused-vars
+  const queryClient = useQueryClient();
+  const {
+    status, data, error, isFetching,
+  } = useMovies();
+
   const screenSize = useWindowSize();
   let handleCenterSlide;
   let handleArrow;
-
-  useEffect(() => {
-    const response = axiosClient.get('/');
-    response.then((responseData) => setData(responseData));
-  }, []);
 
   if (screenSize.width > 810) {
     handleCenterSlide = 25;
@@ -25,6 +35,19 @@ function Home() {
   } else {
     handleCenterSlide = 65;
     handleArrow = false;
+  }
+
+  if (status === 'loading') {
+    return <p>Loading ...</p>;
+  }
+
+  if (status === 'error') {
+    return (
+      <p>
+        Error:
+        {error.message}
+      </p>
+    );
   }
 
   return (
@@ -44,26 +67,18 @@ function Home() {
         width="100%"
       >
         {
-        data !== undefined ? (
-          data.data.results.map((movie) => (
+          data?.results.map((movie) => (
             <HomeCard key={movie.id} data={movie} />
           ))
-        ) : (
-          console.log('prout')
-        )
         }
-        ;
       </Carousel>
+      <div>{isFetching ? 'Background Updating...' : ' '}</div>
       {
-        data !== undefined ? (
-          data.data.results.map((movie) => (
-            <div className="auto-grid">
-              <SearchCard key={movie.id} data={movie} />
-            </div>
-          ))
-        ) : (
-          console.log('prout')
-        )
+        data?.results.map((movie) => (
+          <div className="auto-grid" key={movie.id}>
+            <SearchCard data={movie} />
+          </div>
+        ))
       }
     </main>
   );
