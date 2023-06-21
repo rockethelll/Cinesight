@@ -53,4 +53,4 @@ jobs:
         run: pnpm test
 
       - name: Run ESLint
-        run: npx eslint 'src/**/*.{js,jsx}'
+        run: pnpx eslint 'src/**/*.{js,jsx}'
