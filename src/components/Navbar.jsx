@@ -1,28 +1,28 @@
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import Cookies from 'js-cookie'
-import axiosClient from '../axiosClient'
-import { UserContext } from '../Context/UserContext'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import axiosClient from '../axiosClient';
+import { UserContext } from '../Context/UserContext';
 
 function Navbar() {
-  const { setUserID, userID } = useContext(UserContext)
+  const { setUserID, userID } = useContext(UserContext);
 
   const getAuthToken = () => {
-    const bearer = Cookies.get('token')
-    return bearer ? `Bearer ${bearer}` : null
-  }
+    const bearer = Cookies.get('token');
+    return bearer ? `Bearer ${bearer}` : null;
+  };
 
   const disconnect = async () => {
-    if (!getAuthToken()) return
+    if (!getAuthToken()) return;
 
     await axiosClient.delete('/logout', {
       headers: {
         Authorization: getAuthToken(),
       },
-    })
-    Cookies.remove('token')
-    setUserID(-1)
-  }
+    });
+    Cookies.remove('token');
+    setUserID(-1);
+  };
 
   return (
     <nav>
@@ -42,7 +42,7 @@ function Navbar() {
         </>
       )}
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

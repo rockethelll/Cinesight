@@ -1,27 +1,27 @@
-import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axiosClient from '../axiosClient'
-import useSessionCookie from '../createCookie'
-import { UserContext } from '../Context/UserContext'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosClient from '../axiosClient';
+import useSessionCookie from '../createCookie';
+import { UserContext } from '../Context/UserContext';
 
 function Signup() {
-  const { setUserID } = useContext(UserContext)
-  const navigate = useNavigate()
+  const { setUserID } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const createUser = async (data) => {
-      const response = await axiosClient.post('/signup', data)
-      useSessionCookie(response)
-      setUserID(response.data.data.id)
-      navigate('/')
-    }
+      const response = await axiosClient.post('/signup', data);
+      useSessionCookie(response);
+      setUserID(response.data.data.id);
+      navigate('/');
+    };
 
-    const [email, password] = e.target
-    const data = { user: { email: email.value, password: password.value } }
-    createUser(data)
-  }
+    const [email, password] = e.target;
+    const data = { user: { email: email.value, password: password.value } };
+    createUser(data);
+  };
 
   return (
     <main>
@@ -46,7 +46,7 @@ function Signup() {
         />
       </form>
     </main>
-  )
+  );
 }
 
-export default Signup
+export default Signup;

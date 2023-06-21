@@ -14,7 +14,7 @@
   "rules": {
     "indent": "error",
     "no-unexpected-multiline": "error",
-    "semi": ["error", "never"],
+    "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "react/react-in-jsx-scope": 0,
     "react/jsx-uses-react": 0,
