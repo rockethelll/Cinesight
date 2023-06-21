@@ -1,4 +1,6 @@
-import { useContext, useState, useRef, useEffect } from 'react';
+import {
+  useContext, useState, useRef, useEffect,
+} from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { useWindowSize } from '@uidotdev/usehooks';

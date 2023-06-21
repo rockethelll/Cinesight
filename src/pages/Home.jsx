@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useWindowSize } from '@uidotdev/usehooks';
 import HomeCard from '../components/Cards/HomeCard/HomeCard';
 import SearchCard from '../components/Cards/SearchCard/SearchCard';
@@ -16,8 +16,6 @@ function Home() {
     const response = axiosClient.get('/');
     response.then((responseData) => setData(responseData));
   }, []);
-
-
 
   if (screenSize.width > 810) {
     handleCenterSlide = 25;
