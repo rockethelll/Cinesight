@@ -12,17 +12,21 @@
     "coverage": "vitest run --coverage.provider c8"
   },
   "dependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@uidotdev/usehooks": "^2.0.1",
+    "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.4.0",
     "js-cookie": "^3.0.5",
+    "optionator": "^0.9.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.13.0",
     "sass": "^1.63.4",
     "vite": "^4.3.9",
-    "@vitejs/plugin-react": "^4.0.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3"
+    "vitest": "^0.32.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.5",
@@ -38,7 +42,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "happy-dom": "^9.20.3",
-    "vitest": "^0.32.2"
+    "happy-dom": "^9.20.3"
   }
 }

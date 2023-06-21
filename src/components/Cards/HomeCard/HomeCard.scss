@@ -1,0 +1,21 @@
+.home_page__wrapper {
+  width: fit-content;
+  height: inherit;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+
+  img {
+    scale: .9;
+    border-radius: inherit;
+    max-width: 300px;
+    filter: blur(2px) brightness(50%) ;
+    transition: .3s ease-in-out;
+  }
+}
+
+.selected img {
+  padding: 0;
+  scale: 1;
+  filter: none;
+  transition: .2s ease-in-out;
+}

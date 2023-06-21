@@ -1,11 +1,135 @@
-nav {
+.nav-lg,
+.nav-sm {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  height: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  height: 70px;
 
-  a {
-    background: lightblue;
-    padding: 1rem 3rem;
+  .logo__wrapper {
+    display: flex;
+    width: 25%;
   }
+
+  .searchbar__wrapper {
+    width: 50%;
+  }
+
+  .nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 500;
+    font-size: clamp(.9rem, 2vw, 1rem);
+    width: 25%;
+
+    :first-child {
+      margin-right: 1em;
+    }
+
+    :last-child {
+      color: var(--yellow);
+    }
+
+    .nav-link {
+      flex-wrap: nowrap;
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
+    .nav-group {
+      flex-direction: column;
+      align-items: end;
+
+      :first-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+}
+
+.nav-sm {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
+
+  .menu__wrapper {
+    z-index: 100;
+    display: flex;
+    position: fixed;
+    width: 300px;
+    background-color: var(--light_blue);
+    animation: slidein .2s ease-in-out;
+    right: 0;
+    top: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+
+    .menu {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 2em;
+      gap: 2em;
+
+      a {
+        color: var(--white);
+        font-weight: 600;
+        font-size: 32px;
+      }
+
+      .user_section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: .5em;
+
+        .user_logo {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background-color: var(--grey);
+
+        }
+
+        p {
+          font-size: 1.2em;
+          color: var(--white);
+        }
+      }
+
+      :last-child {
+        color: var(--yellow);
+      }
+    }
+
+  }
+
+  .background {
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.521);
+  }
+
+  @keyframes slidein {
+    from {
+      transform: translateX(300px);
+    }
+
+    to {
+      transform: translateX(0px);
+    }
+  }
+
 }
