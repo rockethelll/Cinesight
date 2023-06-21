@@ -44,10 +44,13 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        uses: actions/setup-node@v3
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm run build
-      - run: pnpm test
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Test
+        run: pnpm test
+
       - name: Run ESLint
-        run: eslint . --ext .js,.jsx
-      #- run: pnpm eslint src --ext .jsx,.js
+        run: npx eslint 'src/**/*.{js,jsx}'
