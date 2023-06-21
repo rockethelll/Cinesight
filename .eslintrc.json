@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": "error",
+    "no-unexpected-multiline": "error",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-uses-react": 0,
+    "react/jsx-indent": ["error", 2],
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/prop-types": [0]
+  }
+}
