@@ -1,0 +1,15 @@
+// import { useContext } from 'react';
+// import { it, describe, expect } from 'vitest';
+// import { fireEvent, render } from '@testing-library/react';
+// import Signup from '../pages/Signup';
+// import { UserContext } from '../Context/UserContext';
+
+// describe('<Signup />', () => {
+//   it('The input fields and its props', () => {
+//     const { setUserID } = useContext(UserContext);
+//     render(<Signup />);
+//     const inputEmail = document.querySelector('#email');
+
+//     expect(inputEmail).toBeTruthy();
+//   });
+// });
