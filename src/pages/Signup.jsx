@@ -27,18 +27,22 @@ function Signup() {
     <main>
       <h1>Créer un compte</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="email">E-mail</label>
-        <input
-          id="email"
-          type="email"
-        />
+        <div className="wrapper__email">
+          <label htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            type="email"
+          />
+        </div>
 
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-        />
+        <div className="wrapper__password">
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+          />
+        </div>
 
         <input
           type="submit"
