@@ -1,12 +1,15 @@
-import { useContext, useState, useRef, useEffect } from 'react';
+import {
+  useContext, useState, useRef, useEffect,
+} from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { useWindowSize } from '@uidotdev/usehooks';
-import axiosClient from '../axiosClient';
-import { UserContext } from '../Context/UserContext';
-import Searchbar from './Searchbar/Searchbar';
+import axiosClient from '../../axiosClient';
+import { UserContext } from '../../Context/UserContext';
+import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
+  // eslint-disable-next-line no-unused-vars
   const { setUserID, userID } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
@@ -17,6 +20,7 @@ export default function Navbar() {
     return bearer ? `Bearer ${bearer}` : null;
   };
 
+  // eslint-disable-next-line no-unused-vars
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
@@ -32,9 +36,6 @@ export default function Navbar() {
   function handleMenu() {
     setClick(!click);
   }
-
-  console.log(userID);
-  console.log(disconnect);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -52,7 +53,7 @@ export default function Navbar() {
       {screenSize.width > 810 ? (
         <div className="nav-lg">
           <Link to="/" className="logo__wrapper">
-            <img className="logo" src="../images/logo.svg" alt="" />
+            <img className="logo" src="../images/logo.svg" alt="cinesight logo" />
           </Link>
           <Searchbar />
           <div className="nav-group">
@@ -74,14 +75,14 @@ export default function Navbar() {
       ) : (
         <div className="nav-sm">
           <Link to="/">
-            <img className="logo" src="../images/logo.svg" alt="" />
+            <img className="logo" src="../images/logo.svg" alt="cinesight logo" />
           </Link>
 
           <button type="button" onClick={handleMenu}>
             <img
               className="burger_menu"
               src="../images/burger_menu.svg"
-              alt=""
+              alt="burger menu icon"
             />
           </button>
           {click ? (

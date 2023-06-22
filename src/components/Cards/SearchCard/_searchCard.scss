@@ -1,13 +1,14 @@
+@use '../../../scss/abstract/variables' as *;
 
 .search_card__wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  color: var(--white);
+  color: $white;
   line-height: 1;
   border-radius: 5px;
-  background-color: var(--light_blue);
-  box-shadow: var(--shadow);
+  background-color: $light_blue;
+  box-shadow: $shadow;
 
   &>div:not(.search_card--img) {
     display: flex;
@@ -49,12 +50,11 @@
 
   p {
     font-size: clamp(10px, 1vw, 14px);
-    color: var(--grey);
+    color: $grey;
     font-weight: 300;
     margin-top: .3em;
   }
 }
-
 
 .search_card__body {
   grid-area: 3 / 2 / 5 / 3;
@@ -76,7 +76,7 @@
 
     p {
       font-size: clamp(13px, 3vw, 15px);
-      color: var(--yellow);
+      color: $yellow;
     }
   }
 
@@ -90,8 +90,8 @@
       font-size: clamp(7px, 2vw, 9px);
       font-weight: bold;
       padding: .5em 1em;
-      border: .5px var(--white) solid;
-      background-color: var(--dark-blue);
+      border: .5px $white solid;
+      background-color: $dark-blue;
       border-radius: 1em;
       height: fit-content;
     }

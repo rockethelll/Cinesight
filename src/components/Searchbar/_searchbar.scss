@@ -1,12 +1,16 @@
+@use '../../scss/abstract/variables' as *;
+
 .searchbar__wrapper {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
+
   form {
     display: flex;
+    flex-direction: row;
     align-items: center;
     width: fit-content;
-    background-color: var(--light_blue);
-    box-shadow: var(--shadow);
+    background-color: $light_blue;
+    box-shadow: $shadow;
     border-radius: 20em;
     padding: 5px 25px;
     max-width: 300px;
@@ -19,11 +23,11 @@ justify-content: center;
     }
 
     input {
-      color: var(--white);
+      color: $white;
       font-weight: 300;
       background-color: transparent;
       border: none;
-      margin-left: 10px;
+      margin: 0 10px;
     }
 
     input:focus {
