@@ -1,3 +1,5 @@
+@use './abstract/variables' as *;
+
 .nav-lg,
 .nav-sm {
   display: flex;
@@ -29,7 +31,7 @@
     }
 
     :last-child {
-      color: var(--yellow);
+      color: $yellow;
     }
 
     .nav-link {
@@ -64,7 +66,7 @@
     display: flex;
     position: fixed;
     width: 300px;
-    background-color: var(--light_blue);
+    background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
     top: 0;
@@ -80,7 +82,7 @@
       gap: 2em;
 
       a {
-        color: var(--white);
+        color: $white;
         font-weight: 600;
         font-size: 32px;
       }
@@ -95,21 +97,19 @@
           width: 70px;
           height: 70px;
           border-radius: 50%;
-          background-color: var(--grey);
-
+          background-color: $grey;
         }
 
         p {
           font-size: 1.2em;
-          color: var(--white);
+          color: $white;
         }
       }
 
       :last-child {
-        color: var(--yellow);
+        color: $yellow;
       }
     }
-
   }
 
   .background {

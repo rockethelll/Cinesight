@@ -1,7 +1,7 @@
-@use '../src/styles/base_style';
-@use './components/navbar' as *;
+@use './scss/base_style' as *;
 @use './scss/navbar' as *;
-@use './scss/signup';
+@use './scss/signup' as *;
+@use './components/Searchbar/searchbar';
 
 *,
 ::before,

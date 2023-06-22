@@ -1,5 +1,3 @@
-import './Searchbar.scss';
-
 export default function Searchbar() {
   return (
     <div className="searchbar__wrapper">
@@ -7,7 +5,7 @@ export default function Searchbar() {
         <button type="button">
           <img src="../images/search.svg" height="20px" alt="" />
         </button>
-        <input type="search" placeholder="Search movie .." />
+        <input type="search" placeholder="Search movie ..." />
         <button type="button">
           <img src="../images/filter.svg" height="18px" alt="" />
         </button>
