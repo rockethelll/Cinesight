@@ -1,3 +1,5 @@
+@use '../src/styles/base_style';
+@use './components/navbar' as *;
 @use './scss/navbar' as *;
 @use './scss/signup';
 

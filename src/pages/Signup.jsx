@@ -35,14 +35,12 @@ function Signup() {
           />
         </div>
 
-        <div className="wrapper__password">
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-          />
-        </div>
+        <label htmlFor="password">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+        />
 
         <input
           type="submit"
