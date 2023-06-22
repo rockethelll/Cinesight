@@ -9,6 +9,7 @@ import { UserContext } from '../Context/UserContext';
 import Searchbar from './Searchbar/Searchbar';
 
 export default function Navbar() {
+  // eslint-disable-next-line no-unused-vars
   const { setUserID, userID } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
@@ -19,6 +20,7 @@ export default function Navbar() {
     return bearer ? `Bearer ${bearer}` : null;
   };
 
+  // eslint-disable-next-line no-unused-vars
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
@@ -35,8 +37,8 @@ export default function Navbar() {
     setClick(!click);
   }
 
-  console.log(userID);
-  console.log(disconnect);
+  // console.log(userID);
+  // console.log(disconnect);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
