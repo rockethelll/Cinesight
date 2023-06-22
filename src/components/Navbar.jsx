@@ -56,12 +56,19 @@ export default function Navbar() {
           </Link>
           <Searchbar />
           <div className="nav-group">
-            <Link to="/signin" className="nav-link">
-              Connexion
-            </Link>
-            <Link to="/signup" className="nav-link">
-              Rejoindre Cinesight
-            </Link>
+            { userID >= 1 ? (
+              <button type="button" onClick={disconnect}>Se déconnecter</button>
+            ) : (
+              <>
+                <Link to="/signin" className="nav-link">
+                  Connexion
+                </Link>
+                <Link to="/signup" className="nav-link">
+                  Rejoindre Cinesight
+                </Link>
+              </>
+
+            )}
           </div>
         </div>
       ) : (
