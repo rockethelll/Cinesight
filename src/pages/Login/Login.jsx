@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axiosClient from '../axiosClient';
-import useSessionCookie from '../createCookie';
-import { UserContext } from '../Context/UserContext';
+import axiosClient from '../../axiosClient';
+import useSessionCookie from '../../createCookie';
+import { UserContext } from '../../Context/UserContext';
 
 function Login() {
   const { setUserID } = useContext(UserContext);
@@ -31,14 +31,14 @@ function Login() {
       </h6>
       <p>
         Pas encore de compte ?
+        <br />
         <Link
           to="/signup"
-          style={{ color: 'blue', fontWeight: '500' }}
         >
           Créer un compte
         </Link>
       </p>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">E-mail</label>
         <input
           id="email"
@@ -53,6 +53,7 @@ function Login() {
         />
 
         <input
+          className="submit"
           type="submit"
           value="Se connecter"
         />

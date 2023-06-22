@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Home from './pages/Home';
 import Signup from './pages/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 
 const queryClient = new QueryClient();
 
