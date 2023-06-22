@@ -1,5 +1,3 @@
-import './HomeCard.scss';
-
 export default function HomeCard({ data }) {
   return (
     <div className="home_page__wrapper">

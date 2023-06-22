@@ -1,8 +1,10 @@
+@use '../../../scss/abstract/variables' as *;
+
 .home_page__wrapper {
   width: fit-content;
   height: inherit;
   border-radius: 10px;
-  box-shadow: var(--shadow);
+  box-shadow: $shadow;
 
   img {
     scale: .9;

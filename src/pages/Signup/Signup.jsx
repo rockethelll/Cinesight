@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosClient from '../axiosClient';
-import useSessionCookie from '../createCookie';
-import { UserContext } from '../Context/UserContext';
+import axiosClient from '../../axiosClient';
+import useSessionCookie from '../../createCookie';
+import { UserContext } from '../../Context/UserContext';
 
 function Signup() {
   const { setUserID } = useContext(UserContext);

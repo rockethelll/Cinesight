@@ -1,5 +1,4 @@
-@use './abstract/variables' as *;
-@use './abstract/mixins' as *;
+@use '../../scss/abstract/variables' as *;
 
 main {
   background: $dark_blue;

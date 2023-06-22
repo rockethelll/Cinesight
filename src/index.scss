@@ -1,12 +1,6 @@
 @use './scss/base_style' as *;
-@use './scss/navbar' as *;
-@use './scss/signup' as *;
-@use './components/Searchbar/searchbar';
-
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@use './components/Navbar/navbar' as *;
+@use './pages/Signup/signup' as *;
+@use './components/Searchbar/searchbar' as *;
+@use './components/Cards/HomeCard/homeCard' as *;
+@use './components/Cards/SearchCard/searchCard' as *;
