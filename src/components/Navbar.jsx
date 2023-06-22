@@ -2,12 +2,11 @@ import { useContext, useState, useRef, useEffect } from "react";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useWindowSize } from "@uidotdev/usehooks";
-import axiosClient from "../../axiosClient";
-import { UserContext } from "../../Context/UserContext";
-import Searchbar from "../Searchbar/Searchbar";
+import axiosClient from "../axiosClient";
+import { UserContext } from "../Context/UserContext";
+import Searchbar from "./Searchbar/Searchbar";
 
 export default function Navbar() {
-  // eslint-disable-next-line no-unused-vars
   const { setUserID, userID } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
@@ -18,7 +17,6 @@ export default function Navbar() {
     return bearer ? `Bearer ${bearer}` : null;
   };
 
-  // eslint-disable-next-line no-unused-vars
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
@@ -35,6 +33,9 @@ export default function Navbar() {
     setClick(!click);
   }
 
+  console.log(userID);
+  console.log(disconnect);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -48,14 +49,10 @@ export default function Navbar() {
   }, [click]);
   return (
     <nav>
-      {screenSize.width > 1024 ? (
+      {screenSize.width > 810 ? (
         <div className="nav-lg">
           <Link to="/" className="logo__wrapper">
-            <img
-              className="logo"
-              src="../images/logo.svg"
-              alt="cinesight logo"
-            />
+            <img className="logo" src="../images/logo.svg" alt="" />
           </Link>
           <Searchbar />
           <div className="nav-group">
@@ -68,7 +65,7 @@ export default function Navbar() {
                   Watchlist
                 </Link>
                 <button type="button" onClick={disconnect}>
-                  Déconnexion
+                  Se déconnecter
                 </button>
               </>
             ) : (
@@ -77,7 +74,7 @@ export default function Navbar() {
                   Connexion
                 </Link>
                 <Link to="/signup" className="nav-link">
-                  Rejoindre
+                  Rejoindre Cinesight
                 </Link>
               </>
             )}
@@ -86,18 +83,14 @@ export default function Navbar() {
       ) : (
         <div className="nav-sm">
           <Link to="/">
-            <img
-              className="logo"
-              src="../images/logo.svg"
-              alt="cinesight logo"
-            />
+            <img className="logo" src="../images/logo.svg" alt="" />
           </Link>
 
           <button type="button" onClick={handleMenu}>
             <img
               className="burger_menu"
               src="../images/burger_menu.svg"
-              alt="burger menu icon"
+              alt=""
             />
           </button>
           {click ? (
@@ -109,26 +102,16 @@ export default function Navbar() {
                 style={{ height: screenSize.height * 2 }}
               >
                 <div className="menu">
-                  {userID > 1 ? (
-                    <>
-                      <div className="user_section">
-                        <div className="user_logo">
-                          <div />
-                        </div>
-                        <p>Nom_utilisateur_01</p>
-                      </div>
-                      <Link to="/">Profil</Link>
-                      <Link to="/">Watchlist</Link>
-                      <button type="button" onClick={disconnect}>
-                        Déconnexion
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link to="/login">Connexion</Link>
-                      <Link to="/signup">Inscription</Link>
-                    </>
-                  )}
+                  <div className="user_section">
+                    <div className="user_logo">
+                      <div />
+                    </div>
+                    <p>Nom_utilisateur_01</p>
+                  </div>
+                  {/* <Link to="/">Profil</Link>
+                  <Link to="/">Watchlist</Link> */}
+                  <Link to="/login">Connexion</Link>
+                  <Link to="/signup">Inscription</Link>
                 </div>
               </div>
             </>
