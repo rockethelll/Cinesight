@@ -37,9 +37,6 @@ export default function Navbar() {
     setClick(!click);
   }
 
-  // console.log(userID);
-  // console.log(disconnect);
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
