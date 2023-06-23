@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
-import axiosClient from '../axiosClient';
+import axiosClient from '../../axiosClient';
+import Tags from '../../components/Tags/Tags';
 
 function useMovie(id) {
   return useQuery({
@@ -22,17 +23,22 @@ export default function MovieDetails() {
     status, data, error, isFetching,
   } = useMovie(id);
   let date;
-
+  let note;
   function handleMore() {
     setMore(!more);
   }
 
-  function formatDate() {
-    date = new Date(data.release_date);
+  function formatDate(dateToFormat) {
+    return new Date(dateToFormat);
+  }
+
+  function truncateNote(num) {
+    return Math[num < 0 ? 'ceil' : 'floor'](num);
   }
 
   if (status === 'success') {
-    formatDate();
+    date = formatDate(data.release_date);
+    note = truncateNote(data.vote_average * 100) / 100;
   }
   if (status === 'loading') {
     return <p>Loading ...</p>;
@@ -51,25 +57,33 @@ export default function MovieDetails() {
       <div className="movie_details__header">
         <img
           src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
-          alt=""
+          alt={`Poster du film ${data.title}`}
         />
+        <div className="genres__wrapper">
+          {data.genres.slice(0, 2).map((genre) => (
+            <Tags key={genre.id} name={genre.name} />
+          ))}
+        </div>
       </div>
       <div className="movie_details__body">
         <div className="movie_details--note--like">
           <div className="movie_details--note">
             <img src="../images/tmdb-logo.svg" alt="" />
             <p>
-              {data.vote_average}
+              {note}
               /10
             </p>
           </div>
-          <img src="../images/hearth.svg" alt="" />
+          <img
+            src="../images/hearth.svg"
+            style={{ visibility: 'hidden' }}
+            alt=""
+          />
         </div>
         <div>
           <h2>{data.title}</h2>
           <p>
-            sortie le
-            {' '}
+            sorti le&nbsp;
             {date.toLocaleDateString()}
           </p>
         </div>

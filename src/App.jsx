@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
 import Login from './pages/Login/Login';
-import MovieDetails from './pages/MovieDetails';
+import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 const queryClient = new QueryClient();
 

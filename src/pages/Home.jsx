@@ -36,7 +36,6 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-
   if (status === 'loading') {
     return <p>Loading ...</p>;
   }
