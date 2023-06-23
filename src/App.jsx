@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
 import Login from './pages/Login/Login';
+import MovieDetails from './pages/MovieDetails';
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="movie/:id" element={<MovieDetails />} />
       </Routes>
     </QueryClientProvider>
   );
