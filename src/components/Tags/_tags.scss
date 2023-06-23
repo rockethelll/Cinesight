@@ -8,5 +8,6 @@
   backdrop-filter: blur(3px);
   .tag{
     font-weight: 400;
+    font-size: clamp(.8em,2vw,1em);
   }
 }

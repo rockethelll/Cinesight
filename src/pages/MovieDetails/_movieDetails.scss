@@ -12,7 +12,7 @@
 
 .movie_details__header {
   position: relative;
-  max-width: 610px;
+  max-width: 480px;
   aspect-ratio: 6/9;
   height: 100%;
 
@@ -99,7 +99,7 @@
   }
 }
 
-@media screen and (min-width:610px) {
+@media screen and (min-width:480px) {
   .movie_details__wrapper {
     max-width: 80vw;
     width: 100%;
@@ -107,7 +107,7 @@
     position: relative;
     flex-direction: row;
     gap: 3em;
-    margin-top: 4vw;
+    margin-top: 1em;
 
     .movie_details__header img{
       border-radius: 15px;
@@ -126,6 +126,7 @@
       .closed{
         height: auto;
         overflow: visible;
+        font-size: clamp(.8rem, 2vw, 1rem);
       }
     }
   }

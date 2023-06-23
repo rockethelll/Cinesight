@@ -77,13 +77,7 @@ export default function Navbar() {
         </div>
       ) : (
         <div className="nav-sm">
-          <Link to="/">
-            <img
-              className="logo"
-              src="../images/logo.svg"
-              alt="cinesight logo"
-            />
-          </Link>
+          <Searchbar />
 
           <button type="button" onClick={handleMenu}>
             <img
@@ -101,6 +95,13 @@ export default function Navbar() {
                 style={{ height: screenSize.height * 2 }}
               >
                 <div className="menu">
+                  <Link to="/">
+                    <img
+                      className="logo"
+                      src="../images/logo.svg"
+                      alt="cinesight logo"
+                    />
+                  </Link>
                   {user ? (
                     <>
                       <div className="user_section">
