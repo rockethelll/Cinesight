@@ -72,13 +72,6 @@ function Home() {
         }
       </Carousel>
       <div>{isFetching ? 'Background Updating...' : ' '}</div>
-      <div className="auto-grid">
-        {
-        data?.results.map((movie) => (
-          <SearchCard key={movie.id} data={movie} />
-        ))
-      }
-      </div>
     </main>
   );
 }
