@@ -78,9 +78,6 @@ export default function Navbar() {
                 <Link to="/login" className="nav-link">
                   Connexion
                 </Link>
-                <Link to="/signup" className="nav-link">
-                  Rejoindre
-                </Link>
               </>
             )}
           </div>
@@ -128,7 +125,6 @@ export default function Navbar() {
                   ) : (
                     <>
                       <Link to="/login">Connexion</Link>
-                      <Link to="/signup">Inscription</Link>
                     </>
                   )}
                 </div>
