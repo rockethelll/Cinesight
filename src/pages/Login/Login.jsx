@@ -76,6 +76,7 @@ function Login() {
           value="Se connecter"
         />
       </form>
+      <span> Mot de passe oublié ?</span>
     </main>
   );
 }
