@@ -9,7 +9,7 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage.provider c8"
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@testing-library/react": "^14.0.0",

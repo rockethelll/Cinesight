@@ -1,15 +1,65 @@
-// import { useContext } from 'react';
-// import { it, describe, expect } from 'vitest';
-// import { fireEvent, render } from '@testing-library/react';
-// import Signup from '../pages/Signup';
-// import { UserContext } from '../Context/UserContext';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
+import {
+  test, describe, expect, vi, beforeEach,
+} from 'vitest';
+import { UserContext } from '../Context/UserContext';
+import axiosClient from '../axiosClient';
+import Signup from '../pages/Signup/Signup';
 
-// describe('<Signup />', () => {
-//   it('The input fields and its props', () => {
-//     const { setUserID } = useContext(UserContext);
-//     render(<Signup />);
-//     const inputEmail = document.querySelector('#email');
+// Mock the useNavigate hook
+const fn = vi.fn();
+fn('react-router-dom', () => ({
+  useNavigate: fn,
+}));
 
-//     expect(inputEmail).toBeTruthy();
-//   });
-// });
+// Mock the axiosClient
+fn('../axiosClient', () => ({
+  post: fn,
+}));
+
+describe('<Signup />', () => {
+  let setUserID;
+  let navigate;
+
+  beforeEach(() => {
+    setUserID = fn;
+    navigate = useNavigate();
+
+  //   render(
+  //     <UserContext.Provider value={{ setUserID }}>
+  //       <Signup />
+  //     </UserContext.Provider>,
+  //   );
+  // });
+
+  test('checks input fields', () => {
+    const emailInput = screen.getByLabelText('E-mail');
+    const passwordInput = screen.getByLabelText('Mot de passe');
+
+    expect(emailInput).toBeVisible();
+    expect(passwordInput).toBeVisible();
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'password' } });
+
+    expect(emailInput.value).toBe('test@example.com');
+    expect(passwordInput.value).toBe('password');
+  });
+
+  test('calls setUserID, axiosClient.post and navigate on form submit', async () => {
+    // Assume that axiosClient.post returns a resolved promise
+    axiosClient.post.mockResolvedValue({ data: { data: { id: '123' } } });
+
+    const submitButton = screen.getByRole('button', { name: 'Se connecter' });
+
+    fireEvent.click(submitButton);
+
+    // Make sure all promises are resolved
+    await new Promise((resolve) => setImmediate(resolve));
+
+    expect(setUserID).toHaveBeenCalled();
+    expect(axiosClient.post).toHaveBeenCalled();
+    expect(navigate).toHaveBeenCalledWith('/');
+  });
+});
