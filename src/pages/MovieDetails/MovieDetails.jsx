@@ -21,7 +21,7 @@ export default function MovieDetails() {
 
   let date;
   let note;
-  let genres
+  let genres;
 
   function handleMore() {
     setMore(!more);
@@ -42,7 +42,7 @@ export default function MovieDetails() {
   if (status === "success") {
     date = formatDate(data.release_date);
     note = truncateNote(data.vote_average * 100) / 100;
-    getGenres()
+    getGenres();
   }
   if (status === "loading") {
     return <p>Loading ...</p>;
@@ -64,20 +64,32 @@ export default function MovieDetails() {
           alt={`Poster du film ${data.title}`}
         />
         <div className="genres__wrapper">
-          {data.genres.slice(0, 2).map((genre) => <Tags name={genre.name} />)}
+          {data.genres.slice(0, 2).map((genre) => (
+            <Tags name={genre.name} />
+          ))}
         </div>
       </div>
       <div className="movie_details__body">
         <div className="movie_details--note--like">
           <div className="movie_details--note">
             <img src="../images/tmdb-logo.svg" alt="" />
-            <p>{note}/10</p>
+            <p>
+              {note}
+              /10
+            </p>
           </div>
-          <img src="../images/hearth.svg" alt="" />
+          <img
+            src="../images/hearth.svg"
+            style={{ visibility: "hidden" }}
+            alt=""
+          />
         </div>
         <div>
           <h2>{data.title}</h2>
-          <p>sortie le {date.toLocaleDateString()}</p>
+          <p>
+            sorti le&nbsp;
+            {date.toLocaleDateString()}
+          </p>
         </div>
         <div className="movie_details--overview">
           <p className={`${more ? "open" : "closed"}`}>{data.overview}</p>

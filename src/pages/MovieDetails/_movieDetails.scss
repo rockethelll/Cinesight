@@ -16,8 +16,8 @@
 
 .movie_details__header {
   position: relative;
+  max-width: 480px;
   img {
-    max-width: 480px;
     width: 100%;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -29,9 +29,7 @@
     position: absolute;
     bottom: 3%;
     right: 3%;
-    
   }
-
 }
 
 .movie_details__header::before {
