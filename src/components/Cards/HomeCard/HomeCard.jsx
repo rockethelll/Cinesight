@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 export default function HomeCard({ data }) {
-  console.log(data);
   return (
     <div className="home_page__wrapper">
       <Link to={`/movie/${data.id}`}>Voir les détails</Link>

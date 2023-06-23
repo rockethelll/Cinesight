@@ -1,10 +1,12 @@
-import { useContext, useState, useRef, useEffect } from "react";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
-import { useWindowSize } from "@uidotdev/usehooks";
-import axiosClient from "../../axiosClient";
-import { UserContext } from "../../Context/UserContext";
-import Searchbar from "../Searchbar/Searchbar";
+import {
+  useContext, useState, useRef, useEffect,
+} from 'react';
+import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
+import { useWindowSize } from '@uidotdev/usehooks';
+import axiosClient from '../../axiosClient';
+import { UserContext } from '../../Context/UserContext';
+import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
   // eslint-disable-next-line no-unused-vars
@@ -14,7 +16,7 @@ export default function Navbar() {
   const screenSize = useWindowSize();
 
   const getAuthToken = () => {
-    const bearer = Cookies.get("token");
+    const bearer = Cookies.get('token');
     return bearer ? `Bearer ${bearer}` : null;
   };
 
@@ -22,12 +24,12 @@ export default function Navbar() {
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
-    await axiosClient.delete("/logout", {
+    await axiosClient.delete('/logout', {
       headers: {
         Authorization: getAuthToken(),
       },
     });
-    Cookies.remove("token");
+    Cookies.remove('token');
     setUserID(-1);
   };
 
@@ -41,9 +43,9 @@ export default function Navbar() {
         setClick(false);
       }
     };
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true);
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside, true);
     };
   }, [click]);
   return (

@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
-import axiosClient from "../axiosClient";
-import axios from "axios";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery, useQueryClient } from 'react-query';
+import axiosClient from '../axiosClient';
 
 function useMovie(id) {
   return useQuery({
-    queryKey: ["movie"],
+    queryKey: ['movie'],
     queryFn: async () => {
       const { data } = await axiosClient.get(`/movie/${id}`);
       return data;
@@ -17,7 +16,9 @@ export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useMovie(id);
+  const {
+    status, data, error, isFetching,
+  } = useMovie(id);
   let date;
 
   function handleMore() {
@@ -28,14 +29,14 @@ export default function MovieDetails() {
     date = new Date(data.release_date);
   }
 
-  if (status === "success") {
+  if (status === 'success') {
     formatDate();
   }
-  if (status === "loading") {
+  if (status === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return (
       <p>
         Error:
@@ -55,18 +56,25 @@ export default function MovieDetails() {
         <div className="movie_details--note--like">
           <div className="movie_details--note">
             <img src="../images/tmdb-logo.svg" alt="" />
-            <p>{data.vote_average}/10</p>
+            <p>
+              {data.vote_average}
+              /10
+            </p>
           </div>
           <img src="../images/hearth.svg" alt="" />
         </div>
         <div>
           <h2>{data.title}</h2>
-          <p>sortie le {date.toLocaleDateString()}</p>
+          <p>
+            sortie le
+            {' '}
+            {date.toLocaleDateString()}
+          </p>
         </div>
         <div className="movie_details--overview">
-          <p className={`${more ? "open" : "closed"}`}>{data.overview}</p>
+          <p className={`${more ? 'open' : 'closed'}`}>{data.overview}</p>
           <button type="button" onClick={handleMore}>
-            {`${more ? "Voir moins" : "Voir plus"}`}
+            {`${more ? 'Voir moins' : 'Voir plus'}`}
           </button>
         </div>
       </div>
