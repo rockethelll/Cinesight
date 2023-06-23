@@ -64,9 +64,6 @@ export default function Navbar() {
                 <Link to="/" className="nav-link">
                   {user.email}
                 </Link>
-                <Link to="/" className="nav-link">
-                  Watchlist
-                </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
                 </button>
