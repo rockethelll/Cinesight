@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
-import axiosClient from "../../axiosClient";
-import Tags from "../../components/Tags/Tags";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery, useQueryClient } from 'react-query';
+import axiosClient from '../../axiosClient';
+import Tags from '../../components/Tags/Tags';
 
 function useMovie(id) {
   return useQuery({
@@ -24,8 +24,6 @@ export default function MovieDetails() {
   } = useMovie(id);
   let date;
   let note;
-  let genres;
-
   function handleMore() {
     setMore(!more);
   }
@@ -35,10 +33,10 @@ export default function MovieDetails() {
   }
 
   function truncateNote(num) {
-    return Math[num < 0 ? "ceil" : "floor"](num);
+    return Math[num < 0 ? 'ceil' : 'floor'](num);
   }
 
-  if (status === "success") {
+  if (status === 'success') {
     date = formatDate(data.release_date);
     note = truncateNote(data.vote_average * 100) / 100;
   }
@@ -78,7 +76,7 @@ export default function MovieDetails() {
           </div>
           <img
             src="../images/hearth.svg"
-            style={{ visibility: "hidden" }}
+            style={{ visibility: 'hidden' }}
             alt=""
           />
         </div>

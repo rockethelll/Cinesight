@@ -69,11 +69,9 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <>
-                <Link to="/login" className="nav-link">
-                  Connexion
-                </Link>
-              </>
+              <Link to="/login" className="nav-link">
+                Connexion
+              </Link>
             )}
           </div>
         </div>
@@ -118,9 +116,7 @@ export default function Navbar() {
                       </button>
                     </>
                   ) : (
-                    <>
-                      <Link to="/login">Connexion</Link>
-                    </>
+                    <Link to="/login">Connexion</Link>
                   )}
                 </div>
               </div>
