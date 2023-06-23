@@ -6,7 +6,7 @@
 
 // describe('<Signup />', () => {
 //   it('The input fields and its props', () => {
-//     const { setUserID } = useContext(UserContext);
+//     const { setUser } = useContext(UserContext);
 //     render(<Signup />);
 //     const inputEmail = document.querySelector('#email');
 
