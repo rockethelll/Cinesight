@@ -9,8 +9,7 @@ import { UserContext } from '../../Context/UserContext';
 import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
-  // eslint-disable-next-line no-unused-vars
-  const { setUserID, userID } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
@@ -20,7 +19,6 @@ export default function Navbar() {
     return bearer ? `Bearer ${bearer}` : null;
   };
 
-  // eslint-disable-next-line no-unused-vars
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
@@ -30,7 +28,7 @@ export default function Navbar() {
       },
     });
     Cookies.remove('token');
-    setUserID(-1);
+    setUser(null);
   };
 
   function handleMenu() {
@@ -50,25 +48,41 @@ export default function Navbar() {
   }, [click]);
   return (
     <nav>
-      {screenSize.width > 810 ? (
+      {screenSize.width > 1024 ? (
         <div className="nav-lg">
           <Link to="/" className="logo__wrapper">
-            <img className="logo" src="../images/logo.svg" alt="cinesight logo" />
+            <img
+              className="logo"
+              src="../images/logo.svg"
+              alt="cinesight logo"
+            />
           </Link>
           <Searchbar />
           <div className="nav-group">
-            <Link to="/signin" className="nav-link">
-              Connexion
-            </Link>
-            <Link to="/signup" className="nav-link">
-              Rejoindre Cinesight
-            </Link>
+            {user ? (
+              <>
+                <Link to="/" className="nav-link">
+                  {user.email}
+                </Link>
+                <button type="button" onClick={disconnect}>
+                  Déconnexion
+                </button>
+              </>
+            ) : (
+              <Link to="/login" className="nav-link">
+                Connexion
+              </Link>
+            )}
           </div>
         </div>
       ) : (
         <div className="nav-sm">
           <Link to="/">
-            <img className="logo" src="../images/logo.svg" alt="cinesight logo" />
+            <img
+              className="logo"
+              src="../images/logo.svg"
+              alt="cinesight logo"
+            />
           </Link>
 
           <button type="button" onClick={handleMenu}>
@@ -87,16 +101,23 @@ export default function Navbar() {
                 style={{ height: screenSize.height * 2 }}
               >
                 <div className="menu">
-                  <div className="user_section">
-                    <div className="user_logo">
-                      <div />
-                    </div>
-                    <p>Nom_utilisateur_01</p>
-                  </div>
-                  {/* <Link to="/">Profil</Link>
-                  <Link to="/">Watchlist</Link> */}
-                  <Link to="/login">Connexion</Link>
-                  <Link to="/signup">Inscription</Link>
+                  {user ? (
+                    <>
+                      <div className="user_section">
+                        <div className="user_logo">
+                          <div />
+                        </div>
+                        <p>Nom_utilisateur_01</p>
+                      </div>
+                      <Link to="/">Profil</Link>
+                      <Link to="/">Watchlist</Link>
+                      <button type="button" onClick={disconnect}>
+                        Déconnexion
+                      </button>
+                    </>
+                  ) : (
+                    <Link to="/login">Connexion</Link>
+                  )}
                 </div>
               </div>
             </>

@@ -1,5 +1,27 @@
 @use '../../scss/abstract/variables' as *;
 
+@media screen and (min-width: 800px) {
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: $dark_blue;
+    width: 100%;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+
+.nav-sm {
+  max-width: 90vw;
+}
+
+.nav-lg {
+  max-width: 80vw;
+}
+
 .nav-lg,
 .nav-sm {
   display: flex;
@@ -11,11 +33,13 @@
 
   .logo__wrapper {
     display: flex;
-    width: 25%;
+    max-width: 25%;
+    width: 100%;
   }
 
   .searchbar__wrapper {
-    width: 50%;
+    max-width: 50%;
+    width: 100%;
   }
 
   .nav-group {
@@ -24,7 +48,9 @@
     justify-content: flex-end;
     font-weight: 500;
     font-size: clamp(.9rem, 2vw, 1rem);
-    width: 25%;
+    max-width: 25%;
+    width: 100%;
+    gap: 1em;
 
     :first-child {
       margin-right: 1em;
@@ -37,16 +63,11 @@
     .nav-link {
       flex-wrap: nowrap;
     }
-  }
 
-  @media screen and (max-width: 1150px) {
-    .nav-group {
-      flex-direction: column;
-      align-items: end;
-
-      :first-child {
-        margin-right: 0;
-      }
+    button {
+      border: none;
+      background-color: transparent;
+      font-size: clamp(.9rem, 2vw, 1rem);
     }
   }
 
@@ -65,7 +86,7 @@
     z-index: 100;
     display: flex;
     position: fixed;
-    width: 300px;
+    width: 75vw;
     background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
@@ -81,7 +102,8 @@
       padding: 2em;
       gap: 2em;
 
-      a {
+      a,
+      button {
         color: $white;
         font-weight: 600;
         font-size: 32px;
