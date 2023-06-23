@@ -34,7 +34,6 @@ export default function Searchbar() {
 
   function removeInputText() {
     setInputText('');
-    useQuery.retry();
   }
 
   return (
