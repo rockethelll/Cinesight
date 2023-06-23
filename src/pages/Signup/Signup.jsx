@@ -10,14 +10,14 @@ function Signup() {
     register, handleSubmit, formState: { errors },
   } = useForm({ defaultValues: { email: '', password: '' } });
 
-  const { setUserID } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const createUser = async (userInfos) => {
       const response = await axiosClient.post('/signup', userInfos);
       useSessionCookie(response);
-      setUserID(response.data.data.id);
+      setUser(response.data.data);
       navigate('/');
     };
 

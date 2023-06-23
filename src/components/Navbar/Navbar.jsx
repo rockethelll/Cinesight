@@ -1,34 +1,34 @@
-import { useContext, useState, useRef, useEffect } from "react";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
-import { useWindowSize } from "@uidotdev/usehooks";
-import axiosClient from "../../axiosClient";
-import { UserContext } from "../../Context/UserContext";
-import Searchbar from "../Searchbar/Searchbar";
+import {
+  useContext, useState, useRef, useEffect,
+} from 'react';
+import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
+import { useWindowSize } from '@uidotdev/usehooks';
+import axiosClient from '../../axiosClient';
+import { UserContext } from '../../Context/UserContext';
+import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
-  // eslint-disable-next-line no-unused-vars
-  const { setUserID, userID } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
 
   const getAuthToken = () => {
-    const bearer = Cookies.get("token");
+    const bearer = Cookies.get('token');
     return bearer ? `Bearer ${bearer}` : null;
   };
 
-  // eslint-disable-next-line no-unused-vars
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
-    await axiosClient.delete("/logout", {
+    await axiosClient.delete('/logout', {
       headers: {
         Authorization: getAuthToken(),
       },
     });
-    Cookies.remove("token");
-    setUserID(-1);
+    Cookies.remove('token');
+    setUser(null);
   };
 
   function handleMenu() {
@@ -41,9 +41,9 @@ export default function Navbar() {
         setClick(false);
       }
     };
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true);
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside, true);
     };
   }, [click]);
   return (
@@ -59,13 +59,10 @@ export default function Navbar() {
           </Link>
           <Searchbar />
           <div className="nav-group">
-            {userID >= 1 ? (
+            {user ? (
               <>
                 <Link to="/" className="nav-link">
-                  Profil
-                </Link>
-                <Link to="/" className="nav-link">
-                  Watchlist
+                  {user.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
@@ -75,9 +72,6 @@ export default function Navbar() {
               <>
                 <Link to="/login" className="nav-link">
                   Connexion
-                </Link>
-                <Link to="/signup" className="nav-link">
-                  Rejoindre
                 </Link>
               </>
             )}
@@ -109,7 +103,7 @@ export default function Navbar() {
                 style={{ height: screenSize.height * 2 }}
               >
                 <div className="menu">
-                  {userID > 1 ? (
+                  {user ? (
                     <>
                       <div className="user_section">
                         <div className="user_logo">
@@ -126,7 +120,6 @@ export default function Navbar() {
                   ) : (
                     <>
                       <Link to="/login">Connexion</Link>
-                      <Link to="/signup">Inscription</Link>
                     </>
                   )}
                 </div>

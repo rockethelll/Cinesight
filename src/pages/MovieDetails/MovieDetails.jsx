@@ -6,7 +6,7 @@ import Tags from "../../components/Tags/Tags";
 
 function useMovie(id) {
   return useQuery({
-    queryKey: ["movie"],
+    queryKey: ['movie'],
     queryFn: async () => {
       const { data } = await axiosClient.get(`/movie/${id}`);
       return data;
@@ -16,9 +16,12 @@ function useMovie(id) {
 export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useMovie(id);
-
+  const {
+    // eslint-disable-next-line no-unused-vars
+    status, data, error, isFetching,
+  } = useMovie(id);
   let date;
   let note;
   let genres;
@@ -35,20 +38,15 @@ export default function MovieDetails() {
     return Math[num < 0 ? "ceil" : "floor"](num);
   }
 
-  function getGenres() {
-    data.genres.slice(0, 2).map((genre) => console.log(genre));
-  }
-
   if (status === "success") {
     date = formatDate(data.release_date);
     note = truncateNote(data.vote_average * 100) / 100;
-    getGenres();
   }
-  if (status === "loading") {
+  if (status === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return (
       <p>
         Error:
@@ -65,7 +63,7 @@ export default function MovieDetails() {
         />
         <div className="genres__wrapper">
           {data.genres.slice(0, 2).map((genre) => (
-            <Tags name={genre.name} />
+            <Tags key={genre.id} name={genre.name} />
           ))}
         </div>
       </div>
@@ -92,9 +90,9 @@ export default function MovieDetails() {
           </p>
         </div>
         <div className="movie_details--overview">
-          <p className={`${more ? "open" : "closed"}`}>{data.overview}</p>
+          <p className={`${more ? 'open' : 'closed'}`}>{data.overview}</p>
           <button type="button" onClick={handleMore}>
-            {`${more ? "Voir moins" : "Voir plus"}`}
+            {`${more ? 'Voir moins' : 'Voir plus'}`}
           </button>
         </div>
       </div>
