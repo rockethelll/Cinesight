@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "react-query";
-import axiosClient from "../axiosClient";
-import axios from "axios";
+import axiosClient from "../../axiosClient";
 
 function useMovie(id) {
   return useQuery({
@@ -19,7 +18,7 @@ export default function MovieDetails() {
   const queryClient = useQueryClient();
   const { status, data, error, isFetching } = useMovie(id);
   let date;
-
+console.log(data)
   function handleMore() {
     setMore(!more);
   }
