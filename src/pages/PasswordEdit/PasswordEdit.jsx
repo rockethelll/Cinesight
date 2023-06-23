@@ -52,7 +52,7 @@ function PasswordEdit() {
         <label htmlFor="password-confirmation">Confirmation</label>
         <input
           id="password-confirmation"
-          type="password-confirmation"
+          type="password"
           {...register('password_confirmation', {
             required: 'Mot de passe obligatoire !',
           })}

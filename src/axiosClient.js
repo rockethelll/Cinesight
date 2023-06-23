@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'http://127.0.0.1:4000',
+  baseURL: 'https://cinesight-api-prod-5ce88a18091b.herokuapp.com',
   headers: {
     'Content-type': 'application/json',
   },
