@@ -1,0 +1,13 @@
+@use '../../scss/abstract/variables' as *;
+
+.tag__wrapper{
+  outline: 1px solid $white;
+  padding: .3em 1em;
+  border-radius: 10rem;
+  line-height: 1;
+  backdrop-filter: blur(3px);
+  .tag{
+    font-weight: 400;
+    font-size: clamp(.8em,2vw,1em);
+  }
+}

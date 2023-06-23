@@ -1,0 +1,45 @@
+@use '../scss/abstract/variables' as *;
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('../fonts/Outfit-VariableFont_wght.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit";
+}
+
+body {
+  background-color: $dark_blue;
+  position: relative;
+  color: $white;
+}
+
+main {
+  max-width: 90vw;
+  width: 100%;
+  margin: 0 auto;
+}
+
+a {
+  color: $white;
+  text-decoration: none;
+}
+
+.auto-grid {
+  --min-column-size: 10rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit,
+      minmax(min(var(--min-column-size), 100%), 1fr));
+}
+
+@media screen and (min-width: 800px) {
+
+  main {
+    max-width: 80vw;
+  }
+}

@@ -1,0 +1,157 @@
+@use '../../scss/abstract/variables' as *;
+
+@media screen and (min-width: 800px) {
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: $dark_blue;
+    width: 100%;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+
+.nav-sm {
+  max-width: 90vw;
+}
+
+.nav-lg {
+  max-width: 80vw;
+}
+
+.nav-lg,
+.nav-sm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 70px;
+
+  .logo__wrapper {
+    display: flex;
+    max-width: 25%;
+    width: 100%;
+  }
+
+  .searchbar__wrapper {
+    max-width: 50%;
+    width: 100%;
+  }
+
+  .nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 500;
+    font-size: clamp(.9rem, 2vw, 1rem);
+    max-width: 25%;
+    width: 100%;
+    gap: 1em;
+
+    :first-child {
+      margin-right: 1em;
+    }
+
+    :last-child {
+      color: $yellow;
+    }
+
+    .nav-link {
+      flex-wrap: nowrap;
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      font-size: clamp(.9rem, 2vw, 1rem);
+    }
+  }
+
+}
+
+.nav-sm {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
+
+  .menu__wrapper {
+    z-index: 100;
+    display: flex;
+    position: fixed;
+    width: 75vw;
+    background-color: $light_blue;
+    animation: slidein .2s ease-in-out;
+    right: 0;
+    top: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+
+    .menu {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 2em;
+      gap: 2em;
+
+      a,
+      button {
+        color: $white;
+        font-weight: 600;
+        font-size: 32px;
+      }
+
+      .user_section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: .5em;
+
+        .user_logo {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background-color: $grey;
+        }
+
+        p {
+          font-size: 1.2em;
+          color: $white;
+        }
+      }
+
+      :last-child {
+        color: $yellow;
+      }
+    }
+  }
+
+  .background {
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.521);
+  }
+
+  @keyframes slidein {
+    from {
+      transform: translateX(300px);
+    }
+
+    to {
+      transform: translateX(0px);
+    }
+  }
+
+}

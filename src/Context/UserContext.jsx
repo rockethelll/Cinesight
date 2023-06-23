@@ -3,8 +3,8 @@ import { createContext, useMemo, useState } from 'react';
 export const UserContext = createContext();
 
 function UserContextProvider({ children }) {
-  const [userID, setUserID] = useState(-1);
-  const value = useMemo(() => ({ setUserID, userID }), [userID]);
+  const [user, setUser] = useState(null);
+  const value = useMemo(() => ({ setUser, user }), [user]);
 
   return (
     <UserContext.Provider value={value}>

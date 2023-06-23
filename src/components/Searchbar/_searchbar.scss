@@ -1,0 +1,77 @@
+@use '../../scss/abstract/variables' as *;
+
+.searchbar__wrapper {
+  display: flex;
+  justify-content: center;
+  
+  form {
+   
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    background-color: $light_blue;
+    box-shadow: $shadow;
+    border-radius: 20em;
+    padding: 5px 25px;
+    max-width: 300px;
+    width: 100%;
+
+    button {
+      background-color: transparent;
+      border: none;
+      margin-top: 4px;
+      z-index: 10;
+    }
+
+    input {
+      z-index: 10;
+      color: $white;
+      font-weight: 300;
+      background-color: transparent;
+      border: none;
+      margin: 0 10px;
+    }
+
+    input:focus {
+      outline: none;
+    }
+  }
+  .list-result__wrapper{
+    z-index: 9;
+    border-radius: 15px;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    max-width: 300px;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    background-color: $light_blue;
+    list-style: none;
+    top: 0;
+    left: 0;
+    padding: 1em;
+    padding-bottom: .5em;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    
+    a{
+      padding-bottom: .5em;
+      border-bottom: .5px solid $dark_blue;
+      font-size: clamp(.8em,2vw,1em);
+      
+    }
+    :first-child{
+      margin-top: 37px;
+    }
+    :last-child{
+      border-bottom: none;
+      padding: none;
+    }
+    a:hover{
+      color: $yellow;
+    }
+  }
+}
