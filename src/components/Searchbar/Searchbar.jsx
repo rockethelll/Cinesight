@@ -35,7 +35,7 @@ export default function Searchbar() {
   function removeInputText() {
     setInputText('');
     useQuery.retry();
-    queryClient.refetchQueries('searchMovie');
+    queryClient.invalidateQueries('searchMovie');
   }
 
   return (
