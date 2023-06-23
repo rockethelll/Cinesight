@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axiosClient from '../../axiosClient';
 import useSessionCookie from '../../createCookie';
 import { UserContext } from '../../Context/UserContext';
 
-function Signup() {
+function Login() {
   const {
     register, handleSubmit, formState: { errors },
   } = useForm({ defaultValues: { email: '', password: '' } });
@@ -15,7 +15,7 @@ function Signup() {
 
   const onSubmit = async (data) => {
     const createUser = async (userInfos) => {
-      const response = await axiosClient.post('/signup', userInfos);
+      const response = await axiosClient.post('/login', userInfos);
       useSessionCookie(response);
       setUserID(response.data.data.id);
       navigate('/');
@@ -27,7 +27,19 @@ function Signup() {
 
   return (
     <main>
-      <h1>Créer un compte</h1>
+      <h1>Se connecter</h1>
+      <h6>
+        Connectez-vous avec votre email
+      </h6>
+      <p>
+        Pas encore de compte ?
+        <br />
+        <Link
+          to="/signup"
+        >
+          Créer un compte
+        </Link>
+      </p>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">E-mail</label>
         <input
@@ -68,4 +80,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
