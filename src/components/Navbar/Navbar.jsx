@@ -9,8 +9,7 @@ import { UserContext } from '../../Context/UserContext';
 import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
-  // eslint-disable-next-line no-unused-vars
-  const { setUserID, userID } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
@@ -20,7 +19,6 @@ export default function Navbar() {
     return bearer ? `Bearer ${bearer}` : null;
   };
 
-  // eslint-disable-next-line no-unused-vars
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
@@ -30,7 +28,7 @@ export default function Navbar() {
       },
     });
     Cookies.remove('token');
-    setUserID(-1);
+    setUser(null);
   };
 
   function handleMenu() {
@@ -61,10 +59,10 @@ export default function Navbar() {
           </Link>
           <Searchbar />
           <div className="nav-group">
-            {userID >= 1 ? (
+            {user ? (
               <>
                 <Link to="/" className="nav-link">
-                  Profil
+                  {user.email}
                 </Link>
                 <Link to="/" className="nav-link">
                   Watchlist
@@ -108,7 +106,7 @@ export default function Navbar() {
                 style={{ height: screenSize.height * 2 }}
               >
                 <div className="menu">
-                  {userID > 1 ? (
+                  {user ? (
                     <>
                       <div className="user_section">
                         <div className="user_logo">
