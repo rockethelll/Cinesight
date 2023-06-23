@@ -54,3 +54,11 @@ jobs:
 
       - name: Run ESLint
         run: pnpx eslint --fix src/**/*.{js,jsx}
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: GitHub Actions
+          author_email: GhActions@yopmail.com
+          message: 'Automatic linting'
+          add: '*.{js, jsx}'
