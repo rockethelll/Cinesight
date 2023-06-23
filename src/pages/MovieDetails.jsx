@@ -15,8 +15,10 @@ function useMovie(id) {
 export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
   const {
+    // eslint-disable-next-line no-unused-vars
     status, data, error, isFetching,
   } = useMovie(id);
   let date;
