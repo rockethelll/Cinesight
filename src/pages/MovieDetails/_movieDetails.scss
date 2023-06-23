@@ -15,13 +15,21 @@
 }
 
 .movie_details__header {
-
+  position: relative;
   img {
     max-width: 480px;
     width: 100%;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: $shadow;
+  }
+  .genres__wrapper{
+    display: flex;
+    gap: .5em;
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    
   }
 
 }
@@ -82,5 +90,6 @@
     font-size: large;
     font-weight: 500;
   }
+
 
 }
