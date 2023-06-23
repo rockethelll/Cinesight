@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Login from './pages/Login/Login';
 import Recover from './pages/Recover/Recover';
 import PasswordEdit from './pages/PasswordEdit/PasswordEdit';
-import MovieDetails from './pages/MovieDetails';
+import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 const queryClient = new QueryClient();
 

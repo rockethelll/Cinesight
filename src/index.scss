@@ -3,5 +3,6 @@
 @use './pages/Signup/signup' as *;
 @use './components/Searchbar/searchbar' as *;
 @use './components/Cards/HomeCard/homeCard' as *;
+@use './components/Tags/tags' as *;
 @use './components/Cards/SearchCard/searchCard' as *;
-@use './pages/movieDetails'
+@use './pages/MovieDetails/movieDetails' as *;

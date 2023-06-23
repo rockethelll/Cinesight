@@ -3,7 +3,6 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useWindowSize } from '@uidotdev/usehooks';
 import HomeCard from '../components/Cards/HomeCard/HomeCard';
-import SearchCard from '../components/Cards/SearchCard/SearchCard';
 import axiosClient from '../axiosClient';
 
 function useMovies() {
@@ -36,7 +35,6 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-
   if (status === 'loading') {
     return <p>Loading ...</p>;
   }
@@ -73,13 +71,6 @@ function Home() {
         }
       </Carousel>
       <div>{isFetching ? 'Background Updating...' : ' '}</div>
-      <div className="auto-grid">
-        {
-        data?.results.map((movie) => (
-          <SearchCard key={movie.id} data={movie} />
-        ))
-      }
-      </div>
     </main>
   );
 }
