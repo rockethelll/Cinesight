@@ -17,8 +17,7 @@ body {
   position: relative;
 }
 
-main,
-nav {
+main {
   max-width: 90vw;
   width: 100%;
   margin: 0 auto;
@@ -39,8 +38,7 @@ a {
 
 @media screen and (min-width: 800px) {
 
-  main,
-  nav {
+  main {
     max-width: 80vw;
   }
 }

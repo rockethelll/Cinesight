@@ -1,5 +1,27 @@
 @use '../../scss/abstract/variables' as *;
 
+@media screen and (min-width: 800px) {
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: $dark_blue;
+    width: 100%;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+
+.nav-sm {
+  max-width: 90vw;
+}
+
+.nav-lg {
+  max-width: 80vw;
+}
+
 .nav-lg,
 .nav-sm {
   display: flex;
@@ -80,7 +102,8 @@
       padding: 2em;
       gap: 2em;
 
-      a, button {
+      a,
+      button {
         color: $white;
         font-weight: 600;
         font-size: 32px;

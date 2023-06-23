@@ -5,6 +5,11 @@
   height: inherit;
   border-radius: 10px;
   box-shadow: $shadow;
+  position: relative;
+
+  a {
+    display: none;
+  }
 
   img {
     scale: .9;
@@ -20,4 +25,13 @@
   scale: 1;
   filter: none;
   transition: .2s ease-in-out;
+
+}
+
+.selected a {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  color: $dark_blue;
 }
