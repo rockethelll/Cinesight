@@ -7,7 +7,7 @@ function PasswordEdit() {
 
   // Getting reset password token from URL
   const params = new URLSearchParams(document.location.search);
-  const reset_password_token = params.get("reset_password_token");
+  const resetPasswordToken = params.get("reset_password_token");
 
   const {
     register, handleSubmit, formState: { errors },
@@ -20,13 +20,13 @@ function PasswordEdit() {
 
   const onSubmit = async (data) => {
     const editPassword = async (userInfos) => {
-      const response = await axiosClient.patch('/password', userInfos);
+      await axiosClient.patch('/password', userInfos);
       navigate('/login');
     };
 
     const dataWithToken = {
       ...data,
-      reset_password_token: reset_password_token
+      reset_password_token: resetPasswordToken
     }
 
     const userData = JSON.stringify({ user: dataWithToken });

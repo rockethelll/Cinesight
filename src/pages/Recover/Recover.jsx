@@ -11,7 +11,7 @@ function Recover() {
 
   const onSubmit = async (data) => {
     const recoverPassword = async (userInfos) => {
-      const response = await axiosClient.post('/password', userInfos);
+      await axiosClient.post('/password', userInfos);
       navigate('/');
     };
 
