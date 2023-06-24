@@ -6,6 +6,7 @@ import axiosClient from '../../axiosClient';
 function useMovie(query) {
   return useQuery({
     queryKey: ['searchMovie', query],
+    queryKey: ['searchMovie', query],
     queryFn: async () => {
       const { data } = await axiosClient.get(`/movies?query=${query}`);
       return data;
@@ -20,7 +21,9 @@ export default function Searchbar() {
     // eslint-disable-next-line no-unused-vars
     status,
     data,
+    // eslint-disable-next-line no-unused-vars
     error,
+    // eslint-disable-next-line no-unused-vars
     isFetching,
   } = useMovie(inputText);
 

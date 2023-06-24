@@ -70,6 +70,8 @@ function Login() {
         <p style={{ color: '#e74c3c', margin: '-10px ' }}>{errors.password.message}</p>
         )}
 
+        <Link to="/recover"> Mot de passe oublié ?</Link>
+
         <input
           className="submit"
           type="submit"
