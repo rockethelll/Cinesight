@@ -9,25 +9,9 @@ export default function SearchCard({ data }) {
         <p>2019 - 1h56</p>
       </div>
       <div className="search_card__body">
-        <div className="tags">
-          <div className="tag">
-            <p>AVENTURE</p>
-          </div>
-          <div className="tag">
-            <p>ACTION</p>
-          </div>
-        </div>
         <div className="tmdb-notes">
           <img src="../images/tmdb-logo.svg" alt="tmdb logo" />
           <p>8.2/10</p>
-        </div>
-      </div>
-      <div className="search_card__footer">
-        <div className="watch-providers">
-          <img src="../images/playstore.svg" alt="playstore logo" />
-          <img src="../images/apple.svg" alt="apple logo" />
-          <img src="../images/amazon.svg" alt="amazon logo" />
-          <img src="../images/youtube.svg" alt="youtube logo" />
         </div>
       </div>
     </div>

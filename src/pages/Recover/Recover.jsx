@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import axiosClient from '../../axiosClient';
 import { useNavigate } from 'react-router-dom';
+import axiosClient from '../../axiosClient';
 
 function Recover() {
   const {
@@ -42,7 +42,7 @@ function Recover() {
         />
       </form>
     </>
-  )
+  );
 }
 
 export default Recover;
