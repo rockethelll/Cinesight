@@ -33,7 +33,7 @@ export default function Searchbar() {
 
   function removeInputText() {
     setInputText('');
-    // useQuery.retry();
+    useQuery.retry();
   }
 
   return (
