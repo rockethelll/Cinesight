@@ -1,7 +1,4 @@
-import Tags from "../../Tags/Tags";
-
 export default function SearchCard({ data }) {
-  console.log(data)
   return (
     <div className="search_card__wrapper">
       <div className="search_card--img">
