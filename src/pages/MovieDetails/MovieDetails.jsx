@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
 import axiosClient from '../../axiosClient';
-import Tags from '../../components/Tags/Tags';
+// import Tags from '../../components/Tags/Tags';
 
 function useMovie(id) {
   return useQuery({
@@ -59,11 +59,11 @@ export default function MovieDetails() {
           src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
           alt={`Poster du film ${data.title}`}
         />
-        <div className="genres__wrapper">
+        {/* <div className="genres__wrapper">
           {data.genres.slice(0, 2).map((genre) => (
             <Tags key={genre.id} name={genre.name} />
           ))}
-        </div>
+        </div> */}
       </div>
       <div className="movie_details__body">
         <div className="movie_details--note--like">
