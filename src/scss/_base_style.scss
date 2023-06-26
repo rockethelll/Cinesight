@@ -13,8 +13,13 @@
 }
 
 body {
-  background-color: $dark_blue;
+  background: rgb(0, 0, 0);
+  height: 100%;
+  background: linear-gradient(315deg, rgba(0, 0, 0, 1) 0%, rgba(42, 45, 58, 1) 50%, rgba(14, 16, 23, 1) 100%);
   position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: $white;
 }
 
