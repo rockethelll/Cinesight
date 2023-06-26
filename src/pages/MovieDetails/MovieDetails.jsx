@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
 import axiosClient from '../../axiosClient';
-import Tags from '../../components/Tags/Tags';
+// import Tags from '../../components/Tags/Tags';
 
 function useMovie(id) {
   return useQuery({
