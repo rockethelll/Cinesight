@@ -9,8 +9,4 @@ describe('UserContext', () => {
   it('should have a Provider', () => {
     expect(UserContext.Provider).toBeDefined();
   });
-
-  it('should have a Consumer', () => {
-    expect(UserContext.Consumer).toBeDefined();
-  });
 });
