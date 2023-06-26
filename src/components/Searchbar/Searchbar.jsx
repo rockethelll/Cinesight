@@ -6,7 +6,6 @@ import axiosClient from '../../axiosClient';
 function useMovie(query) {
   return useQuery({
     queryKey: ['searchMovie', query],
-    queryKey: ['searchMovie', query],
     queryFn: async () => {
       const { data } = await axiosClient.get(`/movies?query=${query}`);
       return data;
