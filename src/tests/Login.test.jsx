@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { faker } from '@faker-js/faker';
 import UserContextProvider from '../Context/UserContext';
-import Signup from '../pages/Signup/Signup';
+import Login from '../pages/Login/Login';
 
 // eslint-disable-next-line no-unused-vars
 const setup = (jsx, options) => {
@@ -17,7 +17,7 @@ const setup = (jsx, options) => {
   };
 };
 
-describe('test Signup page', () => {
+describe('test Login page', () => {
   let onSubmit;
   let user;
 
@@ -27,13 +27,13 @@ describe('test Signup page', () => {
     render(
       <MemoryRouter>
         <UserContextProvider>
-          <Signup onSubmit={onSubmit} />
+          <Login onSubmit={onSubmit} />
         </UserContextProvider>
       </MemoryRouter>,
     );
   });
 
-  test('should render Signup page', async () => {
+  test('should render Login page', async () => {
     const userEmail = screen.getByRole('textbox', { name: /e-mail/i });
     const password = screen.getByLabelText(/mot de passe/i);
 
