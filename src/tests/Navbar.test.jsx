@@ -22,6 +22,12 @@ describe('Navbar component', () => {
         </UserContextProvider>
       </QueryClientProvider>,
     );
-    screen.debug();
+
+    // const logoCinesight = screen.getByRole('img', {
+    //   name: /cinesight logo/i,
+    // });
+    // console.log(logoCinesight);
+
+    // expect(logoCinesight).toBeInTheDo
   });
 });

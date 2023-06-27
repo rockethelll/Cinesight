@@ -1,7 +1,7 @@
 import {
-  describe, test, expect, vi, beforeEach,
+  describe, test, expect, vi, beforeEach, afterEach,
 } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { faker } from '@faker-js/faker';
@@ -31,6 +31,10 @@ describe('test Signup page', () => {
         </UserContextProvider>
       </MemoryRouter>,
     );
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   test('should render Signup page', async () => {
