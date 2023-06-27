@@ -1,5 +1,9 @@
 import {
-  test, describe, expect, beforeEach, afterEach,
+  test,
+  describe,
+  expect,
+  beforeEach,
+  afterEach,
 } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -48,43 +52,39 @@ describe('Navbar component', () => {
     expect(logoSearchBar.value).toBe('test');
   });
 
-  test('burger menu button should be in the document', async () => {
-    const burgerMenuIcon = screen.getByRole('img', {
-      name: /burger menu icon/i,
+  describe('burger menu', () => {
+    beforeEach(async () => {
+      const burgerMenuIcon = screen.getByRole('img', {
+        name: /burger menu icon/i,
+      });
+
+      await user.click(burgerMenuIcon);
     });
 
-    await user.click(burgerMenuIcon);
+    test('should be in the document', () => {
+      const burgerMenuIcon = screen.getByRole('img', {
+        name: /burger menu icon/i,
+      });
 
-    expect(burgerMenuIcon).toBeInTheDocument();
-  });
-
-  test('clic on burger menu should display connexion button', async () => {
-    const burgerMenuIcon = screen.getByRole('img', {
-      name: /burger menu icon/i,
+      expect(burgerMenuIcon).toBeInTheDocument();
     });
 
-    await user.click(burgerMenuIcon);
+    test('clic should display connexion button', () => {
+      const connexionButton = screen.getByRole('link', {
+        name: /connexion/i,
+      });
 
-    const connexionButton = screen.getByRole('link', {
-      name: /connexion/i,
+      expect(connexionButton).toBeInTheDocument();
     });
 
-    expect(connexionButton).toBeInTheDocument();
-  });
+    test('clic on connexion button', async () => {
+      const connexionButton = screen.getByRole('link', {
+        name: /connexion/i,
+      });
 
-  test('clic on connexion button', async () => {
-    const burgerMenuIcon = screen.getByRole('img', {
-      name: /burger menu icon/i,
+      await user.click(connexionButton);
+
+      expect(connexionButton).toBeInTheDocument();
     });
-
-    await user.click(burgerMenuIcon);
-
-    const connexionButton = screen.getByRole('link', {
-      name: /connexion/i,
-    });
-
-    await user.click(connexionButton);
-
-    expect(connexionButton).toBeInTheDocument();
   });
 });

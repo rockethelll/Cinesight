@@ -1,16 +1,16 @@
-import { useQuery, useQueryClient } from "react-query";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useWindowSize } from "@uidotdev/usehooks";
-import HomeCard from "../components/Cards/HomeCard/HomeCard";
-import axiosClient from "../axiosClient";
-import SearchCard from "../components/Cards/SearchCard/SearchCard";
+import { useQuery, useQueryClient } from 'react-query';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useWindowSize } from '@uidotdev/usehooks';
+import HomeCard from '../components/Cards/HomeCard/HomeCard';
+import axiosClient from '../axiosClient';
+import SearchCard from '../components/Cards/SearchCard/SearchCard';
 
 function useMovies() {
   return useQuery({
-    queryKey: ["movies"],
+    queryKey: ['movies'],
     queryFn: async () => {
-      const { data } = await axiosClient.get("/");
+      const { data } = await axiosClient.get('/');
       return data;
     },
   });
@@ -19,7 +19,9 @@ function useMovies() {
 function Home() {
   // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useMovies();
+  const {
+    status, data, error, isFetching,
+  } = useMovies();
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -34,11 +36,11 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-  if (status === "loading") {
+  if (status === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return (
       <p>
         Error:
@@ -67,7 +69,7 @@ function Home() {
           <HomeCard key={movie.id} data={movie} />
         ))}
       </Carousel>
-      <div>{isFetching ? "Background Updating..." : " "}</div>
+      <div>{isFetching ? 'Background Updating...' : ' '}</div>
       <div className="auto-grid">
         {data?.results.map((movie) => (
           <SearchCard key={movie.id} data={movie} />
