@@ -4,6 +4,7 @@ import {
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import UserContextProvider from '../Context/UserContext';
 
@@ -24,11 +25,13 @@ describe('Navbar component', () => {
     user = userEvent.setup();
     queryClient = new QueryClient();
     render(
-      <QueryClientProvider client={queryClient}>
-        <UserContextProvider>
-          <Navbar />
-        </UserContextProvider>
-      </QueryClientProvider>,
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <UserContextProvider>
+            <Navbar />
+          </UserContextProvider>
+        </QueryClientProvider>
+      </BrowserRouter>,
     );
   });
 
@@ -45,7 +48,7 @@ describe('Navbar component', () => {
     expect(logoSearchBar.value).toBe('test');
   });
 
-  test('test connect button', async () => {
+  test('burger menu button should be in the document', async () => {
     const burgerMenuIcon = screen.getByRole('img', {
       name: /burger menu icon/i,
     });
@@ -53,5 +56,35 @@ describe('Navbar component', () => {
     await user.click(burgerMenuIcon);
 
     expect(burgerMenuIcon).toBeInTheDocument();
+  });
+
+  test('clic on burger menu should display connexion button', async () => {
+    const burgerMenuIcon = screen.getByRole('img', {
+      name: /burger menu icon/i,
+    });
+
+    await user.click(burgerMenuIcon);
+
+    const connexionButton = screen.getByRole('link', {
+      name: /connexion/i,
+    });
+
+    expect(connexionButton).toBeInTheDocument();
+  });
+
+  test('clic on connexion button', async () => {
+    const burgerMenuIcon = screen.getByRole('img', {
+      name: /burger menu icon/i,
+    });
+
+    await user.click(burgerMenuIcon);
+
+    const connexionButton = screen.getByRole('link', {
+      name: /connexion/i,
+    });
+
+    await user.click(connexionButton);
+
+    expect(connexionButton).toBeInTheDocument();
   });
 });

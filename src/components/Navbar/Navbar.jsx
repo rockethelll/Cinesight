@@ -2,7 +2,7 @@ import {
   useContext, useState, useRef, useEffect,
 } from 'react';
 import Cookies from 'js-cookie';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useWindowSize } from '@uidotdev/usehooks';
 import axiosClient from '../../axiosClient';
 import { UserContext } from '../../Context/UserContext';
@@ -48,85 +48,83 @@ export default function Navbar() {
   }, [click]);
   return (
     <nav>
-      <BrowserRouter>
-        {screenSize.width > 1024 ? (
-          <div className="nav-lg">
-            <Link to="/" className="logo__wrapper">
-              <img
-                className="logo"
-                src="../images/logo.svg"
-                alt="cinesight logo"
-              />
-            </Link>
-            <Searchbar />
-            <div className="nav-group">
-              {user ? (
-                <>
-                  <Link to="/" className="nav-link">
-                    {user.email}
-                  </Link>
-                  <button type="button" onClick={disconnect}>
-                    Déconnexion
-                  </button>
-                </>
-              ) : (
-                <Link to="/login" className="nav-link">
-                  Connexion
-                </Link>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="nav-sm">
-            <Searchbar />
-
-            <button type="button" onClick={handleMenu}>
-              <img
-                className="burger_menu"
-                src="../images/burger_menu.svg"
-                alt="burger menu icon"
-              />
-            </button>
-            {click ? (
+      {screenSize.width > 1024 ? (
+        <div className="nav-lg">
+          <Link to="/" className="logo__wrapper">
+            <img
+              className="logo"
+              src="../images/logo.svg"
+              alt="cinesight logo"
+            />
+          </Link>
+          <Searchbar />
+          <div className="nav-group">
+            {user ? (
               <>
-                <span className="background" />
-                <div
-                  ref={ref}
-                  className="menu__wrapper"
-                  style={{ height: screenSize.height * 2 }}
-                >
-                  <div className="menu">
-                    <Link to="/">
-                      <img
-                        className="logo"
-                        src="../images/logo.svg"
-                        alt="cinesight logo"
-                      />
-                    </Link>
-                    {user ? (
-                      <>
-                        <div className="user_section">
-                          <div className="user_logo">
-                            <div />
-                          </div>
-                          <p>Nom_utilisateur_01</p>
-                        </div>
-                        <Link to="/">Profil</Link>
-                        <Link to="/">Watchlist</Link>
-                        <button type="button" onClick={disconnect}>
-                          Déconnexion
-                        </button>
-                      </>
-                    ) : (
-                      <Link to="/login">Connexion</Link>
-                    )}
-                  </div>
-                </div>
+                <Link to="/" className="nav-link">
+                  {user.email}
+                </Link>
+                <button type="button" onClick={disconnect}>
+                  Déconnexion
+                </button>
               </>
-            ) : null}
+            ) : (
+              <Link to="/login" className="nav-link">
+                Connexion
+              </Link>
+            )}
           </div>
-        )}
-      </BrowserRouter>
+        </div>
+      ) : (
+        <div className="nav-sm">
+          <Searchbar />
+
+          <button type="button" onClick={handleMenu}>
+            <img
+              className="burger_menu"
+              src="../images/burger_menu.svg"
+              alt="burger menu icon"
+            />
+          </button>
+          {click ? (
+            <>
+              <span className="background" />
+              <div
+                ref={ref}
+                className="menu__wrapper"
+                style={{ height: screenSize.height * 2 }}
+              >
+                <div className="menu">
+                  <Link to="/">
+                    <img
+                      className="logo"
+                      src="../images/logo.svg"
+                      alt="cinesight logo"
+                    />
+                  </Link>
+                  {user ? (
+                    <>
+                      <div className="user_section">
+                        <div className="user_logo">
+                          <div />
+                        </div>
+                        <p>Nom_utilisateur_01</p>
+                      </div>
+                      <Link to="/">Profil</Link>
+                      <Link to="/">Watchlist</Link>
+                      <button type="button" onClick={disconnect}>
+                        Déconnexion
+                      </button>
+                    </>
+                  ) : (
+                    <Link to="/login">Connexion</Link>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : null}
+        </div>
+      )}
     </nav>
   );
 }
