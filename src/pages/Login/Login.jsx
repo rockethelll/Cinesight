@@ -26,7 +26,7 @@ function Login() {
   };
 
   return (
-    <main>
+    <main className="form-container">
       <h1>Se connecter</h1>
       <h6>
         Connectez-vous avec votre email

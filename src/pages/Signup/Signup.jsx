@@ -26,7 +26,7 @@ function Signup() {
   };
 
   return (
-    <main>
+    <main className="form-container">
       <h1>Créer un compte</h1>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">E-mail</label>

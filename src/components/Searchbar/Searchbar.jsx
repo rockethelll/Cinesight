@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
 import axiosClient from '../../axiosClient';
@@ -15,6 +15,8 @@ function useMovie(query) {
 export default function Searchbar() {
   // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
+  const ref = useRef(null);
+  const [click, setClick] = useState(true);
   const [inputText, setInputText] = useState('');
   const {
     // eslint-disable-next-line no-unused-vars
@@ -28,8 +30,21 @@ export default function Searchbar() {
 
   const inputHandler = (e) => {
     const lowerCase = e.target.value.toLowerCase();
+    setClick(true);
     setInputText(lowerCase);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setClick(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, [click]);
 
   function removeInputText() {
     setInputText('');
@@ -55,15 +70,16 @@ export default function Searchbar() {
             alt="filter logo"
           />
         </button>
-        {inputText !== '' ? (
+        {inputText !== '' && click ? (
           <ul className="list-result__wrapper">
             {status === 'success'
               ? data.results.slice(0, 5).map((result) => (
                 <Link
-                  // eslint-disable-next-line react/jsx-no-bind
+                    // eslint-disable-next-line react/jsx-no-bind
                   onClick={removeInputText}
                   to={`/movie/${result.id}`}
                   key={result.id}
+                  ref={ref}
                 >
                   {result.poster_path !== null ? (
                     <img
