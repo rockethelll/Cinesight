@@ -1,8 +1,6 @@
 @use '../../scss/abstract/variables' as *;
 
-
-
-.form {
+.form-container {
   h1 {
     font-size: clamp(1.7rem, 6vw, 3rem);
     font-weight: 700;
@@ -11,7 +9,7 @@
     padding: 2rem;
     margin: 2rem 0;
   }
-  
+
   h6 {
     font-size: clamp(1.1rem, 4vw, 1.5rem);
     font-weight: 400;
@@ -19,26 +17,30 @@
     text-align: center;
     margin: 1rem 0;
   }
-  
+
   p {
     font-size: 1rem;
     font-weight: 400;
     color: $yellow;
     text-align: center;
     margin: 2rem 0;
-  
+
     a {
       margin-top: 2rem;
       font-size: 1.2rem;
       font-weight: 400;
       color: $grey;
       transition: all 0.3s ease-in-out;
-  
+
       &:hover {
         color: $yellow;
       }
     }
+
   }
+}
+
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
