@@ -40,16 +40,15 @@
   }
   .list-result__wrapper{
     z-index: 9;
-    border-radius: 15px;
-    border-top-left-radius: 22px;
-    border-top-right-radius: 22px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     max-width: 300px;
     width: 100%;
     overflow: hidden;
     position: absolute;
     background-color: $light_blue;
     list-style: none;
-    top: 0;
+    top: 18px;
     left: 0;
     padding-bottom: .5em;
     display: flex;
