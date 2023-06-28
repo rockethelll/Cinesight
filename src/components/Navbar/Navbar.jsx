@@ -5,6 +5,8 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import axiosClient from "../../axiosClient";
 import { UserContext } from "../../Context/UserContext";
 import Searchbar from "../Searchbar/Searchbar";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function Navbar() {
   const { setUser, user } = useContext(UserContext);
@@ -40,11 +42,13 @@ export default function Navbar() {
         setClick(false);
       }
     };
+
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [click]);
+
   return (
     <nav>
       {screenSize.width > 1024 ? (
@@ -61,7 +65,7 @@ export default function Navbar() {
             {user !== null ? (
               <>
                 <Link to="/profil" className="nav-link">
-                  {user.data.email}
+                  {user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
