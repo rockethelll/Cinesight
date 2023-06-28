@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "react-query";
-import Cookies from "js-cookie";
 import axiosClient from "../../axiosClient";
 import WatchlistButton from "../../components/Watchlist/WatchlistButton";
 
@@ -15,6 +14,7 @@ function useMovie(id) {
 export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
 
   const movieQuery = useMovie(id);
@@ -26,13 +26,14 @@ export default function MovieDetails() {
 
   useEffect(() => {
     if (movieStatus === "success") {
-      const date = new Date(movieData.release_date);
-      const note = Math.trunc(movieData.vote_average * 100) / 100;
+      // const date = new Date(movieData.release_date);
+      // const note = Math.trunc(movieData.vote_average * 100) / 100;
       document.title = `${movieData.title} - Movie Details`;
       return () => {
         document.title = "Movie Details";
       };
     }
+    return null;
   }, [movieStatus, movieData]);
 
   const handleMore = () => {
