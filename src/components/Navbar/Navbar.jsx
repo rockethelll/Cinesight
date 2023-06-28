@@ -1,33 +1,32 @@
-import {
-  useContext, useState, useRef, useEffect,
-} from 'react';
-import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
-import { useWindowSize } from '@uidotdev/usehooks';
-import axiosClient from '../../axiosClient';
-import { UserContext } from '../../Context/UserContext';
-import Searchbar from '../Searchbar/Searchbar';
+import { useContext, useState, useRef, useEffect } from "react";
+import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
+import { useWindowSize } from "@uidotdev/usehooks";
+import axiosClient from "../../axiosClient";
+import { UserContext } from "../../Context/UserContext";
+import Searchbar from "../Searchbar/Searchbar";
 
 export default function Navbar() {
   const { setUser, user } = useContext(UserContext);
+
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
 
   const getAuthToken = () => {
-    const bearer = Cookies.get('token');
+    const bearer = Cookies.get("token");
     return bearer ? `Bearer ${bearer}` : null;
   };
 
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
-    await axiosClient.delete('/logout', {
+    await axiosClient.delete("/logout", {
       headers: {
         Authorization: getAuthToken(),
       },
     });
-    Cookies.remove('token');
+    Cookies.remove("token");
     setUser(null);
   };
 
@@ -41,9 +40,9 @@ export default function Navbar() {
         setClick(false);
       }
     };
-    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener("click", handleClickOutside, true);
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside, true);
     };
   }, [click]);
   return (
@@ -59,10 +58,10 @@ export default function Navbar() {
           </Link>
           <Searchbar />
           <div className="nav-group">
-            {user ? (
+            {user !== null ? (
               <>
                 <Link to="/profil" className="nav-link">
-                  {user.email}
+                  {user.data.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion

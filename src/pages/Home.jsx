@@ -6,6 +6,8 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import HomeCard from "../components/Cards/HomeCard/HomeCard";
 import axiosClient from "../axiosClient";
 import Watchlist from "../components/Watchlist/Watchlist";
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext";
 
 function useMovies() {
   return useQuery({
@@ -18,7 +20,9 @@ function useMovies() {
 }
 
 function Home() {
+  const { user } = useContext(UserContext);
   const queryClient = useQueryClient();
+
   const { status, data, error, isFetching } = useMovies();
 
   const screenSize = useWindowSize();
@@ -69,8 +73,7 @@ function Home() {
           ))}
         </Carousel>
       </div>
-
-      <Watchlist />
+      {user !== null ? <Watchlist /> : <p>Connectez vous pour voir votre watchlist</p>}
     </main>
   );
 }
