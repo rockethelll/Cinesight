@@ -22,11 +22,11 @@ const setup = (jsx, options) => {
 };
 
 describe('Navbar component', () => {
-  let user;
+  let userAction;
   let queryClient;
 
   beforeEach(() => {
-    user = userEvent.setup();
+    userAction = userEvent.setup();
     queryClient = new QueryClient();
     render(
       <BrowserRouter>
@@ -47,7 +47,7 @@ describe('Navbar component', () => {
   test('test writing in searchbar', async () => {
     const logoSearchBar = screen.getByRole('searchbox');
 
-    await user.type(logoSearchBar, 'test');
+    await userAction.type(logoSearchBar, 'test');
 
     expect(logoSearchBar.value).toBe('test');
   });
@@ -58,7 +58,7 @@ describe('Navbar component', () => {
         name: /burger menu icon/i,
       });
 
-      await user.click(burgerMenuIcon);
+      await userAction.click(burgerMenuIcon);
     });
 
     test('should be in the document', () => {
@@ -82,7 +82,7 @@ describe('Navbar component', () => {
         name: /connexion/i,
       });
 
-      await user.click(connexionButton);
+      await userAction.click(connexionButton);
 
       expect(connexionButton).toBeInTheDocument();
     });
