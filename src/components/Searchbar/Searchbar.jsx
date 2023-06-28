@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
@@ -14,15 +13,12 @@ function useMovie(query) {
   });
 }
 export default function Searchbar() {
-  const queryClient = useQueryClient();
   const ref = useRef(null);
   const [click, setClick] = useState(true);
   const [inputText, setInputText] = useState('');
   const {
     status,
     data,
-    error,
-    isFetching,
   } = useMovie(inputText);
 
   const inputHandler = (e) => {
