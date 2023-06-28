@@ -2,7 +2,6 @@
 import { useQuery, useQueryClient } from 'react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import LazyLoad from 'react-lazyload';
 import { useWindowSize } from '@uidotdev/usehooks';
 import { useContext } from 'react';
 import HomeCard from '../components/Cards/HomeCard/HomeCard';
@@ -72,9 +71,7 @@ function Home() {
           width="100%"
         >
           {data?.results.map((movie) => (
-            <LazyLoad key={movie.id} once>
-              <HomeCard key={movie.id} movie={movie} />
-            </LazyLoad>
+            <HomeCard key={movie.id} movie={movie} />
           ))}
         </Carousel>
       </div>
