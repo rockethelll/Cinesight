@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import axiosClient from '../../axiosClient';
 import WatchlistButton from '../../components/Watchlist/WatchlistButton';
 import Tags from '../../components/Tags/Tags';
@@ -17,8 +17,6 @@ export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
   const { user } = useContext(UserContext);
-  // eslint-disable-next-line no-unused-vars
-  const queryClient = useQueryClient();
   const movieQuery = useMovie(id);
   const {
     status: movieStatus,
