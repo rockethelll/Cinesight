@@ -33,7 +33,7 @@ export default function MovieDetails() {
         document.title = "Movie Details";
       };
     }
-    return null;
+    return undefined;
   }, [movieStatus, movieData]);
 
   const handleMore = () => {
