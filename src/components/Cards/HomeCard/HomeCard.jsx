@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
-import axiosClient from "../../../axiosClient";
 import WatchlistButton from "../../Watchlist/WatchlistButton";
 
 export default function HomeCard({ movie }) {

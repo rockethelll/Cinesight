@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQuery, useQueryClient } from "react-query";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -17,9 +18,7 @@ function useMovies() {
 }
 
 function Home() {
-  // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
-  // eslint-disable-next-line no-unused-vars
   const { status, data, error, isFetching } = useMovies();
 
   const screenSize = useWindowSize();
