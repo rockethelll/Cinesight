@@ -1,7 +1,11 @@
-export default function Tags({ name }) {
+export default function Tags({ tags }) {
   return (
-    <div className="tag__wrapper">
-      <div className="tag">{name}</div>
-    </div>
+    <>
+      {tags.slice(0, 2).map((genre) => (
+        <div className="tag__wrapper">
+          <div className="tag">{genre.name}</div>
+        </div>
+      ))}
+    </>
   );
 }

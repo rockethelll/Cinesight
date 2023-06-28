@@ -2,7 +2,7 @@ import WatchlistButton from "../../Watchlist/WatchlistButton";
 
 export default function SearchCard({ data }) {
   return (
-    <div  className="card">
+    <div className="card">
       <WatchlistButton movieData={data} />
       <a href={`/movie/${data.id}`} className="card--img">
         <img
