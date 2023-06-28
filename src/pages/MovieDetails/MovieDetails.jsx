@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "react-query";
 import axiosClient from "../../axiosClient";
 import WatchlistButton from "../../components/Watchlist/WatchlistButton";
+import Tags from "../../components/Tags/Tags";
 
 function useMovie(id) {
   return useQuery(["movie", id], async () => {
@@ -16,7 +17,6 @@ export default function MovieDetails() {
   const [more, setMore] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
-
   const movieQuery = useMovie(id);
   const {
     status: movieStatus,
@@ -56,6 +56,9 @@ export default function MovieDetails() {
   return (
     <div className="movie_details__wrapper">
       <div className="movie_details__header">
+        <div className="tags_details__wrapper">
+          <Tags tags={movieData.genres} />
+        </div>
         <img
           src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movieData.poster_path}`}
           alt={`Poster du film ${movieData.title}`}
