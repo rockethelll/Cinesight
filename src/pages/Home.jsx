@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useWindowSize } from '@uidotdev/usehooks';
@@ -21,10 +20,9 @@ function useMovies() {
 
 function Home() {
   const { user } = useContext(UserContext);
-  const queryClient = useQueryClient();
 
   const {
-    status, data, error, isFetching,
+    status, data, error,
   } = useMovies();
 
   const screenSize = useWindowSize();
