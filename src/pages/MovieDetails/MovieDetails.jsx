@@ -4,6 +4,8 @@ import { useQuery, useQueryClient } from "react-query";
 import axiosClient from "../../axiosClient";
 import WatchlistButton from "../../components/Watchlist/WatchlistButton";
 import Tags from "../../components/Tags/Tags";
+import { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 function useMovie(id) {
   return useQuery(["movie", id], async () => {
@@ -15,6 +17,7 @@ function useMovie(id) {
 export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
+  const { user } = useContext(UserContext);
   // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
   const movieQuery = useMovie(id);
@@ -77,7 +80,7 @@ export default function MovieDetails() {
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
             <h2>{movieData.title}</h2>
-            <WatchlistButton movieData={movieData} />
+            {user !== null ? <WatchlistButton movieData={movieData} /> : null}
           </div>
           <p>
             sorti le&nbsp;
