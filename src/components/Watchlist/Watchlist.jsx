@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import Cookies from 'js-cookie';
 import { useContext } from 'react';
 import axiosClient from '../../axiosClient';
@@ -23,12 +22,9 @@ function useWatchlist() {
 
 export default function Watchlist() {
   const { user } = useContext(UserContext);
-  const queryClient = useQueryClient();
   const {
     status,
     data,
-    error,
-    isFetching,
   } = useWatchlist();
 
   return (

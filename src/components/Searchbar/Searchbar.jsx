@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import axiosClient from '../../axiosClient';
 
 function useMovie(query) {
