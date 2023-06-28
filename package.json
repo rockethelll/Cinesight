@@ -30,6 +30,7 @@
     "vitest": "^0.32.2"
   },
   "devDependencies": {
+    "@tgianella/create-react-component-cli": "^1.0.2",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
     "@types/react": "^18.2.12",
