@@ -1,16 +1,16 @@
-import Cookies from "js-cookie";
-import { useState, useEffect } from "react";
-import { useQuery, useQueryClient } from "react-query";
-import axiosClient from "../../axiosClient";
+import Cookies from 'js-cookie';
+import { useState, useEffect } from 'react';
+import { useQuery, useQueryClient } from 'react-query';
+import axiosClient from '../../axiosClient';
 
 function useWatchList() {
-  return useQuery("watchlist", async () => {
+  return useQuery('watchlist', async () => {
     const options = {
       headers: {
-        Authorization: `Bearer ${Cookies.get("token")}`,
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     };
-    const { data } = await axiosClient.get("watchlist/", options);
+    const { data } = await axiosClient.get('watchlist/', options);
     return data;
   });
 }
@@ -23,7 +23,7 @@ export default function WatchlistButton({ movieData }) {
   useEffect(() => {
     if (watchListQuery.isSuccess) {
       const movieInWatchlist = watchListQuery.data.find(
-        (movie) => movie.id === movieData.id
+        (movie) => movie.id === movieData.id,
       );
       setInWatchlist(!!movieInWatchlist);
     }
@@ -32,23 +32,23 @@ export default function WatchlistButton({ movieData }) {
   const addToWatchlist = async () => {
     const options = {
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${Cookies.get("token")}`,
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     };
     await axiosClient.post(`watchlist/${movieData.id}`, {}, options);
-    queryClient.invalidateQueries("watchlist");
+    queryClient.invalidateQueries('watchlist');
   };
 
   const removeFromWatchlist = async () => {
     const options = {
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${Cookies.get("token")}`,
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${Cookies.get('token')}`,
       },
     };
     await axiosClient.delete(`watchlist/${movieData.id}`, options);
-    queryClient.invalidateQueries("watchlist");
+    queryClient.invalidateQueries('watchlist');
   };
 
   const handleClick = () => {
@@ -62,7 +62,7 @@ export default function WatchlistButton({ movieData }) {
 
   return (
     <button
-      style={{ display: "flex", alignItems: "center" }}
+      style={{ display: 'flex', alignItems: 'center' }}
       type="button"
       onClick={handleClick}
       className="watchlist--btn"
