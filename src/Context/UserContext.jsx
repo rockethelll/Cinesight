@@ -11,10 +11,10 @@ function UserContextProvider({ children }) {
   const value = useMemo(() => ({ user, setUser }), [user]);
 
   async function getData() {
-    const cookie = Cookies.get('token');
-    if (cookie !== undefined) {
+    const token = Cookies.get('token');
+    if (token !== undefined) {
       const data = await axiosClient.get('/current_user', {
-        headers: { Authorization: `Bearer ${cookie}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setUser(data);
     }
