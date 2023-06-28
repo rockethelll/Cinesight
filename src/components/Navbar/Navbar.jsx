@@ -61,7 +61,7 @@ export default function Navbar() {
           <div className="nav-group">
             {user ? (
               <>
-                <Link to="/" className="nav-link">
+                <Link to="/profil" className="nav-link">
                   {user.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
@@ -110,8 +110,7 @@ export default function Navbar() {
                         </div>
                         <p>Nom_utilisateur_01</p>
                       </div>
-                      <Link to="/">Profil</Link>
-                      <Link to="/">Watchlist</Link>
+                      <Link to="/profil">Profil</Link>
                       <button type="button" onClick={disconnect}>
                         Déconnexion
                       </button>

@@ -1,96 +1,90 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery, useQueryClient } from 'react-query';
-import axiosClient from '../../axiosClient';
-// import Tags from '../../components/Tags/Tags';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery, useQueryClient } from "react-query";
+import axiosClient from "../../axiosClient";
+import WatchlistButton from "../../components/Watchlist/WatchlistButton";
 
 function useMovie(id) {
-  return useQuery({
-    queryKey: ['movie'],
-    queryFn: async () => {
-      const { data } = await axiosClient.get(`/movie/${id}`);
-      return data;
-    },
+  return useQuery(["movie", id], async () => {
+    const { data } = await axiosClient.get(`/movie/${id}`);
+    return data;
   });
 }
+
 export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
+
+  const movieQuery = useMovie(id);
   const {
-    // eslint-disable-next-line no-unused-vars
-    status, data, error, isFetching,
-  } = useMovie(id);
-  let date;
-  let note;
-  function handleMore() {
+    status: movieStatus,
+    data: movieData,
+    error: movieError,
+  } = movieQuery;
+
+  useEffect(() => {
+    if (movieStatus === "success") {
+      // const date = new Date(movieData.release_date);
+      // const note = Math.trunc(movieData.vote_average * 100) / 100;
+      document.title = `${movieData.title} - Movie Details`;
+      return () => {
+        document.title = "Movie Details";
+      };
+    }
+    return undefined;
+  }, [movieStatus, movieData]);
+
+  const handleMore = () => {
     setMore(!more);
-  }
+  };
 
-  function formatDate(dateToFormat) {
-    return new Date(dateToFormat);
-  }
-
-  function truncateNote(num) {
-    return Math[num < 0 ? 'ceil' : 'floor'](num);
-  }
-
-  if (status === 'success') {
-    date = formatDate(data.release_date);
-    note = truncateNote(data.vote_average * 100) / 100;
-  }
-  if (status === 'loading') {
+  if (movieStatus === "loading") {
     return <p>Loading ...</p>;
   }
 
-  if (status === 'error') {
+  if (movieStatus === "error") {
     return (
       <p>
         Error:
-        {error.message}
+        {movieError.message}
       </p>
     );
   }
+
   return (
     <div className="movie_details__wrapper">
       <div className="movie_details__header">
         <img
-          src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
-          alt={`Poster du film ${data.title}`}
+          src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movieData.poster_path}`}
+          alt={`Poster du film ${movieData.title}`}
         />
-        {/* <div className="genres__wrapper">
-          {data.genres.slice(0, 2).map((genre) => (
-            <Tags key={genre.id} name={genre.name} />
-          ))}
-        </div> */}
       </div>
       <div className="movie_details__body">
         <div className="movie_details--note--like">
           <div className="movie_details--note">
             <img src="../images/tmdb-logo.svg" alt="" />
             <p>
-              {note}
+              {movieData.vote_average.toFixed(1)}
               /10
             </p>
           </div>
-          <img
-            src="../images/hearth.svg"
-            style={{ visibility: 'hidden' }}
-            alt=""
-          />
         </div>
         <div>
-          <h2>{data.title}</h2>
+          <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+            <h2>{movieData.title}</h2>
+            <WatchlistButton movieData={movieData} />
+          </div>
           <p>
             sorti le&nbsp;
-            {date.toLocaleDateString()}
+            {new Date(movieData.release_date).toLocaleDateString()}
           </p>
         </div>
         <div className="movie_details--overview">
-          <p className={`${more ? 'open' : 'closed'}`}>{data.overview}</p>
+          <p className={more ? "open" : "closed"}>{movieData.overview}</p>
           <button type="button" onClick={handleMore}>
-            {`${more ? 'Voir moins' : 'Voir plus'}`}
+            {more ? "Voir moins" : "Voir plus"}
           </button>
         </div>
       </div>
