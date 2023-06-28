@@ -19,12 +19,13 @@ function Login() {
     const createUser = async (userInfos) => {
       const response = await axiosClient.post("/login", userInfos);
       useSessionCookie(response);
-      setUser(() => ({ ...response.data.data }));
-      navigate('/')
+      setUser(response.data.data);
+      navigate(0)
     };
 
     const userData = JSON.stringify({ user: data });
     createUser(userData);
+    navigate("/");
   };
 
   return (
