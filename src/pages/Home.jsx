@@ -9,9 +9,9 @@ import Watchlist from "../components/Watchlist/Watchlist";
 
 function useMovies() {
   return useQuery({
-    queryKey: ["movies"],
+    queryKey: ['movies'],
     queryFn: async () => {
-      const { data } = await axiosClient.get("/");
+      const { data } = await axiosClient.get('/');
       return data;
     },
   });
@@ -20,7 +20,9 @@ function useMovies() {
 function Home() {
   // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useMovies();
+  const {
+    status, data, error, isFetching,
+  } = useMovies();
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -35,11 +37,11 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-  if (status === "loading") {
+  if (status === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return (
       <p>
         Error:
