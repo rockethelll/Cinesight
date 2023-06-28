@@ -1,4 +1,4 @@
-import WatchlistButton from "../../Watchlist/WatchlistButton";
+import WatchlistButton from '../../Watchlist/WatchlistButton';
 
 export default function SearchCard({ data }) {
   return (

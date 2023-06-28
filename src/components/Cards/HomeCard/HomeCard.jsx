@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import WatchlistButton from "../../Watchlist/WatchlistButton";
-import { UserContext } from "../../../Context/UserContext";
-import { useContext } from "react";
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import WatchlistButton from '../../Watchlist/WatchlistButton';
+import { UserContext } from '../../../Context/UserContext';
 
 export default function HomeCard({ movie }) {
   const { user } = useContext(UserContext);

@@ -1,35 +1,33 @@
-import { useQuery, useQueryClient } from "react-query";
-import Cookies from "js-cookie";
-import axiosClient from "../../axiosClient";
-import SearchCard from "../Cards/SearchCard/SearchCard";
-import { UserContext } from "../../Context/UserContext";
-import { useContext } from "react";
+/* eslint-disable no-unused-vars */
+import { useQuery, useQueryClient } from 'react-query';
+import Cookies from 'js-cookie';
+import { useContext } from 'react';
+import axiosClient from '../../axiosClient';
+import SearchCard from '../Cards/SearchCard/SearchCard';
+import { UserContext } from '../../Context/UserContext';
 
 function useWatchlist() {
-  if (Cookies.get("token") !== undefined) {
+  if (Cookies.get('token') !== undefined) {
     return useQuery({
-      queryKey: ["watchlist"],
+      queryKey: ['watchlist'],
       queryFn: async () => {
-        const { data } = await axiosClient.get("/watchlist", {
-          headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+        const { data } = await axiosClient.get('/watchlist', {
+          headers: { Authorization: `Bearer ${Cookies.get('token')}` },
         });
         return data;
       },
     });
   }
+  return null;
 }
 
 export default function Watchlist() {
   const { user } = useContext(UserContext);
-  // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
   const {
-    // eslint-disable-next-line no-unused-vars
     status,
     data,
-    // eslint-disable-next-line no-unused-vars
     error,
-    // eslint-disable-next-line no-unused-vars
     isFetching,
   } = useWatchlist();
 
@@ -39,15 +37,15 @@ export default function Watchlist() {
         <>
           <h1>Watchlist</h1>
           <div className="reel">
-            {status === "success" &&
-              data.length > 0 &&
-              data.map((watchlistMovie) => (
+            {status === 'success'
+              && data.length > 0
+              && data.map((watchlistMovie) => (
                 <SearchCard key={watchlistMovie.id} data={watchlistMovie} />
               ))}
-            {status === "success" && data.length === 0 && (
+            {status === 'success' && data.length === 0 && (
               <p>Votre watchlist est vide</p>
             )}
-            {status === "loading" && <p>Loading</p>}
+            {status === 'loading' && <p>Loading</p>}
           </div>
         </>
       ) : (

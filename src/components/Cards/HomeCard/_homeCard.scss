@@ -4,10 +4,8 @@
   width: fit-content;
   height: inherit;
   border-radius: 10px;
-  
+
   position: relative;
-
-
 
   a {
     display: none;
@@ -17,7 +15,7 @@
     scale: .9;
     border-radius: inherit;
     max-width: 300px;
-    
+
     filter: blur(2px) brightness(50%);
 
   }
@@ -42,7 +40,6 @@
   scale: 1;
   filter: none;
   transition: .2s ease-in-out;
-
 }
 
 .selected a {
@@ -58,5 +55,4 @@
 
 .selected button {
   visibility: visible;
-
 }

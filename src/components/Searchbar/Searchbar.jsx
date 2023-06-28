@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
@@ -13,18 +14,14 @@ function useMovie(query) {
   });
 }
 export default function Searchbar() {
-  // eslint-disable-next-line no-unused-vars
   const queryClient = useQueryClient();
   const ref = useRef(null);
   const [click, setClick] = useState(true);
   const [inputText, setInputText] = useState('');
   const {
-    // eslint-disable-next-line no-unused-vars
     status,
     data,
-    // eslint-disable-next-line no-unused-vars
     error,
-    // eslint-disable-next-line no-unused-vars
     isFetching,
   } = useMovie(inputText);
 
