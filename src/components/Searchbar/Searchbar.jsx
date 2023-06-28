@@ -51,7 +51,7 @@ export default function Searchbar() {
   return (
     <div className="searchbar__wrapper">
       <form>
-        <button type="button">
+        <button type="button" aria-label="filter button">
           <img src="../images/search.svg" height="20px" alt="search logo" />
         </button>
         <input

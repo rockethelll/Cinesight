@@ -62,6 +62,7 @@ export default function WatchlistButton({ movieData }) {
 
   return (
     <button
+      aria-label="add to watchlist button"
       style={{ display: 'flex', alignItems: 'center' }}
       type="button"
       onClick={handleClick}
