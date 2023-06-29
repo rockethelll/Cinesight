@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
-import WatchlistButton from "../../Watchlist/WatchlistButton";
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import WatchlistButton from '../../Watchlist/WatchlistButton';
+import { UserContext } from '../../../Context/UserContext';
 
 export default function HomeCard({ movie }) {
+  const { user } = useContext(UserContext);
   return (
     <div className="home_page__wrapper">
-      <WatchlistButton movieData={movie} />
+      {user !== null ? <WatchlistButton movieData={movie} /> : null}
       <Link to={`/movie/${movie.id}`}>Voir les détails</Link>
 
       <img

@@ -1,25 +1,29 @@
-/* eslint-disable no-unused-vars */
-import { useQuery, useQueryClient } from "react-query";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useWindowSize } from "@uidotdev/usehooks";
-import HomeCard from "../components/Cards/HomeCard/HomeCard";
-import axiosClient from "../axiosClient";
-import Watchlist from "../components/Watchlist/Watchlist";
+import { useQuery } from 'react-query';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useWindowSize } from '@uidotdev/usehooks';
+import { useContext } from 'react';
+import HomeCard from '../components/Cards/HomeCard/HomeCard';
+import axiosClient from '../axiosClient';
+import Watchlist from '../components/Watchlist/Watchlist';
+import { UserContext } from '../Context/UserContext';
 
 function useMovies() {
   return useQuery({
-    queryKey: ["movies"],
+    queryKey: ['movies'],
     queryFn: async () => {
-      const { data } = await axiosClient.get("/");
+      const { data } = await axiosClient.get('/');
       return data;
     },
   });
 }
 
 function Home() {
-  const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useMovies();
+  const { user } = useContext(UserContext);
+
+  const {
+    status, data, error,
+  } = useMovies();
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -34,11 +38,11 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-  if (status === "loading") {
+  if (status === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return (
       <p>
         Error:
@@ -49,7 +53,7 @@ function Home() {
 
   return (
     <main>
-      <div style={{ marginBottom: "3vw" }}>
+      <div style={{ marginBottom: '3vw' }}>
         <h2>Dernières sorties</h2>
         <Carousel
           className="main-slide"
@@ -69,8 +73,7 @@ function Home() {
           ))}
         </Carousel>
       </div>
-
-      <Watchlist />
+      {user !== null ? <Watchlist /> : <p>Connectez vous pour voir votre watchlist</p>}
     </main>
   );
 }

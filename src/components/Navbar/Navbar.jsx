@@ -10,6 +10,7 @@ import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
   const { setUser, user } = useContext(UserContext);
+
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
@@ -41,11 +42,13 @@ export default function Navbar() {
         setClick(false);
       }
     };
+
     document.addEventListener('click', handleClickOutside, true);
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, [click]);
+
   return (
     <nav>
       {screenSize.width > 1024 ? (
@@ -59,10 +62,10 @@ export default function Navbar() {
           </Link>
           <Searchbar />
           <div className="nav-group">
-            {user ? (
+            {user !== null ? (
               <>
                 <Link to="/profil" className="nav-link">
-                  {user.email}
+                  {user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion

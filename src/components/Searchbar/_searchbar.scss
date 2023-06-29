@@ -3,9 +3,8 @@
 .searchbar__wrapper {
   display: flex;
   justify-content: center;
-  
+
   form {
-   
     position: relative;
     display: flex;
     flex-direction: row;
@@ -38,7 +37,8 @@
       outline: none;
     }
   }
-  .list-result__wrapper{
+
+  .list-result__wrapper {
     z-index: 9;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -54,27 +54,30 @@
     display: flex;
     flex-direction: column;
     gap: .3em;
-    
-    a{
-      font-size: clamp(.8em,2vw,1em);
+
+    a {
+      font-size: clamp(.8em, 2vw, 1em);
       display: flex;
       align-items: center;
       height: fit-content;
-      
+
     }
-    a:first-of-type{
+
+    a:first-of-type {
       margin-top: 37px;
     }
-    a:hover{
+
+    a:hover {
       color: $yellow;
       background-color: $dark_blue;
       transition: ease .2s;
     }
-    img{
+
+    img {
       max-width: 50px;
       margin: 0 5px;
       width: 100%;
-      border-radius: 5px;  
+      border-radius: 5px;
     }
   }
 }

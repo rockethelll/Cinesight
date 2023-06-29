@@ -7,7 +7,9 @@ import { UserContext } from '../../Context/UserContext';
 
 function Signup() {
   const {
-    register, handleSubmit, formState: { errors },
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm({ defaultValues: { email: '', password: '' } });
 
   const { setUser } = useContext(UserContext);
@@ -18,11 +20,12 @@ function Signup() {
       const response = await axiosClient.post('/signup', userInfos);
       useSessionCookie(response);
       setUser(response.data.data);
-      navigate('/');
+      navigate(0);
     };
 
     const userData = JSON.stringify({ user: data });
     createUser(userData);
+    navigate('/');
   };
 
   return (
@@ -38,7 +41,9 @@ function Signup() {
           })}
         />
         {errors.email && (
-        <p style={{ color: '#e74c3c', margin: '-10px 0 10px' }}>{errors.email.message}</p>
+          <p style={{ color: '#e74c3c', margin: '-10px 0 10px' }}>
+            {errors.email.message}
+          </p>
         )}
 
         <label htmlFor="password">Mot de passe</label>
@@ -55,14 +60,12 @@ function Signup() {
           })}
         />
         {errors.password && (
-        <p style={{ color: '#e74c3c', margin: '-10px ' }}>{errors.password.message}</p>
+          <p style={{ color: '#e74c3c', margin: '-10px ' }}>
+            {errors.password.message}
+          </p>
         )}
 
-        <input
-          className="submit"
-          type="submit"
-          value="Se connecter"
-        />
+        <input className="submit" type="submit" value="Se connecter" />
       </form>
     </main>
   );

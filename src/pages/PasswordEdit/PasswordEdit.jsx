@@ -1,21 +1,21 @@
 import { useForm } from 'react-hook-form';
-import axiosClient from '../../axiosClient';
 import { useNavigate } from 'react-router-dom';
+import axiosClient from '../../axiosClient';
 
 function PasswordEdit() {
   const navigate = useNavigate();
 
   // Getting reset password token from URL
   const params = new URLSearchParams(document.location.search);
-  const resetPasswordToken = params.get("reset_password_token");
+  const resetPasswordToken = params.get('reset_password_token');
 
   const {
     register, handleSubmit, formState: { errors },
-  } = useForm({ 
-    defaultValues: { 
+  } = useForm({
+    defaultValues: {
       password: null,
       password_confirmation: null,
-    } 
+    },
   });
 
   const onSubmit = async (data) => {
@@ -26,8 +26,8 @@ function PasswordEdit() {
 
     const dataWithToken = {
       ...data,
-      reset_password_token: resetPasswordToken
-    }
+      reset_password_token: resetPasswordToken,
+    };
 
     const userData = JSON.stringify({ user: dataWithToken });
     editPassword(userData);
@@ -68,7 +68,7 @@ function PasswordEdit() {
         />
       </form>
     </>
-  )
+  );
 }
 
 export default PasswordEdit;

@@ -1,6 +1,7 @@
 @use '../scss/abstract/variables' as *;
 
 @font-face {
+  font-display: swap;
   font-family: 'Outfit';
   src: url('../fonts/Outfit-VariableFont_wght.ttf');
 }

@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
-import axiosClient from "../../axiosClient";
-import WatchlistButton from "../../components/Watchlist/WatchlistButton";
-import Tags from "../../components/Tags/Tags";
+import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import axiosClient from '../../axiosClient';
+import WatchlistButton from '../../components/Watchlist/WatchlistButton';
+import Tags from '../../components/Tags/Tags';
+import { UserContext } from '../../Context/UserContext';
 
 function useMovie(id) {
-  return useQuery(["movie", id], async () => {
+  return useQuery(['movie', id], async () => {
     const { data } = await axiosClient.get(`/movie/${id}`);
     return data;
   });
@@ -15,8 +16,7 @@ function useMovie(id) {
 export default function MovieDetails() {
   const { id } = useParams();
   const [more, setMore] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const queryClient = useQueryClient();
+  const { user } = useContext(UserContext);
   const movieQuery = useMovie(id);
   const {
     status: movieStatus,
@@ -25,12 +25,10 @@ export default function MovieDetails() {
   } = movieQuery;
 
   useEffect(() => {
-    if (movieStatus === "success") {
-      // const date = new Date(movieData.release_date);
-      // const note = Math.trunc(movieData.vote_average * 100) / 100;
+    if (movieStatus === 'success') {
       document.title = `${movieData.title} - Movie Details`;
       return () => {
-        document.title = "Movie Details";
+        document.title = 'Movie Details';
       };
     }
     return undefined;
@@ -40,11 +38,11 @@ export default function MovieDetails() {
     setMore(!more);
   };
 
-  if (movieStatus === "loading") {
+  if (movieStatus === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (movieStatus === "error") {
+  if (movieStatus === 'error') {
     return (
       <p>
         Error:
@@ -75,9 +73,9 @@ export default function MovieDetails() {
           </div>
         </div>
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <h2>{movieData.title}</h2>
-            <WatchlistButton movieData={movieData} />
+            {user !== null ? <WatchlistButton movieData={movieData} /> : null}
           </div>
           <p>
             sorti le&nbsp;
@@ -85,9 +83,9 @@ export default function MovieDetails() {
           </p>
         </div>
         <div className="movie_details--overview">
-          <p className={more ? "open" : "closed"}>{movieData.overview}</p>
+          <p className={more ? 'open' : 'closed'}>{movieData.overview}</p>
           <button type="button" onClick={handleMore}>
-            {more ? "Voir moins" : "Voir plus"}
+            {more ? 'Voir moins' : 'Voir plus'}
           </button>
         </div>
       </div>

@@ -1,11 +1,9 @@
-import Watchlist from "../../components/Watchlist/Watchlist";
+import Watchlist from '../../components/Watchlist/Watchlist';
 
 export default function Profil() {
   return (
-    <>
-      <div className="container">
-        <Watchlist />
-      </div>
-    </>
+    <div className="container">
+      <Watchlist />
+    </div>
   );
 }

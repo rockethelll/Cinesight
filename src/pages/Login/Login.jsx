@@ -7,7 +7,9 @@ import { UserContext } from '../../Context/UserContext';
 
 function Login() {
   const {
-    register, handleSubmit, formState: { errors },
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm({ defaultValues: { email: '', password: '' } });
 
   const { setUser } = useContext(UserContext);
@@ -18,27 +20,22 @@ function Login() {
       const response = await axiosClient.post('/login', userInfos);
       useSessionCookie(response);
       setUser(response.data.data);
-      navigate('/');
+      navigate(0);
     };
 
     const userData = JSON.stringify({ user: data });
     createUser(userData);
+    navigate('/');
   };
 
   return (
     <main className="form-container">
       <h1>Se connecter</h1>
-      <h6>
-        Connectez-vous avec votre email
-      </h6>
+      <h6>Connectez-vous avec votre email</h6>
       <p>
         Pas encore de compte ?
         <br />
-        <Link
-          to="/signup"
-        >
-          Créer un compte
-        </Link>
+        <Link to="/signup">Créer un compte</Link>
       </p>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">E-mail</label>
@@ -50,7 +47,9 @@ function Login() {
           })}
         />
         {errors.email && (
-        <p style={{ color: '#e74c3c', margin: '-10px 0 10px' }}>{errors.email.message}</p>
+          <p style={{ color: '#e74c3c', margin: '-10px 0 10px' }}>
+            {errors.email.message}
+          </p>
         )}
 
         <label htmlFor="password">Mot de passe</label>
@@ -67,16 +66,14 @@ function Login() {
           })}
         />
         {errors.password && (
-        <p style={{ color: '#e74c3c', margin: '-10px ' }}>{errors.password.message}</p>
+          <p style={{ color: '#e74c3c', margin: '-10px ' }}>
+            {errors.password.message}
+          </p>
         )}
 
         <Link to="/recover"> Mot de passe oublié ?</Link>
 
-        <input
-          className="submit"
-          type="submit"
-          value="Se connecter"
-        />
+        <input className="submit" type="submit" value="Se connecter" />
       </form>
     </main>
   );
