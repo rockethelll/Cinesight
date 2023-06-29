@@ -79,12 +79,10 @@ export default function UserProfile() {
           <div className="non-editing">
             <p>
               <strong>Email:</strong>
-              {' '}
               {user.data?.email}
             </p>
             <p>
               <strong>Pseudo:</strong>
-              {' '}
               {user.data?.username}
             </p>
           </div>
