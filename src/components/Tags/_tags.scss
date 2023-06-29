@@ -3,8 +3,8 @@
 .tags_details__wrapper {
   display: flex;
   gap: .5em;
-  bottom: 1vw;
-  right: 1vw;
+  bottom: 5vw;
+  right: 5vw;
   position: absolute;
   z-index: 1000;
 }
@@ -20,4 +20,13 @@
     font-weight: 400;
     font-size: clamp(.8em, 2vw, 1em);
   }
+}
+
+@media screen and (min-width:480px) {
+
+
+  .tags_details__wrapper {
+    bottom: 1vw;
+    right: 1vw;
+   }
 }

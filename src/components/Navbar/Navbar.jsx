@@ -7,10 +7,12 @@ import { useWindowSize } from '@uidotdev/usehooks';
 import axiosClient from '../../axiosClient';
 import { UserContext } from '../../Context/UserContext';
 import Searchbar from '../Searchbar/Searchbar';
+import Watchlist from '../Watchlist/Watchlist';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { setUser, user } = useContext(UserContext);
+  const [openWatchlist, setOpenWatchlist] = useState(false);
 
   const ref = useRef(null);
   const [click, setClick] = useState(false);
@@ -38,10 +40,15 @@ export default function Navbar() {
     setClick(!click);
   }
 
+  function handleWatchlist() {
+    setOpenWatchlist(!openWatchlist);
+  }
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setClick(false);
+        setOpenWatchlist(false);
       }
     };
 
@@ -66,6 +73,17 @@ export default function Navbar() {
           <div className="nav-group">
             {user !== null ? (
               <>
+                <button type="button" onClick={handleWatchlist}>Watchtlist</button>
+                {openWatchlist && (
+                  <>
+                    <span className="background" />
+                    <div className="watchlist--modal">
+                      <div ref={ref}>
+                        <Watchlist />
+                      </div>
+                    </div>
+                  </>
+                )}
                 <Link to="/profil" className="nav-link">
                   {user.data.username !== null ? user.data.username : user.data?.email}
                 </Link>

@@ -7,7 +7,7 @@ function useMovie(query) {
   return useQuery({
     queryKey: ['searchMovie', query],
     queryFn: async () => {
-      const { data } = await axiosClient.get(`/movies?query=${query}`);
+      const { data } = await axiosClient.get(`/movies/search?query=${query}`);
       return data;
     },
   });

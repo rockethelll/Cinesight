@@ -5,15 +5,14 @@ import { useWindowSize } from '@uidotdev/usehooks';
 import { useContext } from 'react';
 import HomeCard from '../components/Cards/HomeCard/HomeCard';
 import axiosClient from '../axiosClient';
-import Watchlist from '../components/Watchlist/Watchlist';
 import { UserContext } from '../Context/UserContext';
 import Hero from '../components/Hero/Hero';
 
-function useMovies() {
+function useMovieQuery(endpoint) {
   return useQuery({
-    queryKey: ['movies'],
+    queryKey: [endpoint],
     queryFn: async () => {
-      const { data } = await axiosClient.get('/');
+      const { data } = await axiosClient.get(`/movies/${endpoint}`);
       return data;
     },
   });
@@ -22,7 +21,17 @@ function useMovies() {
 function Home() {
   const { user } = useContext(UserContext);
 
-  const { status, data, error } = useMovies();
+  const endpoints = [
+    { key: 'now_playing', title: 'Dernières sorties' },
+    { key: 'upcoming', title: 'À venir' },
+    { key: 'top_rated', title: 'Mieux notés' },
+    { key: 'popular', title: 'Populaire' },
+  ];
+
+  const queries = endpoints.map((endpoint) => ({
+    query: useMovieQuery(endpoint.key),
+    title: endpoint.title,
+  }));
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -37,15 +46,20 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-  if (status === 'loading') {
+
+  const isLoading = queries.some((query) => query.query.status === 'loading');
+  const isError = queries.some((query) => query.query.status === 'error');
+  const errorMessages = queries.map((query) => query.query.error?.message);
+
+  if (isLoading) {
     return <p>Loading ...</p>;
   }
 
-  if (status === 'error') {
+  if (isError) {
     return (
       <p>
         Error:
-        {error.message}
+        {errorMessages.filter((msg) => msg).join(', ')}
       </p>
     );
   }
@@ -55,51 +69,28 @@ function Home() {
       {user === null && <Hero />}
       <div className="home">
         <main>
-          <div style={{ marginBottom: '3vw' }}>
-            <h2>Dernières sorties</h2>
-            <Carousel
-              className="main-slide"
-              centerMode
-              centerSlidePercentage={handleCenterSlide}
-              useKeyboardArrows
-              showStatus={false}
-              showIndicators={false}
-              showArrows={handleArrow}
-              swipeScrollTolerance={5}
-              swipeable
-              showThumbs={false}
-              width="100%"
-            >
-              {data?.results.map((movie) => (
-                <HomeCard key={movie.id} movie={movie} />
-              ))}
-            </Carousel>
-          </div>
-          <div style={{ marginBottom: '3vw' }}>
-            <h2>Dernières sorties</h2>
-            <Carousel
-              className="main-slide"
-              centerMode
-              centerSlidePercentage={handleCenterSlide}
-              useKeyboardArrows
-              showStatus={false}
-              showIndicators={false}
-              showArrows={handleArrow}
-              swipeScrollTolerance={5}
-              swipeable
-              showThumbs={false}
-              width="100%"
-            >
-              {data?.results.map((movie) => (
-                <HomeCard key={movie.id} movie={movie} />
-              ))}
-            </Carousel>
-          </div>
-          {user !== null ? (
-            <Watchlist />
-          ) : (
-            <p>Connectez vous pour voir votre watchlist</p>
-          )}
+          {queries.map((query) => (
+            <div style={{ marginBottom: '3vw' }} key={query.title}>
+              <h2>{query.title}</h2>
+              <Carousel
+                className="main-slide"
+                centerMode
+                centerSlidePercentage={handleCenterSlide}
+                useKeyboardArrows
+                showStatus={false}
+                showIndicators={false}
+                showArrows={handleArrow}
+                swipeScrollTolerance={5}
+                swipeable
+                showThumbs={false}
+                width="100%"
+              >
+                {query.query.data?.results.map((movie) => (
+                  <HomeCard key={movie.id} movie={movie} />
+                ))}
+              </Carousel>
+            </div>
+          ))}
         </main>
       </div>
     </>
