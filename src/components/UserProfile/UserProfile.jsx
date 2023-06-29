@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -7,7 +7,6 @@ import axiosClient from '../../axiosClient';
 
 export default function UserProfile() {
   const { user } = useContext(UserContext);
-  const [username, setUsername] = useState(user.data.username);
   const navigate = useNavigate();
 
   const {
@@ -25,10 +24,30 @@ export default function UserProfile() {
         },
       };
       await axiosClient.patch('/profile', body, options);
-      navigate(0);
+      window.location.reload();
     };
     const userData = JSON.stringify({ user: data });
     updateUser(userData);
+    navigate('/');
+  };
+
+  const deleteAccount = async () => {
+    const deleteUserAccount = async () => {
+    // eslint-disable-next-line no-alert
+      if (window.confirm('Voulez-vous vraiment supprimer votre compte?')) {
+        const options = {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        };
+        await axiosClient.delete('/profile', options);
+        // eslint-disable-next-line no-alert
+        alert('Votre compte a été supprimé');
+        window.location.reload();
+      }
+    };
+    deleteUserAccount();
     navigate('/');
   };
 
@@ -57,6 +76,7 @@ export default function UserProfile() {
 
         <input className="submit" type="submit" value="Modifier" />
       </form>
+      <input className="delete-account" type="submit" onClick={() => deleteAccount()} value="Supprimer votre compte" />
     </>
   );
 }

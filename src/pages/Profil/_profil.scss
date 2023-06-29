@@ -1,0 +1,20 @@
+@use '../../scss/abstract/variables' as *;
+
+.edit-button {
+  position: relative;
+  top: 4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: $yellow;
+  color: $dark_blue;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $light_blue;
+    color: $white;
+  }
+}

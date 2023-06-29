@@ -1,11 +1,13 @@
-import UserProfile from '../../components/UserProfile/UserProfile';
+import { Link } from 'react-router-dom';
 import Watchlist from '../../components/Watchlist/Watchlist';
 
 export default function Profil() {
   return (
     <div className="container">
       <Watchlist />
-      <UserProfile />
+      <Link to="/profile/edit" className="edit-button">
+        Éditer mon profil
+      </Link>
     </div>
   );
 }
