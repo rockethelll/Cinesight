@@ -1,34 +1,34 @@
-import {
-  useContext, useState, useRef, useEffect,
-} from 'react';
-import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
-import { useWindowSize } from '@uidotdev/usehooks';
-import axiosClient from '../../axiosClient';
-import { UserContext } from '../../Context/UserContext';
-import Searchbar from '../Searchbar/Searchbar';
+import { useContext, useState, useRef, useEffect } from "react";
+import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
+import { useWindowSize } from "@uidotdev/usehooks";
+import axiosClient from "../../axiosClient";
+import { UserContext } from "../../Context/UserContext";
+import Searchbar from "../Searchbar/Searchbar";
+import Watchlist from "../Watchlist/Watchlist";
 
 export default function Navbar() {
   const { setUser, user } = useContext(UserContext);
+  const [openWatchlist, setOpenWatchlist] = useState(false);
 
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
 
   const getAuthToken = () => {
-    const bearer = Cookies.get('token');
+    const bearer = Cookies.get("token");
     return bearer ? `Bearer ${bearer}` : null;
   };
 
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
-    await axiosClient.delete('/logout', {
+    await axiosClient.delete("/logout", {
       headers: {
         Authorization: getAuthToken(),
       },
     });
-    Cookies.remove('token');
+    Cookies.remove("token");
     setUser(null);
   };
 
@@ -36,16 +36,21 @@ export default function Navbar() {
     setClick(!click);
   }
 
+  function handleWatchlist() {
+    setOpenWatchlist(!openWatchlist);
+  }
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setClick(false);
+        setOpenWatchlist(false)
       }
     };
 
-    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener("click", handleClickOutside, true);
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside, true);
     };
   }, [click]);
 
@@ -64,6 +69,17 @@ export default function Navbar() {
           <div className="nav-group">
             {user !== null ? (
               <>
+                <button onClick={handleWatchlist}>Watchtlist</button>
+                {openWatchlist && (
+                  <>
+                    <span className="background" />
+                    <div className="watchlist--modal">
+                      <div ref={ref}>
+                        <Watchlist />
+                      </div>
+                    </div>
+                  </>
+                )}
                 <Link to="/profil" className="nav-link">
                   {user.data?.email}
                 </Link>

@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import axiosClient from '../../axiosClient';
-import WatchlistButton from '../../components/Watchlist/WatchlistButton';
-import Tags from '../../components/Tags/Tags';
-import { UserContext } from '../../Context/UserContext';
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import axiosClient from "../../axiosClient";
+import WatchlistButton from "../../components/Watchlist/WatchlistButton";
+import Tags from "../../components/Tags/Tags";
+import { UserContext } from "../../Context/UserContext";
 
 function useMovie(id) {
-  return useQuery(['movie', id], async () => {
+  return useQuery(["movie", id], async () => {
     const { data } = await axiosClient.get(`/movie/${id}`);
     return data;
   });
@@ -15,7 +15,6 @@ function useMovie(id) {
 
 export default function MovieDetails() {
   const { id } = useParams();
-  const [more, setMore] = useState(false);
   const { user } = useContext(UserContext);
   const movieQuery = useMovie(id);
   const {
@@ -25,24 +24,22 @@ export default function MovieDetails() {
   } = movieQuery;
 
   useEffect(() => {
-    if (movieStatus === 'success') {
+    if (movieStatus === "success") {
+      console.log(movieData.genres);
+      console.log(movieData);
       document.title = `${movieData.title} - Movie Details`;
       return () => {
-        document.title = 'Movie Details';
+        document.title = "Movie Details";
       };
     }
     return undefined;
   }, [movieStatus, movieData]);
 
-  const handleMore = () => {
-    setMore(!more);
-  };
-
-  if (movieStatus === 'loading') {
+  if (movieStatus === "loading") {
     return <p>Loading ...</p>;
   }
 
-  if (movieStatus === 'error') {
+  if (movieStatus === "error") {
     return (
       <p>
         Error:
@@ -71,22 +68,21 @@ export default function MovieDetails() {
               /10
             </p>
           </div>
+          {user !== null ? <WatchlistButton movieData={movieData} /> : null}
         </div>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <div>
             <h2>{movieData.title}</h2>
-            {user !== null ? <WatchlistButton movieData={movieData} /> : null}
           </div>
           <p>
             sorti le&nbsp;
             {new Date(movieData.release_date).toLocaleDateString()}
           </p>
+          <p>Réalisé par {movieData.director}</p>
         </div>
+        {movieData.tagline.length !== 0 && <h4>{movieData.tagline}</h4>}
         <div className="movie_details--overview">
-          <p className={more ? 'open' : 'closed'}>{movieData.overview}</p>
-          <button type="button" onClick={handleMore}>
-            {more ? 'Voir moins' : 'Voir plus'}
-          </button>
+          <p>{movieData.overview}</p>
         </div>
       </div>
     </div>
