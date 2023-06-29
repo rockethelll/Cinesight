@@ -6,14 +6,14 @@ import useSessionCookie from '../../createCookie';
 import { UserContext } from '../../Context/UserContext';
 
 function Login() {
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: { email: '', password: '' } });
-
-  const { setUser } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const createUser = async (userInfos) => {

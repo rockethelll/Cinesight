@@ -65,7 +65,7 @@ export default function Navbar() {
             {user !== null ? (
               <>
                 <Link to="/profil" className="nav-link">
-                  {user.data?.email}
+                  {user.data.username !== null ? user.data.username : user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
