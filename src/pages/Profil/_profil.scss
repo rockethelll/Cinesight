@@ -1,6 +1,15 @@
 @use '../../scss/abstract/variables' as *;
 
-.edit-button {
+.user-edit {
+  h1 {
+    text-align: center;
+    margin: 2rem 0;
+  }
+}
+
+
+.edit-button,
+.delete-account {
   position: relative;
   top: 4rem;
   padding: 0.5rem 1rem;
@@ -17,4 +26,8 @@
     background-color: $light_blue;
     color: $white;
   }
+}
+
+.delete-account {
+  background-color: crimson;
 }

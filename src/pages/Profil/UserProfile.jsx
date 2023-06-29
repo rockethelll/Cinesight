@@ -1,21 +1,21 @@
-import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { UserContext } from '../../Context/UserContext';
 import axiosClient from '../../axiosClient';
 
 export default function UserProfile() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editEmail, setEditEmail] = useState('');
+  const [editUsername, setEditUsername] = useState('');
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { username: user.data.username } });
-
-  const onSubmit = async (data) => {
+  const handleEdit = async () => {
+    const data = {
+      email: editEmail || user.data.email,
+      username: editUsername || user.data.username,
+    };
     const updateUser = async (body) => {
       const options = {
         headers: {
@@ -28,6 +28,9 @@ export default function UserProfile() {
     };
     const userData = JSON.stringify({ user: data });
     updateUser(userData);
+    setEditEmail('');
+    setEditUsername('');
+    setIsEditing(false);
     navigate('/');
   };
 
@@ -52,31 +55,42 @@ export default function UserProfile() {
   };
 
   return (
-    <>
-      <div>UserProfile</div>
-      <p>{user.data?.username}</p>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="username">Pseudo</label>
-        <input
-          id="username"
-          type="username"
-          name="username"
-          {...register('username', {
-            minLength: {
-              value: 3,
-              message: '3 charactères minimum',
-            },
-          })}
-        />
-        {errors.username && (
-          <p style={{ color: '#e74c3c', margin: '-10px ' }}>
-            {errors.username.message}
-          </p>
-        )}
+    <div className="user-edit">
+      <h1>Éditer votre profil</h1>
+      {isEditing ? (
+        <div>
+          <div>
+            <label htmlFor="email">E-mail</label>
+            <input
+              defaultValue={editEmail || user.data.email}
+              id="email"
+              onChange={(e) => setEditEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Pseudo</label>
+            <input
+              defaultValue={editUsername || user.data.username}
+              id="username"
+              onChange={(e) => setEditUsername(e.target.value)}
+            />
+          </div>
+        </div>
+      ) : (
+        <>
+          <p>{user.data?.email}</p>
+          <p>{user.data?.username}</p>
+        </>
+      )}
 
-        <input className="submit" type="submit" value="Modifier" />
-      </form>
+      <div className="btn-container">
+        {isEditing ? (
+          <button type="button" onClick={() => handleEdit()}>Valider</button>
+        ) : (
+          <button type="button" onClick={() => setIsEditing(true)}>Éditer</button>
+        )}
+      </div>
       <input className="delete-account" type="submit" onClick={() => deleteAccount()} value="Supprimer votre compte" />
-    </>
+    </div>
   );
 }

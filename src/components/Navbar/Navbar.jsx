@@ -2,13 +2,14 @@ import {
   useContext, useState, useRef, useEffect,
 } from 'react';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useWindowSize } from '@uidotdev/usehooks';
 import axiosClient from '../../axiosClient';
 import { UserContext } from '../../Context/UserContext';
 import Searchbar from '../Searchbar/Searchbar';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { setUser, user } = useContext(UserContext);
 
   const ref = useRef(null);
@@ -30,6 +31,7 @@ export default function Navbar() {
     });
     Cookies.remove('token');
     setUser(null);
+    navigate('/');
   };
 
   function handleMenu() {
