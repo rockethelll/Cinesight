@@ -12,7 +12,7 @@ function Login() {
     formState: { errors },
   } = useForm({ defaultValues: { email: "", password: "" } });
 
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
