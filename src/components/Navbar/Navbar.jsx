@@ -131,7 +131,7 @@ export default function Navbar() {
                         <div className="user_logo">
                           <div />
                         </div>
-                        <p>Nom_utilisateur_01</p>
+                        <p>{user.data.username || user.data.email}</p>
                       </div>
                       <Link to="/profil">Profil</Link>
                       <button type="button" onClick={disconnect}>
