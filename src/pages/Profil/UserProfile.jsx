@@ -36,7 +36,7 @@ export default function UserProfile() {
 
   const deleteAccount = async () => {
     const deleteUserAccount = async () => {
-    // eslint-disable-next-line no-alert
+      // eslint-disable-next-line no-alert
       if (window.confirm('Voulez-vous vraiment supprimer votre compte?')) {
         const options = {
           headers: {
@@ -55,42 +55,53 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="user-edit">
+    <div className="user-container">
       <h1>Éditer votre profil</h1>
-      {isEditing ? (
-        <div>
-          <div>
+
+      <div className="profile-details">
+        {isEditing ? (
+          <form className="form">
             <label htmlFor="email">E-mail</label>
             <input
               defaultValue={editEmail || user.data.email}
               id="email"
               onChange={(e) => setEditEmail(e.target.value)}
             />
-          </div>
-          <div>
-            <label htmlFor="email">Pseudo</label>
+
+            <label htmlFor="username">Pseudo</label>
             <input
               defaultValue={editUsername || user.data.username}
               id="username"
               onChange={(e) => setEditUsername(e.target.value)}
             />
+          </form>
+        ) : (
+          <div className="non-editing">
+            <p>
+              <strong>Email:</strong>
+              {' '}
+              {user.data?.email}
+            </p>
+            <p>
+              <strong>Pseudo:</strong>
+              {' '}
+              {user.data?.username}
+            </p>
           </div>
-        </div>
-      ) : (
-        <>
-          <p>{user.data?.email}</p>
-          <p>{user.data?.username}</p>
-        </>
-      )}
+        )}
+      </div>
 
       <div className="btn-container">
         {isEditing ? (
-          <button type="button" onClick={() => handleEdit()}>Valider</button>
+          <button className="edit-button" type="button" onClick={handleEdit}>Valider</button>
         ) : (
-          <button type="button" onClick={() => setIsEditing(true)}>Éditer</button>
+          <button className="edit-button" type="button" onClick={() => setIsEditing(true)}>Éditer</button>
         )}
       </div>
-      <input className="delete-account" type="submit" onClick={() => deleteAccount()} value="Supprimer votre compte" />
+
+      <div className="delete-account-container">
+        <button className="delete-account" type="button" onClick={deleteAccount}>Supprimer votre compte</button>
+      </div>
     </div>
   );
 }

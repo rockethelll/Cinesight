@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Watchlist from '../../components/Watchlist/Watchlist';
 
 export default function Profil() {
@@ -8,7 +8,6 @@ export default function Profil() {
       <Link to="/profil/edit" className="edit-button">
         Éditer mon profil
       </Link>
-      <Outlet />
     </div>
   );
 }
