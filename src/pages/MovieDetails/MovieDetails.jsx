@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axiosClient from "../../axiosClient";
@@ -25,8 +25,6 @@ export default function MovieDetails() {
 
   useEffect(() => {
     if (movieStatus === "success") {
-      console.log(movieData.genres);
-      console.log(movieData);
       document.title = `${movieData.title} - Movie Details`;
       return () => {
         document.title = "Movie Details";

@@ -69,7 +69,7 @@ export default function Navbar() {
           <div className="nav-group">
             {user !== null ? (
               <>
-                <button onClick={handleWatchlist}>Watchtlist</button>
+                <button type="button" onClick={handleWatchlist}>Watchtlist</button>
                 {openWatchlist && (
                   <>
                     <span className="background" />
