@@ -27,7 +27,7 @@ export default function SearchByGenre() {
         ) : (
           <>
             <p className="my-1">Aucun genre ne correspond</p>
-            <Link to="/">Retour à l&apos; accueil</Link>
+            <Link to="/">Retour à l&apos;accueil</Link>
           </>
         )}
       </div>
