@@ -11,6 +11,7 @@
     width: 100%;
     background-color: #262936;
   }
+
 }
 
 .nav-sm {
@@ -62,7 +63,7 @@
     justify-content: flex-end;
     font-weight: 500;
     font-size: clamp(.9rem, 2vw, 1rem);
-    max-width: 25%;
+    max-width: 30%;
     width: 100%;
     gap: 1vw;
 
@@ -99,7 +100,7 @@
     z-index: 10;
   }
 
-  .searchbar__wrapper{
+  .searchbar__wrapper {
     z-index: 10;
   }
 
@@ -107,7 +108,8 @@
     z-index: 1000;
     display: flex;
     position: fixed;
-    width: 33%;
+    min-width: 200px;
+    width: fit-content;
     background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
@@ -188,5 +190,12 @@
     to {
       transform: translateY(0);
     }
+  }
+
+}
+
+@media screen and (min-width:1024px) {
+  .searchbar__wrapper {
+    margin-left: 50px;
   }
 }
