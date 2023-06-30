@@ -81,6 +81,7 @@ export default function MovieDetails() {
         <div className="movie_details--director">
           <p>
             Réalisé par
+            {'  '}
             <strong>{movieData.director}</strong>
             .
           </p>
