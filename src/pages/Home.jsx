@@ -89,6 +89,8 @@ function Home() {
             <div style={{ marginBottom: "3vw" }} key={query.title}>
               <h2>{query.title}</h2>
               <Carousel
+                onTouchStartCapture={handleCarouselScroll}
+                onTouchEndCapture={handleCarouselScroll}
                 centerMode
                 centerSlidePercentage={handleCenterSlide}
                 useKeyboardArrows
