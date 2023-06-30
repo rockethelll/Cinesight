@@ -11,7 +11,11 @@ function Signup() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { email: '', username: '', password: '', password_confirmation: ''  } });
+  } = useForm({
+    defaultValues: {
+      email: '', username: '', password: '', password_confirmation: '',
+    },
+  });
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -25,7 +29,6 @@ function Signup() {
     };
 
     const userData = JSON.stringify({ user: data });
-    console.log(userData);
     createUser(userData);
     navigate('/');
   };
@@ -95,11 +98,12 @@ function Signup() {
           type="password"
           {...register('password_confirmation', {
             required: 'Mot de passe obligatoire !',
-            validate: val => {
+            validate: (val) => {
               if (watch('password') !== val) {
-                return "Les mots de passe doivent être identiques"
+                return 'Les mots de passe doivent être identiques';
               }
-            }
+              return null;
+            },
           })}
         />
         {errors.password_confirmation && (
