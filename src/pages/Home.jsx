@@ -78,19 +78,15 @@ function Home() {
   }
 
   return (
-    <>
+    <div
+      onTouchStartCapture={handleCarouselScroll}
+      onTouchEndCapture={handleCarouselScroll}
+    >
       {user === null && <Hero />}
-      <div
-        className="home"
-        onTouchStartCapture={handleCarouselScroll}
-        onTouchEndCapture={handleCarouselScroll}
-      >
+      <div className="home">
         <main>
           {queries.map((query) => (
-            <div
-              style={{ marginBottom: "3vw" }}
-              key={query.title}
-            >
+            <div style={{ marginBottom: "3vw" }} key={query.title}>
               <h2>{query.title}</h2>
               <Carousel
                 centerMode
@@ -112,7 +108,7 @@ function Home() {
           ))}
         </main>
       </div>
-    </>
+    </div>
   );
 }
 
