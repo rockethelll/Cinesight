@@ -34,7 +34,7 @@ function PasswordEdit() {
   };
 
   return (
-    <>
+    <div className="change-pwd-container">
       <h1> Nouveau mot de passe</h1>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="password">Mot de passe</label>
@@ -67,7 +67,7 @@ function PasswordEdit() {
           value="Editer le mot de passe"
         />
       </form>
-    </>
+    </div>
   );
 }
 
