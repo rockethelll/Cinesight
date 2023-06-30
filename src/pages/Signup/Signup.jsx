@@ -34,7 +34,7 @@ function Signup() {
     <main className="form-container">
       <h1>Créer un compte</h1>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor="email">E-mail*</label>
         <input
           id="email"
           type="email"
@@ -70,7 +70,7 @@ function Signup() {
         </p>
         )}
 
-        <label htmlFor="password">Mot de passe</label>
+        <label htmlFor="password">Mot de passe*</label>
         <input
           id="password"
           type="password"
@@ -89,7 +89,7 @@ function Signup() {
           </p>
         )}
 
-        <label htmlFor="password-confirmation">Confirmation</label>
+        <label htmlFor="password-confirmation">Confirmation*</label>
         <input
           id="password-confirmation"
           type="password"
