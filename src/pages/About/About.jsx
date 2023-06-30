@@ -49,13 +49,13 @@ export default function About() {
       <div className="my-5">
         <p>
           <em>
-            N'attendez plus, plongez dans l&lsquo;univers du cinéma avec Cinesight et
+            N&lsquo;attendez plus, plongez dans l&lsquo;univers du cinéma avec Cinesight et
             explorez une multitude de films captivants. Profitez de notre site
             et laissez-vous inspirer pour votre prochaine séance de cinéma !
           </em>
         </p>
       </div>
-      <strong>L'équipe Cinesight</strong>
+      <strong>L&lsquo;équipe Cinesight</strong>
     </main>
   );
 }

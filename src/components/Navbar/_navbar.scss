@@ -108,7 +108,8 @@
     z-index: 1000;
     display: flex;
     position: fixed;
-    min-width: fit-content;
+    min-width: 200px;
+    width: fit-content;
     background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
@@ -194,9 +195,6 @@
 }
 
 @media screen and (min-width:1024px) {
-  nav{
-    
-  }
   .searchbar__wrapper {
     margin-left: 50px;
   }
