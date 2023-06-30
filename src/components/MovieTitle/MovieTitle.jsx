@@ -15,6 +15,8 @@ function MovieTitle({ title, releaseDate, runtime }) {
         |
         {' '}
         {runtime}
+        {' '}
+        mn
       </p>
     </div>
   );

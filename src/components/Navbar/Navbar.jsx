@@ -73,7 +73,9 @@ export default function Navbar() {
           <div className="nav-group">
             {user !== null ? (
               <>
-                <button type="button" onClick={handleWatchlist}>Ma watchlist</button>
+                <button type="button" onClick={handleWatchlist}>
+                  Ma watchlist
+                </button>
                 {openWatchlist && (
                   <>
                     <span className="background" />
@@ -84,17 +86,27 @@ export default function Navbar() {
                     </div>
                   </>
                 )}
+                <Link to="/about" className="nav-link">
+                  À propos
+                </Link>
                 <Link to="/profil" className="nav-link">
-                  {user.data.username !== null ? user.data.username : user.data?.email}
+                  {user.data.username !== null
+                    ? user.data.username
+                    : user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
                 </button>
               </>
             ) : (
-              <Link to="/login" className="nav-link">
-                Connexion
-              </Link>
+              <>
+                <Link to="/about" className="nav-link">
+                  À propos
+                </Link>
+                <Link to="/login" className="nav-link">
+                  Connexion
+                </Link>
+              </>
             )}
           </div>
         </div>
@@ -134,13 +146,21 @@ export default function Navbar() {
                         <p>{user.data.username || user.data.email}</p>
                       </div>
                       <Link to="/profil">Profil</Link>
-                      <Link to="/profil#watchlist">Watchlist</Link>
+                      <Link to="/profil#watchlist">Ma watchlist</Link>
+                      <Link to="/about" className="nav-link">
+                        À propos
+                      </Link>
                       <button type="button" onClick={disconnect}>
                         Déconnexion
                       </button>
                     </>
                   ) : (
-                    <Link to="/login">Connexion</Link>
+                    <>
+                      <Link to="/about" className="nav-link">
+                        À propos
+                      </Link>
+                      <Link to="/login">Connexion</Link>
+                    </>
                   )}
                 </div>
               </div>
