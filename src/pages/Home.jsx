@@ -1,12 +1,13 @@
-import { useQuery } from 'react-query';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { useWindowSize } from '@uidotdev/usehooks';
-import { useContext } from 'react';
-import HomeCard from '../components/Cards/HomeCard/HomeCard';
-import axiosClient from '../axiosClient';
-import { UserContext } from '../Context/UserContext';
-import Hero from '../components/Hero/Hero';
+import { useQuery } from "react-query";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useWindowSize } from "@uidotdev/usehooks";
+import { useContext } from "react";
+import HomeCard from "../components/Cards/HomeCard/HomeCard";
+import axiosClient from "../axiosClient";
+import { UserContext } from "../Context/UserContext";
+import Hero from "../components/Hero/Hero";
+import ScrollHandler from "../components/ScrollHandler/ScrollHandler";
 
 function useMovieQuery(endpoint) {
   return useQuery({
@@ -22,10 +23,10 @@ function Home() {
   const { user } = useContext(UserContext);
 
   const endpoints = [
-    { key: 'now_playing', title: 'Dernières sorties' },
-    { key: 'upcoming', title: 'À venir' },
-    { key: 'top_rated', title: 'Mieux notés' },
-    { key: 'popular', title: 'Populaire' },
+    { key: "now_playing", title: "Dernières sorties" },
+    { key: "upcoming", title: "À venir" },
+    { key: "top_rated", title: "Mieux notés" },
+    { key: "popular", title: "Populaire" },
   ];
 
   const queries = endpoints.map((endpoint) => ({
@@ -47,8 +48,8 @@ function Home() {
     handleArrow = false;
   }
 
-  const isLoading = queries.some((query) => query.query.status === 'loading');
-  const isError = queries.some((query) => query.query.status === 'error');
+  const isLoading = queries.some((query) => query.query.status === "loading");
+  const isError = queries.some((query) => query.query.status === "error");
   const errorMessages = queries.map((query) => query.query.error?.message);
 
   if (isLoading) {
@@ -59,7 +60,7 @@ function Home() {
     return (
       <p>
         Error:
-        {errorMessages.filter((msg) => msg).join(', ')}
+        {errorMessages.filter((msg) => msg).join(", ")}
       </p>
     );
   }
@@ -68,9 +69,10 @@ function Home() {
     <>
       {user === null && <Hero />}
       <div className="home">
+        <ScrollHandler />
         <main>
           {queries.map((query) => (
-            <div style={{ marginBottom: '3vw' }} key={query.title}>
+            <div style={{ marginBottom: "3vw" }} key={query.title}>
               <h2>{query.title}</h2>
               <Carousel
                 className="main-slide"

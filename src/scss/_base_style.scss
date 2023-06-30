@@ -23,6 +23,7 @@ body,
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: $white;
+  touch-action: manipulation;
 
 }
 
@@ -43,11 +44,12 @@ main,
   margin: 0 auto;
   padding-bottom: 3em;
 
+
+
 }
 
 .home {
   padding-top: 2vw;
-
   h2 {
     margin-bottom: 1vw;
     font-size: clamp(25px, 5vw, 35px);
