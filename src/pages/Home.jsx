@@ -38,15 +38,11 @@ function Home() {
   }));
   const isVerticalScroll = useScrollDetection();
 
-  const handleScroll = () => {
-    if (isVerticalScroll) {
-      setSwipeable(false);
-    }
-  };
-
-  const test = () => {
+  const handleCarouselScroll = () => {
     if (!isVerticalScroll) {
       setSwipeable(true);
+    } else {
+      setSwipeable(false);
     }
   };
 
@@ -86,12 +82,17 @@ function Home() {
       {user === null && <Hero />}
       <div
         className="home"
-        onTouchStartCapture={handleScroll}
-        onTouchEndCapture={test}
+        onTouchStartCapture={handleCarouselScroll}
+        onTouchEndCapture={handleCarouselScroll}
       >
         <main>
           {queries.map((query) => (
-            <div style={{ marginBottom: "3vw" }} key={query.title}>
+            <div
+              onTouchStartCapture={handleCarouselScroll}
+              onTouchEndCapture={handleCarouselScroll}
+              style={{ marginBottom: "3vw" }}
+              key={query.title}
+            >
               <h2>{query.title}</h2>
               <Carousel
                 centerMode
