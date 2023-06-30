@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -23,7 +23,11 @@ export default function Footer() {
             - Thomas
           </Link>
           <Link target="_blank" to="https://developer.themoviedb.org/docs">
-            Merci à <strong>TMDB</strong> pour leur API
+            Merci à
+            {' '}
+            <strong>TMDB</strong>
+            {' '}
+            pour leur API
           </Link>
         </div>
         <div>
