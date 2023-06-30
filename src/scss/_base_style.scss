@@ -13,7 +13,8 @@
   font-family: "Outfit";
 }
 
-body, .home {
+body,
+.home {
   background: rgb(0, 0, 0);
   height: 100%;
   background: linear-gradient(315deg, rgba(0, 0, 0, 1) 0%, rgba(42, 45, 58, 1) 50%, rgba(14, 16, 23, 1) 100%);
@@ -31,11 +32,18 @@ main,
   margin: 0 auto;
 }
 
-.home{
+.home {
   padding-top: 2vw;
-  h2{
+
+  h2 {
     margin-bottom: 1vw;
     font-size: clamp(25px, 5vw, 35px);
+  }
+}
+
+@for $i from 1 through 6 {
+  .my-#{$i} {
+    margin: .5em*$i 0 .5em*$i 0;
   }
 }
 

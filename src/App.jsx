@@ -10,6 +10,7 @@ import PasswordEdit from './pages/PasswordEdit/PasswordEdit';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
 import Profil from './pages/Profil/Profil';
 import UserProfile from './pages/Profil/UserProfile';
+import SearchByGenre from './pages/SearchByGenre/SearchByGenre';
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/profil/edit" element={<UserProfile />} />
+        <Route path="/movie_by_genre/:id" element={<SearchByGenre />} />
+
       </Routes>
     </QueryClientProvider>
   );
