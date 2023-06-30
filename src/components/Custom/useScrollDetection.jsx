@@ -12,9 +12,9 @@ const useScrollDetection = () => {
     const touchEnd = event.touches[0].clientX;
     const touchStart = touchStartRef.current;
 
-    if (touchStart - touchEnd > 100) {
+    if (touchStart - touchEnd > 25) {
       setIsVerticalScroll(false); // Scroll horizontal vers la gauche
-    } else if (touchEnd - touchStart > 100) {
+    } else if (touchEnd - touchStart > 25) {
       setIsVerticalScroll(false); // Scroll horizontal vers la droite
     } else {
       setIsVerticalScroll(true); // Scroll vertical
