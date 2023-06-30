@@ -31,7 +31,6 @@
 
 .movie_details__header::before {
   position: absolute;
-  top: 0;
   content: '';
   width: 100%;
   height: 95px;
@@ -101,6 +100,10 @@
 @media screen and (min-width: 1024px) {
   .movie_details__wrapper {
     max-width: 90vw;
+
+    .movie_details__header {
+      top: 0;
+    }
   }
 }
 
@@ -127,6 +130,7 @@
     margin-top: 1em;
 
     .movie_details__header {
+      top: 0;
 
       img {
         border-radius: 15px;
