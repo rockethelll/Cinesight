@@ -1,45 +1,72 @@
-![Notre bannière](https://i.imgur.com/kaWOexo.png)
-<br><br>
+# ![Notre bannière](https://i.imgur.com/kaWOexo.png)
 
+## Frontend
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/rockethelll/Cinesight)
-<br>
 
-Lien vers le site : [Cinesight](https://cinesight.vercel.app/)<br>
-Lien vers le backend : [Cinesight-api](https://cinesight-api-39a0e67bef51.herokuapp.com/)<br><br>
-<br>
+[Visit Cinesight](https://cinesight.vercel.app/)
 
-## <ins>Technologies utilisées</ins>
+---
 
-Backend: Ruby on Rails 7<br>
-HTML, CSS<br>
-Base de données: PostgreSQL<br>
-Frontend: React
-<br><br>
+## Backend
 
-## <ins>Comment l'installer</ins>
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/TGianella/Cinesight-api)
 
-!! Vous devez avoir le backend installé et lancé pour pouvoir utiliser l'application !!
+[Repository and documentaion](https://github.com/TGianella/Cinesight-api)
 
-* Clonez le repo
-* pnpm i ou npm i
-* pnpm run dev ou npm run dev
-<br>
+[Visit Cinesight API](https://cinesight-api-prod-5ce88a18091b.herokuapp.com/)
 
-## <ins>Comment contribuer</ins>
+---
 
-Nous sommes toujours à la recherche de nouvelles fonctionnalités à ajouter à notre application de cours de cuisine partagés. Si vous souhaitez contribuer à notre projet, veuillez ouvrir une nouvelle branche à partir de la branche develop, faites les modifications et soumettez une pull request.
-<br><br>
+## Features
 
-## <ins>Auteurs</ins>
+- Queries movies from [TMDB](https://www.themoviedb.org/) and records them in a local database when users look for them, populating the local database as needed.
+- Users can put movies in and out of their watchlist.
 
-* [@TGianella](https://www.github.com/TGianella)
-* [@1996thomas](https://www.github.com/1996thomas)
-* [@rockethelll](https://www.github.com/rockethelll)
+---
 
-N'hésitez pas à nous contacter si vous avez des questions ou des commentaires sur notre application !
-<br><br>
+## Stack
 
-## <ins>Notre outil pour la gestion du projet</ins>
+- Backend: Rails 7
+- Database: PostgreSQL
+- Frontend: React.js
+- CI/CD : GitHub Actions, Heroku
 
-* [Notion](https://guttural-baboon-df4.notion.site/Cine-Sight-59b7ebc3f04c41db8a5efc3b0b9e3c3c) : gestion du projet
+---
+
+## Installation
+
+- Clone repo
+- `cd cinesight-api`
+- `pnpm install` or `npm install`
+- `pnpm run dev` or `npm run dev`
+- [Open localhost:5173](http://localhost:5173)
+
+---
+
+## How to contribute
+
+We are always on the lookout for new features to add to our watchlist app. If you feel like contributing, please open a new branch and open a pull request when your changes are made.
+
+---
+
+## Authors
+
+- [@TGianella](https://www.github.com/TGianella)
+- [@Steakinzer](https://www.github.com/Steakinzer)
+- [@1996thomas](https://www.github.com/1996thomas)
+- [@rockethelll](https://www.github.com/rockethelll)
+
+Feel free to contact us if you have any question about the app.
+
+---
+
+## Project management
+
+- [Notion](https://guttural-baboon-df4.notion.site/Cine-Sight-59b7ebc3f04c41db8a5efc3b0b9e3c3c)
+
+---
+
+## Credits
+
+All movie data comes from [TMDB](https://www.themoviedb.org/).
