@@ -2,6 +2,15 @@
 @use '../../scss/abstract/mixins' as *;
 
 .movieTitle {
+  margin-bottom: 1rem;
+
+  @media screen and (min-width:480px) and (max-width: 1024px) {
+    margin-bottom: 1.2rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 3rem;
+  }
 
   h2 {
     font-size: clamp(2rem, 2.5vw, 10rem);
@@ -16,3 +25,5 @@
     margin-left: 10px;
   }
 }
+
+

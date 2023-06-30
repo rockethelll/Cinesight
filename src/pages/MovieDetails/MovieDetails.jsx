@@ -72,25 +72,14 @@ export default function MovieDetails() {
         <MovieTitle 
           title={movieData.title}
           release_date={movieData.release_date}
-          director={movieData.director}
+          runtime={movieData.runtime}
         />
-        {/* <div> */}
-        {/*   <div> */}
-        {/*     <h2>{movieData.title}</h2> */}
-        {/*   </div> */}
-        {/*   <p> */}
-        {/*     sorti le&nbsp; */}
-        {/*     {new Date(movieData.release_date).toLocaleDateString()} */}
-        {/*   </p> */}
-        {/*   <p> */}
-        {/*     Réalisé par */}
-        {/*     {' '} */}
-        {/*     {movieData.director} */}
-        {/*   </p> */}
-        {/* </div> */}
-        {movieData.tagline.length !== 0 && <h4>{movieData.tagline}</h4>}
+        {movieData.tagline.length !== 0 && <p className="tagline">{movieData.tagline}</p>}
         <div className="movie_details--overview">
           <p>{movieData.overview}</p>
+        </div>
+        <div className="movie_details--director">
+          <p>Réalisé par <strong>{movieData.director}</strong>.</p>
         </div>
       </div>
     </div>
