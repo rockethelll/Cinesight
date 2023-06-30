@@ -41,11 +41,11 @@
     background-color: transparent;
     border: 0;
     cursor: pointer;
-    max-width: 30px;
+    max-width: 35px;
     width: 100%;
     z-index: 100;
-    bottom: .5vw;
-    right: .5vw;
+    bottom: clamp(.5vw, .8vw, 1.2vw);
+    right: clamp(.5vw, .8vw, 1.2vw);
   }
 }
 

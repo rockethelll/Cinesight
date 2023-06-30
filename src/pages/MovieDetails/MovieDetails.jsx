@@ -51,7 +51,7 @@ export default function MovieDetails() {
     <div className="movie_details__wrapper">
       <div className="movie_details__header">
         <div className="tags_details__wrapper">
-          <Tags tags={movieData.genres} />
+          <Tags movie={movieData} />
         </div>
         <img
           src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movieData.poster_path}`}

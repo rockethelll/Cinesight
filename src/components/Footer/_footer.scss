@@ -1,0 +1,52 @@
+@use '../../scss/abstract/variables' as *;
+
+footer {
+  width: 100%;
+  z-index: 1;
+  padding-top: 1em;
+  background-color: $light-blue;
+  filter: brightness(75%);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
+
+  .footer__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      text-decoration: underline $yellow 2px;
+    }
+
+    >div {
+      display: flex;
+      flex-direction: column;
+      gap: .4em;
+
+      a:hover {
+        text-decoration: underline;
+        text-decoration-color: $yellow;
+      }
+    }
+
+    div:last-of-type {
+      align-items: center;
+      justify-content: center;
+
+    }
+  }
+}
+
+footer:hover {
+  filter: brightness(100%);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
+}
+
+@media screen and (max-width: 800px) {
+  .footer__wrapper {
+    flex-direction: column-reverse;
+    gap: 2em;
+  }
+}

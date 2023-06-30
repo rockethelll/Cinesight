@@ -15,6 +15,8 @@
 
 .nav-sm {
   max-width: 90vw;
+  background-color: transparent;
+  z-index: 1000;
 }
 
 .nav-lg {
@@ -94,6 +96,11 @@
   button {
     border: none;
     background-color: transparent;
+    z-index: 10;
+  }
+
+  .searchbar__wrapper{
+    z-index: 10;
   }
 
   .menu__wrapper {
