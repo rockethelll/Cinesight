@@ -71,7 +71,7 @@ export default function MovieDetails() {
         </div>
         <MovieTitle
           title={movieData.title}
-          release_date={movieData.release_date}
+          releaseDate={movieData.release_date}
           runtime={movieData.runtime}
         />
         {movieData.tagline.length !== 0 && <p className="tagline">{movieData.tagline}</p>}
