@@ -13,7 +13,7 @@ function useMovieByGenre(id) {
 export default function SearchByGenre() {
   const { id } = useParams();
   const searchByGenreQuery = useMovieByGenre(id);
-  const { status, data, error } = searchByGenreQuery;
+  const { data } = searchByGenreQuery;
   return (
     <main>
       <h3 className="my-3" style={{ fontSize: "clamp(20px, 2vw, 3vw)" }}>
