@@ -1,13 +1,11 @@
-import {
-  useContext, useState, useRef, useEffect,
-} from 'react';
-import Cookies from 'js-cookie';
-import { Link, useNavigate } from 'react-router-dom';
-import { useWindowSize } from '@uidotdev/usehooks';
-import axiosClient from '../../axiosClient';
-import { UserContext } from '../../Context/UserContext';
-import Searchbar from '../Searchbar/Searchbar';
-import Watchlist from '../Watchlist/Watchlist';
+import { useContext, useState, useRef, useEffect } from "react";
+import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
+import { useWindowSize } from "@uidotdev/usehooks";
+import axiosClient from "../../axiosClient";
+import { UserContext } from "../../Context/UserContext";
+import Searchbar from "../Searchbar/Searchbar";
+import Watchlist from "../Watchlist/Watchlist";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -19,21 +17,21 @@ export default function Navbar() {
   const screenSize = useWindowSize();
 
   const getAuthToken = () => {
-    const bearer = Cookies.get('token');
+    const bearer = Cookies.get("token");
     return bearer ? `Bearer ${bearer}` : null;
   };
 
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
-    await axiosClient.delete('/logout', {
+    await axiosClient.delete("/logout", {
       headers: {
         Authorization: getAuthToken(),
       },
     });
-    Cookies.remove('token');
+    Cookies.remove("token");
     setUser(null);
-    navigate('/');
+    navigate("/");
   };
 
   function handleMenu() {
@@ -52,9 +50,9 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener("click", handleClickOutside, true);
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside, true);
     };
   }, [click]);
 
@@ -73,7 +71,9 @@ export default function Navbar() {
           <div className="nav-group">
             {user !== null ? (
               <>
-                <button type="button" onClick={handleWatchlist}>Ma watchlist</button>
+                <button type="button" onClick={handleWatchlist}>
+                  Ma watchlist
+                </button>
                 {openWatchlist && (
                   <>
                     <span className="background" />
@@ -84,17 +84,27 @@ export default function Navbar() {
                     </div>
                   </>
                 )}
+                <Link to="/about" className="nav-link">
+                  À propos
+                </Link>
                 <Link to="/profil" className="nav-link">
-                  {user.data.username !== null ? user.data.username : user.data?.email}
+                  {user.data.username !== null
+                    ? user.data.username
+                    : user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
                 </button>
               </>
             ) : (
-              <Link to="/login" className="nav-link">
-                Connexion
-              </Link>
+              <>
+                <Link to="/about" className="nav-link">
+                  À propos
+                </Link>
+                <Link to="/login" className="nav-link">
+                  Connexion
+                </Link>
+              </>
             )}
           </div>
         </div>
@@ -134,13 +144,21 @@ export default function Navbar() {
                         <p>{user.data.username || user.data.email}</p>
                       </div>
                       <Link to="/profil">Profil</Link>
-                      <Link to="/profil#watchlist">Watchlist</Link>
+                      <Link to="/profil#watchlist">Ma watchlist</Link>
+                      <Link to="/about" className="nav-link">
+                        À propos
+                      </Link>
                       <button type="button" onClick={disconnect}>
                         Déconnexion
                       </button>
                     </>
                   ) : (
-                    <Link to="/login">Connexion</Link>
+                    <>
+                      <Link to="/about" className="nav-link">
+                        À propos
+                      </Link>
+                      <Link to="/login">Connexion</Link>
+                    </>
                   )}
                 </div>
               </div>
