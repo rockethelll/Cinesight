@@ -70,7 +70,7 @@ function Home() {
       <div className="home">
         <main>
           {queries.map((query) => (
-            <div style={{ marginBottom: '3vw' }} key={query.title}>
+            <div className='carousel--marge' key={query.title}>
               <h2>{query.title}</h2>
               <Carousel
                 className="main-slide"
