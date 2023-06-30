@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import WatchlistButton from '../../Watchlist/WatchlistButton';
+import { UserContext } from '../../../Context/UserContext';
 
 export default function SearchCard({ data }) {
+  const { user } = useContext(UserContext);
   return (
     <div className="card">
-      <WatchlistButton movieData={data} />
+      {user !== null && <WatchlistButton movieData={data} />}
       <a href={`/movie/${data.id}`} className="card--img">
         <img
           src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}

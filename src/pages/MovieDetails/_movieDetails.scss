@@ -4,16 +4,16 @@
 .movie_details__wrapper {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  z-index: -10;
+  padding-bottom: 3em;
 }
 
 .movie_details__header {
+  position: absolute;
+  top: -70px;
+  z-index: 0;
   position: relative;
   max-width: 480px;
   aspect-ratio: 6/9;
-  height: 100%;
   height: 100%;
 
   h2 {
@@ -31,7 +31,6 @@
 
 .movie_details__header::before {
   position: absolute;
-  top: 0;
   content: '';
   width: 100%;
   height: 95px;
@@ -78,8 +77,12 @@
 
   }
 
-  h4 {
-    font-size: 1.3rem;
+  .movie_details--director {
+    margin-top: 10px;
+  }
+
+  .tagline {
+    font-size: clamp(1rem, 2.5vw, 2rem);
     margin: 1em 0 .5em 0;
   }
 
@@ -97,6 +100,10 @@
 @media screen and (min-width: 1024px) {
   .movie_details__wrapper {
     max-width: 90vw;
+
+    .movie_details__header {
+      top: 0;
+    }
   }
 }
 
@@ -123,6 +130,7 @@
     margin-top: 1em;
 
     .movie_details__header {
+      top: 0;
 
       img {
         border-radius: 15px;

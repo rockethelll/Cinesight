@@ -11,10 +11,13 @@
     width: 100%;
     background-color: #262936;
   }
+
 }
 
 .nav-sm {
   max-width: 90vw;
+  background-color: transparent;
+  z-index: 1000;
 }
 
 .nav-lg {
@@ -60,7 +63,7 @@
     justify-content: flex-end;
     font-weight: 500;
     font-size: clamp(.9rem, 2vw, 1rem);
-    max-width: 25%;
+    max-width: 30%;
     width: 100%;
     gap: 1vw;
 
@@ -94,13 +97,19 @@
   button {
     border: none;
     background-color: transparent;
+    z-index: 10;
+  }
+
+  .searchbar__wrapper {
+    z-index: 10;
   }
 
   .menu__wrapper {
     z-index: 1000;
     display: flex;
     position: fixed;
-    width: 75vw;
+    min-width: 200px;
+    width: fit-content;
     background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
@@ -120,7 +129,11 @@
       button {
         color: $white;
         font-weight: 600;
-        font-size: 32px;
+        font-size: clamp(24px, 4vw, 32px);
+
+        img {
+          width: 100%;
+        }
       }
 
       .user_section {
@@ -177,5 +190,12 @@
     to {
       transform: translateY(0);
     }
+  }
+
+}
+
+@media screen and (min-width:1024px) {
+  .searchbar__wrapper {
+    margin-left: 50px;
   }
 }
