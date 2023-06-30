@@ -2,14 +2,18 @@ import {
   useContext, useState, useRef, useEffect,
 } from 'react';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useWindowSize } from '@uidotdev/usehooks';
 import axiosClient from '../../axiosClient';
 import { UserContext } from '../../Context/UserContext';
 import Searchbar from '../Searchbar/Searchbar';
+import Watchlist from '../Watchlist/Watchlist';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { setUser, user } = useContext(UserContext);
+  const [openWatchlist, setOpenWatchlist] = useState(false);
+
   const ref = useRef(null);
   const [click, setClick] = useState(false);
   const screenSize = useWindowSize();
@@ -29,23 +33,31 @@ export default function Navbar() {
     });
     Cookies.remove('token');
     setUser(null);
+    navigate('/');
   };
 
   function handleMenu() {
     setClick(!click);
   }
 
+  function handleWatchlist() {
+    setOpenWatchlist(!openWatchlist);
+  }
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setClick(false);
+        setOpenWatchlist(false);
       }
     };
+
     document.addEventListener('click', handleClickOutside, true);
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, [click]);
+
   return (
     <nav>
       {screenSize.width > 1024 ? (
@@ -59,10 +71,21 @@ export default function Navbar() {
           </Link>
           <Searchbar />
           <div className="nav-group">
-            {user ? (
+            {user !== null ? (
               <>
-                <Link to="/" className="nav-link">
-                  {user.email}
+                <button type="button" onClick={handleWatchlist}>Watchtlist</button>
+                {openWatchlist && (
+                  <>
+                    <span className="background" />
+                    <div className="watchlist--modal">
+                      <div ref={ref}>
+                        <Watchlist />
+                      </div>
+                    </div>
+                  </>
+                )}
+                <Link to="/profil" className="nav-link">
+                  {user.data.username !== null ? user.data.username : user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
@@ -108,10 +131,9 @@ export default function Navbar() {
                         <div className="user_logo">
                           <div />
                         </div>
-                        <p>Nom_utilisateur_01</p>
+                        <p>{user.data.username || user.data.email}</p>
                       </div>
-                      <Link to="/">Profil</Link>
-                      <Link to="/">Watchlist</Link>
+                      <Link to="/profil">Profil</Link>
                       <button type="button" onClick={disconnect}>
                         Déconnexion
                       </button>

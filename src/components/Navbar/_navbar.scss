@@ -9,9 +9,9 @@
     width: 100%;
     margin: 0 auto;
     width: 100%;
+    background-color: #262936;
   }
 }
-
 
 .nav-sm {
   max-width: 90vw;
@@ -19,6 +19,10 @@
 
 .nav-lg {
   max-width: 80vw;
+
+  .background {
+    top: 70px;
+  }
 }
 
 .nav-lg,
@@ -29,6 +33,15 @@
   width: 100%;
   margin: 0 auto;
   height: 70px;
+
+  .background {
+    z-index: 99;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.521);
+  }
 
   .logo__wrapper {
     display: flex;
@@ -49,11 +62,7 @@
     font-size: clamp(.9rem, 2vw, 1rem);
     max-width: 25%;
     width: 100%;
-    gap: 1em;
-
-    :first-child {
-      margin-right: 1em;
-    }
+    gap: 1vw;
 
     :last-child {
       color: $yellow;
@@ -64,9 +73,11 @@
     }
 
     button {
+      color: $white;
       border: none;
       background-color: transparent;
       font-size: clamp(.9rem, 2vw, 1rem);
+      cursor: pointer;
     }
   }
 
@@ -76,13 +87,17 @@
   display: flex;
   justify-content: space-between;
 
+  .background {
+    top: 0;
+  }
+
   button {
     border: none;
     background-color: transparent;
   }
 
   .menu__wrapper {
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     position: fixed;
     width: 75vw;
@@ -133,16 +148,6 @@
     }
   }
 
-  .background {
-    z-index: 99;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.521);
-  }
-
   @keyframes slidein {
     from {
       transform: translateX(300px);
@@ -153,4 +158,24 @@
     }
   }
 
+}
+
+.watchlist--modal {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  top: 70px;
+  background-color: #262936;
+  animation: slidefromTop .2s;
+  z-index: 10001;
+
+  @keyframes slidefromTop {
+    from {
+      transform: translateY(-70px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
 }

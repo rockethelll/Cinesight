@@ -1,6 +1,7 @@
 @use '../scss/abstract/variables' as *;
 
 @font-face {
+  font-display: swap;
   font-family: 'Outfit';
   src: url('../fonts/Outfit-VariableFont_wght.ttf');
 }
@@ -12,7 +13,7 @@
   font-family: "Outfit";
 }
 
-body {
+body, .home {
   background: rgb(0, 0, 0);
   height: 100%;
   background: linear-gradient(315deg, rgba(0, 0, 0, 1) 0%, rgba(42, 45, 58, 1) 50%, rgba(14, 16, 23, 1) 100%);
@@ -23,10 +24,19 @@ body {
   color: $white;
 }
 
-main {
+main,
+.container {
   max-width: 90vw;
   width: 100%;
   margin: 0 auto;
+}
+
+.home{
+  padding-top: 2vw;
+  h2{
+    margin-bottom: 1vw;
+    font-size: clamp(25px, 5vw, 35px);
+  }
 }
 
 a {
@@ -35,16 +45,72 @@ a {
 }
 
 .auto-grid {
-  --min-column-size: 10rem;
+  --min-column-size: 250px;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit,
       minmax(min(var(--min-column-size), 100%), 1fr));
 }
 
+.home__wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.reel {
+  --gap: 2rem;
+  display: grid;
+  gap: var(--gap);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(60% - (var(--gap) / 2));
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -ms-scroll-snap-type: x;
+  scroll-padding: var(--gap);
+  padding: 10px;
+
+}
+
+.reel::-webkit-scrollbar {
+  width: 10px
+}
+
+.reel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.reel::-webkit-scrollbar-thumb {
+  background-color: $light_blue;
+  border-radius: 100px;
+  border: 10px solid transparent;
+}
+
+
+.reel>* {
+  scroll-snap-align: start;
+
+}
+
+@media screen and (min-width:540px) {
+  .reel {
+    grid-auto-columns: calc(40% - (var(--gap) / 2));
+  }
+}
+
 @media screen and (min-width: 800px) {
 
   main {
     max-width: 80vw;
+  }
+
+  .reel {
+    grid-auto-columns: calc(30% - (var(--gap) / 2));
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .reel {
+    grid-auto-columns: calc(20% - (var(--gap) / 2));
+
   }
 }

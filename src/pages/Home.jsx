@@ -1,25 +1,37 @@
-import { useQuery, useQueryClient } from "react-query";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useWindowSize } from "@uidotdev/usehooks";
-import HomeCard from "../components/Cards/HomeCard/HomeCard";
-import axiosClient from "../axiosClient";
-import SearchCard from "../components/Cards/SearchCard/SearchCard";
+import { useQuery } from 'react-query';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useWindowSize } from '@uidotdev/usehooks';
+import { useContext } from 'react';
+import HomeCard from '../components/Cards/HomeCard/HomeCard';
+import axiosClient from '../axiosClient';
+import { UserContext } from '../Context/UserContext';
+import Hero from '../components/Hero/Hero';
 
-function useMovies() {
+function useMovieQuery(endpoint) {
   return useQuery({
-    queryKey: ["movies"],
+    queryKey: [endpoint],
     queryFn: async () => {
-      const { data } = await axiosClient.get("/");
+      const { data } = await axiosClient.get(`/movies/${endpoint}`);
       return data;
     },
   });
 }
 
 function Home() {
-  // eslint-disable-next-line no-unused-vars
-  const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useMovies();
+  const { user } = useContext(UserContext);
+
+  const endpoints = [
+    { key: 'now_playing', title: 'Dernières sorties' },
+    { key: 'upcoming', title: 'À venir' },
+    { key: 'top_rated', title: 'Mieux notés' },
+    { key: 'popular', title: 'Populaire' },
+  ];
+
+  const queries = endpoints.map((endpoint) => ({
+    query: useMovieQuery(endpoint.key),
+    title: endpoint.title,
+  }));
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -34,46 +46,54 @@ function Home() {
     handleCenterSlide = 65;
     handleArrow = false;
   }
-  if (status === "loading") {
+
+  const isLoading = queries.some((query) => query.query.status === 'loading');
+  const isError = queries.some((query) => query.query.status === 'error');
+  const errorMessages = queries.map((query) => query.query.error?.message);
+
+  if (isLoading) {
     return <p>Loading ...</p>;
   }
 
-  if (status === "error") {
+  if (isError) {
     return (
       <p>
         Error:
-        {error.message}
+        {errorMessages.filter((msg) => msg).join(', ')}
       </p>
     );
   }
 
   return (
-    <main>
-      <h2>Dernières sorties</h2>
-      <Carousel
-        className="main-slide"
-        centerMode
-        centerSlidePercentage={handleCenterSlide}
-        useKeyboardArrows
-        showStatus={false}
-        showIndicators={false}
-        showArrows={handleArrow}
-        swipeScrollTolerance={5}
-        swipeable
-        showThumbs={false}
-        width="100%"
-      >
-        {data?.results.map((movie) => (
-          <HomeCard key={movie.id} data={movie} />
-        ))}
-      </Carousel>
-      <div>{isFetching ? "Background Updating..." : " "}</div>
-      <div className="auto-grid">
-        {data?.results.map((movie) => (
-          <SearchCard key={movie.id} data={movie} />
-        ))}
+    <>
+      {user === null && <Hero />}
+      <div className="home">
+        <main>
+          {queries.map((query) => (
+            <div style={{ marginBottom: '3vw' }} key={query.title}>
+              <h2>{query.title}</h2>
+              <Carousel
+                className="main-slide"
+                centerMode
+                centerSlidePercentage={handleCenterSlide}
+                useKeyboardArrows
+                showStatus={false}
+                showIndicators={false}
+                showArrows={handleArrow}
+                swipeScrollTolerance={5}
+                swipeable
+                showThumbs={false}
+                width="100%"
+              >
+                {query.query.data?.results.map((movie) => (
+                  <HomeCard key={movie.id} movie={movie} />
+                ))}
+              </Carousel>
+            </div>
+          ))}
+        </main>
       </div>
-    </main>
+    </>
   );
 }
 

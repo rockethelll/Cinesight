@@ -4,7 +4,7 @@
   width: fit-content;
   height: inherit;
   border-radius: 10px;
-  box-shadow: $shadow;
+
   position: relative;
 
   a {
@@ -15,23 +15,44 @@
     scale: .9;
     border-radius: inherit;
     max-width: 300px;
+
     filter: blur(2px) brightness(50%);
-    transition: .3s ease-in-out;
+
+  }
+
+  button {
+    visibility: hidden;
+    width: 50px;
+    background: transparent;
+    border: 0;
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    z-index: 100;
+    cursor: pointer;
+
   }
 }
 
-.selected img {
+.selected img,
+.selected button {
   padding: 0;
   scale: 1;
   filter: none;
   transition: .2s ease-in-out;
-
 }
 
 .selected a {
   position: absolute;
+  font-size: 0;
   display: block;
   height: 100%;
   width: 100%;
   color: $dark_blue;
+  border-radius: 10px 10px 0 0;
+  box-shadow: $shadow;
+}
+
+.selected button {
+  visibility: visible;
 }

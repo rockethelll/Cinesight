@@ -1,0 +1,43 @@
+import {
+  it, describe, expect, beforeEach, afterEach,
+} from 'vitest';
+import { render, cleanup, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Home from '../pages/Home';
+
+// eslint-disable-next-line no-unused-vars
+const setup = (jsx, options) => {
+  const user = userEvent.setup();
+  return {
+    user,
+    ...render(jsx, options),
+  };
+};
+
+describe(' test <Home />', () => {
+  let user;
+  let queryClient;
+
+  beforeEach(() => {
+    user = userEvent.setup();
+    queryClient = new QueryClient();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Home />
+      </QueryClientProvider>,
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+    queryClient.clear();
+  });
+
+  // it('Home should mount properly', async () => {
+  //   const title = screen.getByRole('heading', {
+  //     name: /dernières sorties/i,
+  //   });
+  //   expect(title).toBeDefined();
+  // });
+});
