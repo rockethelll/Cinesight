@@ -20,7 +20,7 @@ function Recover() {
   };
 
   return (
-    <>
+    <div className="change-pwd-container">
       <h1> Mot de passe oublié</h1>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">E-mail</label>
@@ -41,7 +41,7 @@ function Recover() {
           value="Envoyer la demande de réinitialisation"
         />
       </form>
-    </>
+    </div>
   );
 }
 
