@@ -1,0 +1,87 @@
+@use '../../scss/abstract/variables' as *;
+@use '../../scss/abstract/mixins' as *;
+
+.user-container {
+  h1 {
+    font-size: clamp(1.7rem, 6vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    color: $yellow;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .profile-details {
+    @include flexCenter;
+    flex-direction: column;
+
+    .form,
+    .non-editing {
+      width: 80%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+
+      label {
+        display: block;
+        color: $white;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  p {
+    font-size: clamp(1rem, 2vw, 2rem);
+    font-weight: 400;
+    color: $white;
+    text-align: center;
+    margin: 2rem 0;
+
+    strong {
+      color: $yellow;
+      padding-right: 0.5rem;
+    }
+  }
+
+  .btn-container,
+  .delete-account-container {
+    @include flexCenter;
+    margin: 2rem 0;
+  }
+
+
+
+  .delete-account {
+    margin-top: 2rem;
+    background-color: crimson;
+
+    &:hover {
+      background-color: darken(crimson, 10%);
+    }
+  }
+
+}
+
+.edit-button,
+.delete-account {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: $yellow;
+  color: $dark_blue;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $light_blue;
+    color: $white;
+  }
+}

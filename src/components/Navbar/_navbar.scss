@@ -14,7 +14,6 @@
 }
 
 .nav-sm {
-
   max-width: 90vw;
 }
 
@@ -64,7 +63,6 @@
     max-width: 25%;
     width: 100%;
     gap: 1vw;
-
 
     :last-child {
       color: $yellow;
@@ -149,7 +147,6 @@
       }
     }
   }
-
 
   @keyframes slidein {
     from {

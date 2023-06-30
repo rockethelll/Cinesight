@@ -1,13 +1,16 @@
-import { useContext, useState, useRef, useEffect } from "react";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
-import { useWindowSize } from "@uidotdev/usehooks";
-import axiosClient from "../../axiosClient";
-import { UserContext } from "../../Context/UserContext";
-import Searchbar from "../Searchbar/Searchbar";
-import Watchlist from "../Watchlist/Watchlist";
+import {
+  useContext, useState, useRef, useEffect,
+} from 'react';
+import Cookies from 'js-cookie';
+import { Link, useNavigate } from 'react-router-dom';
+import { useWindowSize } from '@uidotdev/usehooks';
+import axiosClient from '../../axiosClient';
+import { UserContext } from '../../Context/UserContext';
+import Searchbar from '../Searchbar/Searchbar';
+import Watchlist from '../Watchlist/Watchlist';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { setUser, user } = useContext(UserContext);
   const [openWatchlist, setOpenWatchlist] = useState(false);
 
@@ -16,20 +19,21 @@ export default function Navbar() {
   const screenSize = useWindowSize();
 
   const getAuthToken = () => {
-    const bearer = Cookies.get("token");
+    const bearer = Cookies.get('token');
     return bearer ? `Bearer ${bearer}` : null;
   };
 
   const disconnect = async () => {
     if (!getAuthToken()) return;
 
-    await axiosClient.delete("/logout", {
+    await axiosClient.delete('/logout', {
       headers: {
         Authorization: getAuthToken(),
       },
     });
-    Cookies.remove("token");
+    Cookies.remove('token');
     setUser(null);
+    navigate('/');
   };
 
   function handleMenu() {
@@ -44,13 +48,13 @@ export default function Navbar() {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         setClick(false);
-        setOpenWatchlist(false)
+        setOpenWatchlist(false);
       }
     };
 
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true);
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside, true);
     };
   }, [click]);
 
@@ -81,7 +85,7 @@ export default function Navbar() {
                   </>
                 )}
                 <Link to="/profil" className="nav-link">
-                  {user.data?.email}
+                  {user.data.username !== null ? user.data.username : user.data?.email}
                 </Link>
                 <button type="button" onClick={disconnect}>
                   Déconnexion
@@ -127,7 +131,7 @@ export default function Navbar() {
                         <div className="user_logo">
                           <div />
                         </div>
-                        <p>Nom_utilisateur_01</p>
+                        <p>{user.data.username || user.data.email}</p>
                       </div>
                       <Link to="/profil">Profil</Link>
                       <button type="button" onClick={disconnect}>

@@ -1,13 +1,13 @@
-import { useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import axiosClient from "../../axiosClient";
-import WatchlistButton from "../../components/Watchlist/WatchlistButton";
-import Tags from "../../components/Tags/Tags";
-import { UserContext } from "../../Context/UserContext";
+import { useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import axiosClient from '../../axiosClient';
+import WatchlistButton from '../../components/Watchlist/WatchlistButton';
+import Tags from '../../components/Tags/Tags';
+import { UserContext } from '../../Context/UserContext';
 
 function useMovie(id) {
-  return useQuery(["movie", id], async () => {
+  return useQuery(['movie', id], async () => {
     const { data } = await axiosClient.get(`/movie/${id}`);
     return data;
   });
@@ -24,20 +24,20 @@ export default function MovieDetails() {
   } = movieQuery;
 
   useEffect(() => {
-    if (movieStatus === "success") {
+    if (movieStatus === 'success') {
       document.title = `${movieData.title} - Movie Details`;
       return () => {
-        document.title = "Movie Details";
+        document.title = 'Movie Details';
       };
     }
     return undefined;
   }, [movieStatus, movieData]);
 
-  if (movieStatus === "loading") {
+  if (movieStatus === 'loading') {
     return <p>Loading ...</p>;
   }
 
-  if (movieStatus === "error") {
+  if (movieStatus === 'error') {
     return (
       <p>
         Error:
@@ -76,7 +76,11 @@ export default function MovieDetails() {
             sorti le&nbsp;
             {new Date(movieData.release_date).toLocaleDateString()}
           </p>
-          <p>Réalisé par {movieData.director}</p>
+          <p>
+            Réalisé par
+            {' '}
+            {movieData.director}
+          </p>
         </div>
         {movieData.tagline.length !== 0 && <h4>{movieData.tagline}</h4>}
         <div className="movie_details--overview">
