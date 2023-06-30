@@ -88,8 +88,6 @@ function Home() {
         <main>
           {queries.map((query) => (
             <div
-              onTouchStartCapture={handleCarouselScroll}
-              onTouchEndCapture={handleCarouselScroll}
               style={{ marginBottom: "3vw" }}
               key={query.title}
             >
