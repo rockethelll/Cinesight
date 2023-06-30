@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import WatchlistButton from "../../Watchlist/WatchlistButton";
-import { UserContext } from "../../../Context/UserContext";
+import { useContext } from 'react';
+import WatchlistButton from '../../Watchlist/WatchlistButton';
+import { UserContext } from '../../../Context/UserContext';
 
 export default function SearchCard({ data }) {
   const { user } = useContext(UserContext);
