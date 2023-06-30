@@ -43,7 +43,7 @@ function Home() {
       setSwipeable(false);
       setTimeout(() => {
         setSwipeable(true);
-      }, 500);
+      }, 100);
     } else {
       setSwipeable(true);
     }
