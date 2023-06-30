@@ -23,7 +23,7 @@ function useMovieQuery(endpoint) {
 function Home() {
   useScrollDetection();
   const { user } = useContext(UserContext);
-  const [swipeable, setSwipeable] = useState("actived");
+  const [swipeable, setSwipeable] = useState(true);
 
   const endpoints = [
     { key: "now_playing", title: "Dernières sorties" },
@@ -40,14 +40,12 @@ function Home() {
 
   const handleScroll = () => {
     if (isVerticalScroll) {
-      console.log(isVerticalScroll);
-      setSwipeable("desactived");
+      setSwipeable(false);
     } else {
-      setTimeout(() => {
-        setSwipeable("actived");
-      }, 500);
+      setSwipeable(true);
     }
   };
+  console.log(isVerticalScroll);
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -83,17 +81,16 @@ function Home() {
   return (
     <>
       {user === null && <Hero />}
-      <div className="home" onTouchMove={handleScroll}>
+      <div className="home" onTouchMoveCapture={handleScroll}>
         <main>
           {queries.map((query) => (
             <div
               style={{ marginBottom: "3vw" }}
               key={query.title}
-              onTouchMove={handleScroll}
+              onTouchMoveCapture={handleScroll}
             >
               <h2>{query.title}</h2>
               <Carousel
-                className={swipeable}
                 centerMode
                 centerSlidePercentage={handleCenterSlide}
                 useKeyboardArrows
@@ -101,7 +98,7 @@ function Home() {
                 showIndicators={false}
                 showArrows={handleArrow}
                 swipeScrollTolerance={100}
-                swipeable
+                swipeable={swipeable}
                 showThumbs={false}
                 width="100%"
               >
