@@ -41,12 +41,18 @@ function Home() {
   const handleScroll = () => {
     if (isVerticalScroll) {
       setSwipeable(false);
+      setTimeout(() => {
+        setSwipeable(true);
+      }, 100);
     }
   };
 
   const test = () => {
     if (!isVerticalScroll) {
       setSwipeable(true);
+      setTimeout(() => {
+        setSwipeable(false);
+      }, 100);
     }
   };
 
@@ -84,8 +90,12 @@ function Home() {
   return (
     <>
       {user === null && <Hero />}
-      <div className="home" onTouchStartCapture={handleScroll} onTouchEndCapture={test}>
-        <main >
+      <div
+        className="home"
+        onTouchStartCapture={handleScroll}
+        onTouchEndCapture={test}
+      >
+        <main>
           {queries.map((query) => (
             <div style={{ marginBottom: "3vw" }} key={query.title}>
               <h2>{query.title}</h2>
