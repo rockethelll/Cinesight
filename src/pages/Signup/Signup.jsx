@@ -10,7 +10,7 @@ function Signup() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { email: '', password: '' } });
+  } = useForm({ defaultValues: { email: '', password: '', username: '' } });
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -63,6 +63,28 @@ function Signup() {
           <p style={{ color: '#e74c3c', margin: '-10px ' }}>
             {errors.password.message}
           </p>
+        )}
+
+        <label htmlFor="username">Pseudo</label>
+        <input
+          id="username"
+          type="username"
+          name="username"
+          {...register('username', {
+            minLength: {
+              value: 3,
+              message: '3 caractères minimum',
+            },
+            maxLength: {
+              value: 20,
+              message: '20 caractères maximum',
+            },
+          })}
+        />
+        {errors.username && (
+        <p style={{ color: '#e74c3c', margin: '-10px ' }}>
+          {errors.username.message}
+        </p>
         )}
 
         <input className="submit" type="submit" value="Se connecter" />
