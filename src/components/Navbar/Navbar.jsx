@@ -73,7 +73,7 @@ export default function Navbar() {
           <div className="nav-group">
             {user !== null ? (
               <>
-                <button type="button" onClick={handleWatchlist}>Watchtlist</button>
+                <button type="button" onClick={handleWatchlist}>Ma watchlist</button>
                 {openWatchlist && (
                   <>
                     <span className="background" />
@@ -134,6 +134,7 @@ export default function Navbar() {
                         <p>{user.data.username || user.data.email}</p>
                       </div>
                       <Link to="/profil">Profil</Link>
+                      <Link to="/profil#watchlist">Watchlist</Link>
                       <button type="button" onClick={disconnect}>
                         Déconnexion
                       </button>

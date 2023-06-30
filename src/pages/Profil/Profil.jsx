@@ -4,7 +4,10 @@ import Watchlist from '../../components/Watchlist/Watchlist';
 export default function Profil() {
   return (
     <div className="container">
-      <Watchlist />
+      <div id="watchlist">
+        <h3>Ma watchlist</h3>
+        <Watchlist />
+      </div>
       <Link to="/profil/edit" className="edit-button">
         Éditer mon profil
       </Link>
