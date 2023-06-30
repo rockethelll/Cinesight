@@ -41,8 +41,10 @@ function Home() {
   const handleScroll = () => {
     if (isVerticalScroll) {
       setSwipeable(false);
+      setSwipeable(true);
     } else {
       setSwipeable(true);
+      setSwipeable(false);
     }
   };
   console.log(isVerticalScroll);
