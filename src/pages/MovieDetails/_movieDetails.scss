@@ -4,12 +4,13 @@
 .movie_details__wrapper {
   display: flex;
   flex-direction: column;
+  padding-bottom: 3em;
 }
 
 .movie_details__header {
   position: absolute;
   top: -70px;
-  z-index: -10;
+  z-index: 0;
   position: relative;
   max-width: 480px;
   aspect-ratio: 6/9;
