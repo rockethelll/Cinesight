@@ -1,0 +1,18 @@
+@use '../../scss/abstract/variables' as *;
+@use '../../scss/abstract/mixins' as *;
+
+.movieTitle {
+
+  h2 {
+    font-size: clamp(2rem, 2.5vw, 10rem);
+    display: inline-block;
+  }
+
+  .release-year {
+    font-size: clamp(2rem, 2.5vw, 10rem);
+    font-weight: lighter;
+    color: $grey;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}

@@ -100,7 +100,7 @@
     z-index: 1000;
     display: flex;
     position: fixed;
-    width: 75vw;
+    width: 33%;
     background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
@@ -120,7 +120,11 @@
       button {
         color: $white;
         font-weight: 600;
-        font-size: 32px;
+        font-size: clamp(24px, 4vw, 32px);
+
+        img {
+          width: 100%;
+        }
       }
 
       .user_section {
