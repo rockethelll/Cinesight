@@ -1,15 +1,23 @@
-
-function MovieTitle({ title, release_date, runtime }) {
-
+function MovieTitle({ title, releaseDate, runtime }) {
   return (
     <div className="movieTitle">
       <span>
         <h2>{title}</h2>
-        <p className="release-year">({new Date(release_date).getFullYear()})</p>
+        <p className="release-year">
+          (
+          {new Date(releaseDate).getFullYear()}
+          )
+        </p>
       </span>
-      <p>{new Date(release_date).toLocaleDateString()} | {runtime}</p>
+      <p>
+        {new Date(releaseDate).toLocaleDateString()}
+        {' '}
+        |
+        {' '}
+        {runtime}
+      </p>
     </div>
-  )
+  );
 }
 
 export default MovieTitle;

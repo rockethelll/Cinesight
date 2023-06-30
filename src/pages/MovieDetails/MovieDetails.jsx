@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import axiosClient from '../../axiosClient';
 import WatchlistButton from '../../components/Watchlist/WatchlistButton';
 import Tags from '../../components/Tags/Tags';
-import MovieTitle from '../../components/MovieTitle/MovieTitle'
+import MovieTitle from '../../components/MovieTitle/MovieTitle';
 import { UserContext } from '../../Context/UserContext';
 
 function useMovie(id) {
@@ -69,7 +69,7 @@ export default function MovieDetails() {
           </div>
           {user !== null ? <WatchlistButton movieData={movieData} /> : null}
         </div>
-        <MovieTitle 
+        <MovieTitle
           title={movieData.title}
           release_date={movieData.release_date}
           runtime={movieData.runtime}
@@ -79,7 +79,11 @@ export default function MovieDetails() {
           <p>{movieData.overview}</p>
         </div>
         <div className="movie_details--director">
-          <p>Réalisé par <strong>{movieData.director}</strong>.</p>
+          <p>
+            Réalisé par
+            <strong>{movieData.director}</strong>
+            .
+          </p>
         </div>
       </div>
     </div>

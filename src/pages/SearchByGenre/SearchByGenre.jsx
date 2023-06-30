@@ -1,11 +1,10 @@
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import axiosClient from "../../axiosClient";
-import SearchCard from "../../components/Cards/SearchCard/SearchCard";
-import { Link } from "react-router-dom";
+import { useQuery } from 'react-query';
+import { useParams, Link } from 'react-router-dom';
+import axiosClient from '../../axiosClient';
+import SearchCard from '../../components/Cards/SearchCard/SearchCard';
 
 function useMovieByGenre(id) {
-  return useQuery(["movie_by_genre", id], async () => {
+  return useQuery(['movie_by_genre', id], async () => {
     const { data } = await axiosClient.get(`/movies/discover?genre_id=${id}`);
     return data;
   });
@@ -16,7 +15,7 @@ export default function SearchByGenre() {
   const { data } = searchByGenreQuery;
   return (
     <main>
-      <h3 className="my-3" style={{ fontSize: "clamp(20px, 2vw, 3vw)" }}>
+      <h3 className="my-3" style={{ fontSize: 'clamp(20px, 2vw, 3vw)' }}>
         Résultat de la recherche :
       </h3>
       <div className="auto-grid">
