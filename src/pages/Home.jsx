@@ -44,7 +44,6 @@ function Home() {
       setSwipeable(true);
     } else {
       setSwipeable(true);
-      setSwipeable(false);
     }
   };
   console.log(isVerticalScroll);
