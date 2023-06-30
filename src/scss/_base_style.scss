@@ -26,19 +26,22 @@ body,
 
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
-#root{
+
+#root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
 }
+
 main,
 .container {
-  max-width: 90vw;
+  max-width: 85vw;
   width: 100%;
   margin: 0 auto;
   padding-bottom: 3em;
@@ -47,10 +50,18 @@ main,
 
 .home {
   padding-top: 2vw;
+  padding-top: 2rem;
 
   h2 {
     margin-bottom: 1vw;
     font-size: clamp(25px, 5vw, 35px);
+  }
+}
+
+@media screen and (max-width:1024px) {
+
+  .carousel--marge {
+    margin-bottom: 4rem;
   }
 }
 
