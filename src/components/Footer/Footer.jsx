@@ -9,7 +9,7 @@ export default function Footer() {
           <Link to="/">Accueil</Link>
           <Link to="/login">Connexion</Link>
           <Link to="/signup">Inscription</Link>
-          <Link to="/signup">Comment ça marche ?</Link>
+          <Link to="/about">Comment ça marche ?</Link>
         </div>
         <div>
           <p>À propos de nous</p>
