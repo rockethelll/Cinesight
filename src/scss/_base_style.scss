@@ -27,29 +27,37 @@ body,
 
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
-#root{
+
+#root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
 }
+
 main,
 .container {
   max-width: 90vw;
   width: 100%;
   margin: 0 auto;
   padding-bottom: 3em;
+}
 
-
-
+.desactived{
+  pointer-events: none;
+}
+.actived{
+  pointer-events:all;
 }
 
 .home {
   padding-top: 2vw;
+
   h2 {
     margin-bottom: 1vw;
     font-size: clamp(25px, 5vw, 35px);

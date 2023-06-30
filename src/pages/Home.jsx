@@ -7,7 +7,8 @@ import HomeCard from "../components/Cards/HomeCard/HomeCard";
 import axiosClient from "../axiosClient";
 import { UserContext } from "../Context/UserContext";
 import Hero from "../components/Hero/Hero";
-import ScrollHandler from "../components/ScrollHandler/ScrollHandler";
+import useScrollDetection from "../components/Custom/useScrollDetection";
+import { useState } from "react";
 
 function useMovieQuery(endpoint) {
   return useQuery({
@@ -20,7 +21,9 @@ function useMovieQuery(endpoint) {
 }
 
 function Home() {
+  useScrollDetection();
   const { user } = useContext(UserContext);
+  const [swipeable, setSwipeable] = useState("actived");
 
   const endpoints = [
     { key: "now_playing", title: "Dernières sorties" },
@@ -33,6 +36,18 @@ function Home() {
     query: useMovieQuery(endpoint.key),
     title: endpoint.title,
   }));
+  const isVerticalScroll = useScrollDetection();
+
+  const handleScroll = () => {
+    if (isVerticalScroll) {
+      console.log(isVerticalScroll);
+      setSwipeable("desactived");
+    } else {
+      setTimeout(() => {
+        setSwipeable("actived");
+      }, 500);
+    }
+  };
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -68,21 +83,24 @@ function Home() {
   return (
     <>
       {user === null && <Hero />}
-      <div className="home">
-        <ScrollHandler />
+      <div className="home" onTouchMove={handleScroll}>
         <main>
           {queries.map((query) => (
-            <div style={{ marginBottom: "3vw" }} key={query.title}>
+            <div
+              style={{ marginBottom: "3vw" }}
+              key={query.title}
+              onTouchMove={handleScroll}
+            >
               <h2>{query.title}</h2>
               <Carousel
-                className="main-slide"
+                className={swipeable}
                 centerMode
                 centerSlidePercentage={handleCenterSlide}
                 useKeyboardArrows
                 showStatus={false}
                 showIndicators={false}
                 showArrows={handleArrow}
-                swipeScrollTolerance={5}
+                swipeScrollTolerance={100}
                 swipeable
                 showThumbs={false}
                 width="100%"
