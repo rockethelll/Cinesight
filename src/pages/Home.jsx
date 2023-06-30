@@ -50,9 +50,6 @@ function Home() {
   const test = () => {
     if (!isVerticalScroll) {
       setSwipeable(true);
-      setTimeout(() => {
-        setSwipeable(false);
-      }, 100);
     }
   };
 
