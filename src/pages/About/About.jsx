@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function About() {
   return (
     <main className="about__wrapper">
@@ -28,15 +26,15 @@ export default function About() {
         </h3>
         <p>
           Lorsque vous parcourez notre site et trouvez un film qui suscite votre
-          intérêt, vous pouvez l'ajouter à votre "watchlist". Cela vous permet
-          de garder une trace des films que vous souhaitez regarder à l'avenir.
-          Il vous suffit de cliquer sur le bouton "Ajouter à ma watchlist" et le
+          intérêt, vous pouvez l&lsquo;ajouter à votre &ldquo;watchlist&ldquo;. Cela vous permet
+          de garder une trace des films que vous souhaitez regarder à l&lsquo;avenir.
+          Il vous suffit de cliquer sur le bouton &ldquo;Ajouter à ma watchlist&ldquo; et le
           film sera enregistré dans votre compte.
         </p>
       </div>
       <div className="my-5">
         <h3>
-          Parcourir les listes populaires{" "}
+          Parcourir les listes populaires
           <img src="../images/movies.svg" width={28} alt="icone de recherche" />
         </h3>
         <p>
@@ -51,7 +49,7 @@ export default function About() {
       <div className="my-5">
         <p>
           <em>
-            N'attendez plus, plongez dans l'univers du cinéma avec Cinesight et
+            N'attendez plus, plongez dans l&lsquo;univers du cinéma avec Cinesight et
             explorez une multitude de films captivants. Profitez de notre site
             et laissez-vous inspirer pour votre prochaine séance de cinéma !
           </em>

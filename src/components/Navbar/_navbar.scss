@@ -11,6 +11,7 @@
     width: 100%;
     background-color: #262936;
   }
+
 }
 
 .nav-sm {
@@ -107,7 +108,7 @@
     z-index: 1000;
     display: flex;
     position: fixed;
-    width: 33%;
+    min-width: fit-content;
     background-color: $light_blue;
     animation: slidein .2s ease-in-out;
     right: 0;
@@ -193,8 +194,10 @@
 }
 
 @media screen and (min-width:1024px) {
+  nav{
+    
+  }
   .searchbar__wrapper {
-
     margin-left: 50px;
   }
 }
