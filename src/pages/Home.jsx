@@ -41,14 +41,14 @@ function Home() {
   const handleScroll = () => {
     if (isVerticalScroll) {
       setSwipeable(false);
-      setTimeout(() => {
-        setSwipeable(true);
-      }, 100);
-    } else {
+    }
+  };
+
+  const test = () => {
+    if (!isVerticalScroll) {
       setSwipeable(true);
     }
   };
-  console.log(isVerticalScroll);
 
   const screenSize = useWindowSize();
   let handleCenterSlide;
@@ -84,14 +84,10 @@ function Home() {
   return (
     <>
       {user === null && <Hero />}
-      <div className="home" onTouchMoveCapture={handleScroll}>
-        <main>
+      <div className="home" onTouchStartCapture={handleScroll} onTouchEndCapture={test}>
+        <main >
           {queries.map((query) => (
-            <div
-              style={{ marginBottom: "3vw" }}
-              key={query.title}
-              onTouchMoveCapture={handleScroll}
-            >
+            <div style={{ marginBottom: "3vw" }} key={query.title}>
               <h2>{query.title}</h2>
               <Carousel
                 centerMode
